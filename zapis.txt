@@ -1,0 +1,17 @@
+lo1.sandomierz.pl/kursy/kurs4
+języki kompilowane
+języki interpretowane
+
+"Witaj"
+'Witaj'
+Plik/Nowy z szablonu/main.py
+Plik/Zapisz jako
+CTRL+S
+
+print() – instrukcja wyjścia
+input() – instrukcja wejścia
+int() – rzutowanie na typ całkowity
+zmienna
+typy danych:
+tekst - string - str
+liczby całkowite - integer - int
