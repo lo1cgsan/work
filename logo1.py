@@ -12,15 +12,17 @@ def kwadrat(bok, x, y):
         turtle.forward(bok)
         turtle.left(90)
 
+
 def kwadraty():
     pass
+
 
 def gwiazdy():
     ile = 10
     bok = 100
     krok = 20
     kat = 144
-    
+
     for i in range(ile):
         for j in range(5):
             turtle.forward(bok + krok * i)
