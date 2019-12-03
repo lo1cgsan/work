@@ -11,9 +11,9 @@ pygame.init()
 OKNOGRY = pygame.display.set_mode((300, 300), 0, 32)
 pygame.display.set_caption('Kółko i krzyżyk')
 
-POLE_GRY = [0, 0, 0,
-            0, 0, 0,
-            0, 0, 0]
+POLE_GRY = [2, 0, 2,
+            0, 1, 0,
+            0, 1, 1]
 RUCH = 1  # do kogo należy ruch, 1 - gracz, 0 - komputer
 WYGRANY = 0  # 0 - nikt, 1 - gracz, 2 - komputer, 3 - remis
 WYGRANA = False
@@ -50,7 +50,49 @@ def postaw_znak(pole, RUCH):
     return RUCH
 
 
+def sprawdz_pola(uklad, wygrany=None):
+    wartosc = None
+    POLA_INDEKSY = [  # trójki pól do sprawdzenia
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],  # poziom
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],  # pion
+        [0, 4, 8], [2, 4, 6]  #na ukos
+    ]
+
+    for lista in POLA_INDEKSY:
+        kol = []  # lista pomocnicza
+        for ind in lista:
+            kol.append(POLE_GRY[ind])
+        if (kol in uklad):
+            wartosc = wygrany if wygrany else lista[kol.index(0)]
+
+    return wartosc
+
+
+def ai_ruch(RUCH):
+    pole = None
+
+    uklady_wygrywam = [[2, 2, 0], [2, 0, 2], [0, 2, 2]]
+    uklady_blokuje = [[1, 1, 0], [1, 0, 1], [0, 1, 1]]
+
+    pole = sprawdz_pola(uklady_wygrywam)
+    pass
+
+
 while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+
+        if WYGRANA is False:
+            if RUCH == 1:
+                if event.type == MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        mouseX, mouseY = event.pos
+                        pole = (int(mouseY / 100) * 3) + int(mouseX / 100)
+                        RUCH = postaw_znak(pole, RUCH)
+            elif RUCH == 2:
+                RUCH = ai_ruch(RUCH)
 
     OKNOGRY.fill((0, 0, 0))
     rysuj_plansze()
