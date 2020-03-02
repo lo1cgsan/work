@@ -8,7 +8,12 @@ from pygame.locals import *
 
 pygame.init()
 
-OKNOGRY = pygame.display.set_mode((300, 300), 0, 32)
+BOK = 300
+BOKK = 100
+PROMIEN = int(BOKK / 2) - 10
+
+
+OKNOGRY = pygame.display.set_mode((BOK, BOK), 0, 32)
 pygame.display.set_caption('Kółko i krzyżyk')
 
 POLE_GRY = [0, 0, 0,
@@ -23,20 +28,20 @@ def rysuj_plansze():
     for i in range(3):
         for j in range(3):
             pygame.draw.rect(OKNOGRY, (255, 255, 255),
-                             Rect((j * 100, i * 100), (100, 100)), 1)
+                             Rect((j * BOKK, i * BOKK), (BOKK, BOKK)), 1)
 
 
 def rysuj_pole_gry():
     for i in range(3):
         for j in range(3):
             pole = i * 3 + j  # 0, 1, 2, ..., 8
-            x = j * 100 + 50  # 25, 75, 125
-            y = i * 100 + 50  # 25, 25, 25
+            x = j * BOKK + int(0.5 * BOKK)  # 25, 75, 125
+            y = i * BOKK + int(0.5 * BOKK)  # 25, 25, 25
 
             if POLE_GRY[pole] == 1:
-                pygame.draw.circle(OKNOGRY, (0, 0, 255), (x, y), 45)
+                pygame.draw.circle(OKNOGRY, (0, 0, 255), (x, y), PROMIEN)
             elif POLE_GRY[pole] == 2:
-                pygame.draw.circle(OKNOGRY, (255, 0, 0), (x, y), 45)
+                pygame.draw.circle(OKNOGRY, (255, 0, 0), (x, y), PROMIEN)
 
 
 def postaw_znak(pole, RUCH):
@@ -55,7 +60,7 @@ def sprawdz_pola(uklad, wygrany=None):
     POLA_INDEKSY = [  # trójki pól do sprawdzenia
         [0, 1, 2], [3, 4, 5], [6, 7, 8],  # poziom
         [0, 3, 6], [1, 4, 7], [2, 5, 8],  # pion
-        [0, 4, 8], [2, 4, 6]  #na ukos
+        [0, 4, 8], [2, 4, 6]  # na ukos
     ]
 
     for lista in POLA_INDEKSY:
@@ -90,6 +95,34 @@ def ai_ruch(RUCH):
     return postaw_znak(pole, RUCH)
 
 
+def kto_wygral():
+    uklad_gracz = [[1, 1, 1]]
+    uklad_ai = [[2, 2, 2]]
+
+    WYGRANY = sprawdz_pola(uklad_gracz, 1)
+    if not WYGRANY:  # jeżeli gracz nie wygrał
+        WYGRANY = sprawdz_pola(uklad_ai, 2)  # czy wygrał komputer
+
+    if 0 not in POLE_GRY and WYGRANY not in [1, 2]:
+        WYGRANY = 3
+
+    return WYGRANY
+
+
+def drukuj_wyniki(WYGRANY):
+    fontObj = pygame.font.Font('FreeSansBold.ttf', 26)
+    if WYGRANY == 1:
+        tekst = 'Wygrałeś!'
+    elif WYGRANY == 2:
+        tekst = 'Wygrał komputer.'
+    else:
+        tekst = 'Remis!'
+    tekst_obr = fontObj.render(tekst, True, (20, 255, 20))
+    tekst_prost = tekst_obr.get_rect()
+    tekst_prost.center = (BOKK + int(0.5 * BOKK), BOKK + int(0.5 * BOKK))
+    OKNOGRY.blit(tekst_obr, tekst_prost)
+
+
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -101,12 +134,17 @@ while True:
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         mouseX, mouseY = event.pos
-                        pole = (int(mouseY / 100) * 3) + int(mouseX / 100)
+                        pole = (int(mouseY / BOKK) * 3) + int(mouseX / BOKK)
                         RUCH = postaw_znak(pole, RUCH)
             elif RUCH == 2:
                 RUCH = ai_ruch(RUCH)
+            WYGRANY = kto_wygral()
+            if WYGRANY is not None:
+                WYGRANA = True
 
     OKNOGRY.fill((0, 0, 0))
     rysuj_plansze()
     rysuj_pole_gry()
+    if WYGRANA:
+        drukuj_wyniki(WYGRANY)
     pygame.display.update()

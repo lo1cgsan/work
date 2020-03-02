@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Pierwszy dokument w HTML-u</title>
+  <link rel="stylesheet" href="style1.css">
+    <!-- style wewnętrzne (ang. internal) -->
+    <style>
+      h2 {
+        font: 20px/1.5em arial, sans-serif;
+      }
+        table {
+            border: 2px solid red;
+            width: 100%;
+        }
+        td {
+            border: 1px solid black;
+        }
+        h3.drugiH3 {
+          border-color: green;
+        }
+        h3 {
+          border: 2px solid red;
+          padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Nagłówek 1 stopnia</h1>
+    <h2 style="font: 22px/1.5em calibri, sans-serif;">Nagłówek 2 stopnia</h2>
+    <h3>Prezycja selekcji CSS</h3>
+    <h3 class="drugiH3">Reguły liczenia precyzji</h3>
+    <h3 class="drugiH3" id="trzeciH3">Co jest najważniejsze?</h3>
+    <h3 style="border-color: black;">Najważniejszy jest atrybut style</h3>
+
+<button onclick="document.getElementById('akapit1').innerHTML = Date();">Kliknij mnie!</button>
+<button onclick="document.getElementById('akapit1').innerHTML = '';">Wyczyść!</button>
+<p id="akapit1" style="border: 1px solid brown; padding: 1.2em;"></p>
+
+<div class="eblokowy">
+Warstwa blokowa. Warstwa blokowa. Warstwa blokowa. Warstwa blokowa. Warstwa blokowa. Warstwa blokowa.
+</div>Jakiś tekst.
+
+    <p>Treść 1 akapitu Treść 1 akapitu Treść 1
+     akapitu Treść 1 akapitu Treść 1 akapitu Treść
+     <span style="border: 1px solid red;">
+       1 akapitu Treść 1 akapitu
+     </span>
+       Treść 1 akapitu Treść
+       1 akapitu Treść 1 akapitu Treść 1 akapitu
+        Treść 1 akapitu Treść 1 akapitu Treść 1 akapitu
+         Treść 1 akapitu Treść 1 akapitu Treść 1 akapitu Treść 1 akapitu Treść 1 akapitu Treść 1 akapitu Treść 1 akapitu Treść 1 akapitu
+    </p>
+    <p>Treść 2 akapitu</p>
+    <hr>
+      <ul class="menu">
+        <li>Kawa</li>
+        <li>Mleko</li>
+        <li>Cukier</li>
+      </ul>
+    <hr>
+      <ol>
+        <li>Kawa</li>
+        <li>Mleko</li>
+        <li>Cukier</li>
+      </ol>
+    <hr>
+    <table>
+        <tr>
+            <td><a href="http://lo1.sandomierz.pl">Strona internetowa I LO w Sandomierzu</a></td>
+            <td><a href="https://pl.wikipedia.org/wiki/HTML5#/media/Plik:HTML5_logo_and_wordmark.svg">Znak HTML 5</a></td>
+            <td>3 komórka</td>
+        </tr>
+        <tr>
+            <td><img src="https://rapidapi.com/blog/wp-content/uploads/2018/06/logo-2582748_640.png" alt="Znak HTML 5" width="200" height="150"></td>
+            <td>5 komórka</td>
+            <td>6 komórka</td>
+        </tr>
+        <tr>
+            <td colspan="2">7 komórka</td>
+            <td rowspan="2"><img src="logo_CSS.png"></td>
+        </tr>
+        <tr>
+            <td>9 komórka</td>
+            <td>10 komórka</td>
+        </tr>
+    </table>
+</body>
+
+</html>

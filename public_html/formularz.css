@@ -1,0 +1,24 @@
+body {
+/*
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+*/
+    font: 14px/1.5em 'Roboto', sans-serif;
+    background-color: #918fde;
+}
+
+h1 {
+    color: #3349EF;
+    font-size: 2.5em;
+    background-color: #b1c2a7;
+}
+
+label {
+    font: italic 0.9em/1.2em arial,tahoma,sans-serif;
+}
+
+.normal {
+    font-style: normal;
+    line-height: 1em;
+}

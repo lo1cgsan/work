@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<!-- formularz.html -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>Formularz</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="formularz.css">
+</head>
+
+<body>
+    <h1>Formularz HTML</h1>
+    <p>Jakiś tekst podstawowy</p>
+
+    <form action="formularz.html" method="GET">
+        <label for="login">Login: </label>
+        <input type="text" name="login" id="login" required><br>
+
+        <label for="haslo">Hasło: </label>
+        <input type="password" name="haslo" id="haslo"><br>
+
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" required><br>
+
+        <hr>
+
+        <input type="radio" id="m" name="plec" value="mezczyzna">
+        <label class="normal" for="m">Mężczyzna</label><br>
+        <input type="radio" id="k" name="plec" value="kobieta">
+        <label class="normal" for="k">Kobieta</label><br>
+        <input type="radio" id="i" name="plec" value="inna">
+        <label class="normal" for="i">Inna</label><br>
+
+        <hr>
+
+        <input type="checkbox" id="p1" name="pojazd1" value="rower">
+        <label class="normal" for="p1">Mam rower</label><br>
+        <input type="checkbox" id="p2" name="pojazd2" value="samochod">
+        <label class="normal" for="p2">Mam samochód</label><br>
+        <input type="checkbox" id="p3" name="pojazd3" value="lodz">
+        <label class="normal" for="p3">Mam łódź</label><br>
+
+        <label for="data_ur">Data urodzenia:</label>
+        <input type="date" id="data_ur" name="data _ut">
+
+        <input type="submit" value="Wyślij">
+    </form>
+
+</body>
+
+</html>
