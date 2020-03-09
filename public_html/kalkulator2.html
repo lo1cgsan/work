@@ -6,26 +6,6 @@
   <title>Pierwszy dokument w HTML-u</title>
   <link rel="stylesheet" href="kalkulator.css">
   <script src="jquery-3.4.1.min.js"></script>
-
-  <script type="text/javascript">
-      function dodaj() {
-        var l1 = document.getElementsByName('liczba1')[0].value;
-        var l2 = document.getElementsByName('liczba2')[0].value;
-        document.getElementById('wynik').value = parseInt(l1) + parseInt(l2);
-      }
-      function odejmij() {
-        var l1 = document.getElementsByName('liczba1')[0].value;
-        var l2 = document.getElementsByName('liczba2')[0].value;
-        document.getElementById('wynik').value = parseInt(l1) - parseInt(l2);
-      }
-      function oblicz(obj) {
-        var l1 = parseInt(document.getElementsByName('liczba1')[0].value);
-        var l2 = parseInt(document.getElementsByName('liczba2')[0].value);
-        var dzialanie = obj.value;
-
-        document.getElementById('wynik').value = wynik;
-      }
-  </script>
 </head>
 
 <body>
@@ -49,36 +29,30 @@
 </div>
 <hr>
 <select id="cars">
-  <option>BMW</option>
+  <option value="bmw">BMW</option>
 </select>
 <ul id="cars2">
   <li>BMW</li>
 </ul>
 <input type="text" id="indeks">&nbsp;
-<button onclick="dodajOpcje()">Dodaj</button>
+<button id="btnDodaj">Dodaj</button>
 
 <script type="text/javascript">
+
 var cars = ["Saab", "Fiat", "Opel", "Mercedes"];
-function dodajOpcje() {
-  var i = parseInt(document.getElementById("indeks").value);
-  if (i > -1 && i < cars.length) {
-    var lista = document.getElementById('cars');
-    var opcja = document.createElement("option");
-    opcja.text = cars[i];
-    lista.add(opcja);
-    var lista2 = document.getElementById('cars2');
-    var element = document.createElement("li");
-    var tekst = document.createTextNode(cars[i]);
-    element.appendChild(tekst);
-    lista2.appendChild(element);
-  }
-}
-// console.log(cars.length);
-// console.log(cars[0]);
-</script>
 
-<script type="text/javascript">
 $(document).ready(function(){
+
+  $("#btnDodaj").click(function(){
+
+    var indeks = parseInt($("#indeks").val());
+    var wartosc = cars[indeks];
+
+    $('#cars').append(
+      $("<option></option>").attr("value",wartosc.toLowerCase()).text(wartosc)
+      );
+
+  });
 
   $("#btnData").click(function(){
     $("#akapit1").html(Date());
