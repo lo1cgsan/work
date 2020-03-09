@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Pierwszy dokument w HTML-u</title>
+  <link rel="stylesheet" href="kalkulator.css">
+  <script src="jquery-3.4.1.min.js"></script>
+
+  <script type="text/javascript">
+      function dodaj() {
+        var l1 = document.getElementsByName('liczba1')[0].value;
+        var l2 = document.getElementsByName('liczba2')[0].value;
+        document.getElementById('wynik').value = parseInt(l1) + parseInt(l2);
+      }
+      function odejmij() {
+        var l1 = document.getElementsByName('liczba1')[0].value;
+        var l2 = document.getElementsByName('liczba2')[0].value;
+        document.getElementById('wynik').value = parseInt(l1) - parseInt(l2);
+      }
+      function oblicz(obj) {
+        var l1 = parseInt(document.getElementsByName('liczba1')[0].value);
+        var l2 = parseInt(document.getElementsByName('liczba2')[0].value);
+        var dzialanie = obj.value;
+
+        document.getElementById('wynik').value = wynik;
+      }
+  </script>
+</head>
+
+<body>
+    <h1>Kalkulator</h1>
+
+<button id="btnData">Kliknij mnie!</button>
+<button id="btnClean">Wyczyść!</button>
+<p id="akapit1" style="border: 1px solid brown; padding: 1.2em;"></p>
+
+<div class="kalkulator">
+  <label for="">Liczba1:</label>
+  <input type="text" name="liczba1">&nbsp;
+  <label for="">Liczba2:</label>
+  <input type="text" name="liczba2"><br>
+  <label for="">Wynik:</label>
+  <input type="text" id="wynik">
+  <input type="button" class="dzialania" value="+">
+  <input type="button" class="dzialania" value="-">
+  <input type="button" class="dzialania" value="*">
+  <input type="button" class="dzialania" value="/">
+</div>
+<hr>
+<select id="cars">
+  <option>BMW</option>
+</select>
+<ul id="cars2">
+  <li>BMW</li>
+</ul>
+<input type="text" id="indeks">&nbsp;
+<button onclick="dodajOpcje()">Dodaj</button>
+
+<script type="text/javascript">
+var cars = ["Saab", "Fiat", "Opel", "Mercedes"];
+function dodajOpcje() {
+  var i = parseInt(document.getElementById("indeks").value);
+  if (i > -1 && i < cars.length) {
+    var lista = document.getElementById('cars');
+    var opcja = document.createElement("option");
+    opcja.text = cars[i];
+    lista.add(opcja);
+    var lista2 = document.getElementById('cars2');
+    var element = document.createElement("li");
+    var tekst = document.createTextNode(cars[i]);
+    element.appendChild(tekst);
+    lista2.appendChild(element);
+  }
+}
+// console.log(cars.length);
+// console.log(cars[0]);
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $("#btnData").click(function(){
+    $("#akapit1").html(Date());
+  });
+
+  $("#btnClean").click(function(){
+    $("#akapit1").html("");
+  });
+
+  $(".dzialania").click(function(){
+    var l1 = parseInt($("input[name='liczba1']").val());
+    var l2 = parseInt($("input[name='liczba2']").val());
+
+    var dzialanie = $(this).val();
+    var wynik = 0;
+    switch (dzialanie) {
+      case '+':
+        wynik = l1 + l2;
+      break;
+      case '-':
+        wynik = l1 - l2;
+      break;
+      case '*':
+        wynik = l1 * l2;
+      break;
+      case '/':
+        if (l2 == 0) {
+          alert("Nie można dzielić przez 0!");
+        } else {
+          wynik = l1 / l2;
+        }
+      break;
+    }
+    //wpisz wynik do właściwego taga HTML
+    $("#wynik").val(wynik);
+  });
+
+});
+</script>
+
+</body>
+</html>
