@@ -22,3 +22,21 @@ github.com/lo1cgsan/tik201920
 Bootstrap Jumbotron z tłem
 1) Umieść obrazek tła w katalogu z plikiem bootstrap.html
 2) wejdź na stronę www.w3schools.com/css/
+
+Ścieżki względne
+1) href="./bootstrap2.html"
+
+Ścieżka bezwzględna
+1) file://
+/home/lo1sand/github/tik201920/public_html/bootstrap3.html
+file://
+/C:/Users/beata/OneDrive/Pulpit/bootstrap.html
+
+Obrazki w podkatalogu
+1) Utwórz podkatalog "imgs" i przenieś do niego pliki z tłem jumbotronu.
+
+Kolory w Bootstrapie
+-primary
+-secondary
+-success
+-danger
