@@ -17,7 +17,11 @@ c) medium >= 768px col-md-4
 d) large >= 992px col-lg-4
 e) xlarge >= 1200px col-xl-4
 
-github.com/lo1cgsan/tik201920
+Wyrównywanie w poziomie:
+https://stackoverflow.com/questions/42388989/bootstrap-4-center-vertical-and-horizontal-alignment
+
+Jednostki CSS:
+https://www.w3schools.com/cssref/css_units.asp
 
 Bootstrap Jumbotron z tłem
 1) Umieść obrazek tła w katalogu z plikiem bootstrap.html
