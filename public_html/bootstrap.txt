@@ -16,3 +16,9 @@ b) small >= 576px col-sm-4
 c) medium >= 768px col-md-4
 d) large >= 992px col-lg-4
 e) xlarge >= 1200px col-xl-4
+
+github.com/lo1cgsan/tik201920
+
+Bootstrap Jumbotron z tłem
+1) Umieść obrazek tła w katalogu z plikiem bootstrap.html
+2) wejdź na stronę www.w3schools.com/css/
