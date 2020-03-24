@@ -1,16 +1,16 @@
+
 1) Wejdź na stronę:
-https://www.codepile.net/pile/dZey2eZA
-2) Skopiuj kod i wklej do nowego dokumentu
-3) Zapisz plik jako "bootstrap.html"
-4) Otwórz plik "bootstrap.html" w przeglądarce
-5) Dajcie znać, że udało się to zrobić
+github.com\lo1cgsan\tik201920
+2) Pobierz lub sklonuj repozytorium
+3) Otwórz plik "bootstrap.html" w przeglądarce
 
 Bootstrap = HTML + CSS + JS
-6) W przeglądarce Mozilla Firefox włącz tryb mobilny:
+a) W przeglądarce Mozilla Firefox włącz tryb mobilny:
 CTRL+SHIFT+M
-7) System siatkowy (ang. grid system)
 
-8) Podział urządzeń ze względu na rozdzielczość
+System siatkowy (ang. grid system)
+
+Podział urządzeń ze względu na rozdzielczość
 a) extra small < 576px col-4
 b) small >= 576px col-sm-4
 c) medium >= 768px col-md-4
@@ -44,3 +44,12 @@ Kolory w Bootstrapie
 -secondary
 -success
 -danger
+-info
+-dark
+-light
+
+Alerty: alert alert-primary alert-dissmisible
+Przyciski (button): btn btn-(outline)-primary btn-sm
+
+Encje HTML
+&raquo;
