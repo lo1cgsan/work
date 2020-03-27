@@ -50,6 +50,7 @@ Kolory w Bootstrapie
 
 Alerty: alert alert-primary alert-dissmisible
 Przyciski (button): btn btn-(outline)-primary btn-sm
+Grupowanie przycisków: btn-group
 
 Encje HTML
 &raquo;
