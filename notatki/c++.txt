@@ -1,0 +1,20 @@
+CODE::BLOCKS
+Settings / Compiler, zakładka Toolchain executables:
+
+Compiler's installation directory:
+C:\Program Files (x86)\CodeBlocks\MinGW\bin
+
+C compiler:   x86_64-w64-mingw32-gcc.exe
+C++ compiler: x86_64-w64-mingw32-g++.exe
+Linker:       x86_64-w64-mingw32-g++.exe
+
+W terminalu (wierszu poleceń) uruchomionym poleceniem CMD:
+
+setx PATH "%PATH%;C:\Program Files (x86)\CodeBlocks\MinGW\bin"
+
+GEANY, polecenie dla Build:
+
+g++ -Wall -o "%e.exe" "%f"
+
+warning: 'bmi' set but not used
+error: 'bmi' was not declared in this scope
