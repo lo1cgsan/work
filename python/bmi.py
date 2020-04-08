@@ -28,13 +28,16 @@ def wydrukujDiagnoze(bmi):
         print('otyłość')
 
 
-m, w = pobierzDane()
-# print(m, w)
-bmi = obliczBmi(m, w)
-print(bmi)
-wydrukujDiagnoze(bmi)
+def main(args):
+    m, w = pobierzDane()
+    # print(m, w)
+    bmi = obliczBmi(m, w)
+    print(bmi)
+    wydrukujDiagnoze(bmi)
+    input('Naciśnij jakiś klawisz...')
+    return 0
 
 
-
-
-input('Naciśnij jakiś klawisz...')
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))
