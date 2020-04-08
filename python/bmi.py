@@ -12,20 +12,29 @@ def pobierzDane():
     return m, w
 
 
+def obliczBmi(m, w):
+    bmi = m / (w**2)
+    return bmi
+
+
+def wydrukujDiagnoze(bmi):
+    if bmi < 18.5:
+        print('niedowaga')
+    elif bmi < 25:
+        print('norma')
+    elif bmi < 30:
+        print('nadwaga')
+    else:
+        print('otyłość')
+
+
 m, w = pobierzDane()
-print(m, w)
-
-bmi = m / (w**2)
+# print(m, w)
+bmi = obliczBmi(m, w)
 print(bmi)
+wydrukujDiagnoze(bmi)
 
-if bmi < 18.5:
-    print('niedowaga')
-elif bmi < 25:
-    print('norma')
-elif bmi < 30:
-    print('nadwaga')
-else:
-    print('otyłość')
+
 
 
 input('Naciśnij jakiś klawisz...')
