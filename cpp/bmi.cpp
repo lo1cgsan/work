@@ -1,10 +1,26 @@
 /*
  * bmi.cpp
  */
-
 using namespace std;
 
 #include <iostream>
+
+void pobierzDane(float &m, float &w) {
+    cout << "Podaj masę ciała (kg): ";
+    cin >> m;
+    while (m < 10 || m > 200) {
+        cout << "Błędna wartość" << endl;
+        cout << "Podaj masę ciała (kg): ";
+        cin >> m;
+    }
+    cout << "Podaj wzrost (m): ";
+    cin >> w;
+    while (w < 1 || w > 2.5) {
+        cout << "Błędna wartość" << endl;
+        cout << "Podaj wzrost (m): ";
+        cin >> w;
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -13,15 +29,11 @@ int main(int argc, char **argv)
     float m = 0;
     float w = 0;
     float bmi = 0;
-    
-    cout << "Podaj masę ciała (kg): ";
-    cin >> m;
 
-    cout << "Podaj wzrost (m): ";
-    cin >> w;
+    pobierzDane(m, w);
 
     cout << m << " " << w << endl;
-    
+
     bmi = m / (w * w);
     cout << bmi << endl;
 
