@@ -22,21 +22,12 @@ void pobierzDane(float &m, float &w) {
     }
 }
 
-int main(int argc, char **argv)
-{
-    // deklaracja zmiennych, może zawierać inicjację wartości zmiennej
-    // deklarcja + inicjacja = definicja
-    float m = 0;
-    float w = 0;
-    float bmi = 0;
+float obliczBmi(float m, float w) {
+    float bmi = m / (w * w);
+    return bmi;
+}
 
-    pobierzDane(m, w);
-
-    cout << m << " " << w << endl;
-
-    bmi = m / (w * w);
-    cout << bmi << endl;
-
+void wydrukujDiagnoze(float bmi) {
     if (bmi < 18.5) {
         cout << "niedowaga";
     } else if (bmi < 25) {
@@ -46,6 +37,20 @@ int main(int argc, char **argv)
     } else {
         cout << "otyłość";
     }
+}
+
+int main(int argc, char **argv)
+{
+    // deklaracja zmiennych, może zawierać inicjację wartości zmiennej
+    // deklarcja + inicjacja = definicja
+    float m = 0;
+    float w = 0;
+    float bmi = 0;
+
+    pobierzDane(m, w);
+    bmi = obliczBmi(m, w);
+    cout << bmi << endl;
+    wydrukujDiagnoze(bmi);
 
 	return 0;
 }
