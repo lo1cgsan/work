@@ -31,21 +31,28 @@ def max(tab, n):
 
 def minmax(tb, n):
     """
-    Zastosowanie metody dziel i zwyciężaj
+    Funkcja odczytuje z przekazanej listy po dwie liczby i je porównuje.
+    Mniejsze dodawane są do listy tbmin, większe do listy tbmax.
+    Funkcja zwraca listy liczb mniejszych i większych.
     """
     tbmin = []
     tbmax = []
     i = 0
     for i in range(0, n - 1, 2):
         print(tb[i], tb[i + 1])
-        if tb[i] < tb[i + 1]:
+        if tb[i] <= tb[i + 1]:
             tbmin.append(tb[i])
+            tbmax.append(tb[i + 1])
         else:
             tbmax.append(tb[i])
-    if n % 2:
-        if tb[i + 1] < tb[i]:
-            tbmin.append(tb[i])
-    print(tbmin, tbmax)
+            tbmin.append(tb[i + 1])
+    if n % 2:  # lista zawiera nieparzystą ilość liczb
+        print(tb[i + 2], tb[i + 1])
+        if tb[i + 2] < tb[i + 1]:
+            tbmin.append(tb[i + 2])
+        else:
+            tbmax.append(tb[i + 2])
+    print(f"Liczby mniejsze: {tbmin}\nLiczby większe: {tbmax}")
     return tbmin, tbmax
 
 
@@ -54,13 +61,12 @@ def main(args):
     n = int(input("Ile liczb? "))
     MAKS = 50
     losujLiczby(tab, n, MAKS)
-    print(tab)
+    print("Wylosowane liczby:\n", tab)
 
     tbmin, tbmax = minmax(tab, n)
-    min_el = min(tab, n)
-    max_el = max(tab, n)
-    print(min_el, " ", max_el)
-
+    min_el = min(tbmin, len(tbmin))
+    max_el = max(tbmax, len(tbmax))
+    print(f"Minimum: {min_el}. Maksimum: {max_el}.")
     return 0
 
 
