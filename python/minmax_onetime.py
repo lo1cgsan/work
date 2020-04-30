@@ -35,8 +35,11 @@ def minmax(tb, n):
     Mniejsze dodawane są do listy tbmin, większe do listy tbmax.
     Funkcja zwraca listy liczb mniejszych i większych.
     """
-    tbmin = []
-    tbmax = []
+    tb = [3, 2, 5, 8, 10, 1, 6, 7]
+    n = len(tb)
+    print("Wylosowane liczby:\n", tb)
+    tbmin = []  # lista liczb mniejszych
+    tbmax = []  # lista liczb większych
     i = 0
     for i in range(0, n - 1, 2):
         print(tb[i], tb[i + 1])
@@ -46,14 +49,20 @@ def minmax(tb, n):
         else:
             tbmax.append(tb[i])
             tbmin.append(tb[i + 1])
+
     if n % 2:  # lista zawiera nieparzystą ilość liczb
-        print(tb[i + 2], tb[i + 1])
-        if tb[i + 2] < tb[i + 1]:
-            tbmin.append(tb[i + 2])
+        if tb[n - 1] <= tbmin[0]:
+            tbmin.append(tb[n - 1])
         else:
-            tbmax.append(tb[i + 2])
+            tbmax.append(tb[n - 1])
+
     print(f"Liczby mniejsze: {tbmin}\nLiczby większe: {tbmax}")
     return tbmin, tbmax
+
+# n = 100000
+# (n - 1) + (n - 2) = 2n - 3 = 19997
+# n / 2 + (n / 2 - 1) + (n / 2 - 1) = 3n / 2 - 2 = 14998
+# złożoność czasowa
 
 
 def main(args):
@@ -61,7 +70,6 @@ def main(args):
     n = int(input("Ile liczb? "))
     MAKS = 50
     losujLiczby(tab, n, MAKS)
-    print("Wylosowane liczby:\n", tab)
 
     tbmin, tbmax = minmax(tab, n)
     min_el = min(tbmin, len(tbmin))
