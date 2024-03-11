@@ -1,0 +1,31 @@
+Napisz program wektor.cpp, który:
+
+1) pobiera od użytkownika współrzędne punktu początkowego i końcowego
+2) oblicza współrzędne środka tego wektora
+
+Użyj dwóch struktur:
+punkt – do przechowywania współrzędnych punktu
+wektor – do przechowywania współrzędnych punktu początkowego
+         i końcowego wektora
+
+struct punkt{
+    int x;
+    int y;
+};
+
+struct wektor{
+    punkt pp;
+    punkt pk;
+};
+
+punkt wylicz_srodek(wektor w){
+    ;
+}
+
+wektor getWektor() {
+    wektor w1;
+    w1.pp.x = 1;
+    w1.pk.y = 1;
+    
+    return wektor;
+}

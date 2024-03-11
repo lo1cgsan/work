@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>CSS – Arkusze Stylów</title>
+
+<style>
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #2E4922;
+    color: white;
+}
+
+h1 {
+    background-color: #43B40F;
+}
+
+p.akapit_szary { color: lightgrey;}
+
+.odnosnik {
+    color: lightgreen;
+}
+
+.odnosnik:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.odnosnik:visited {
+    text-decoration: none;
+}
+
+h2 {
+    border: 4px dotted red;
+}
+
+</style>
+
+<script>
+
+function obramuj(element, wlacz) {
+    if (wlacz)
+        element.style.border = "3px solid lightgrey";
+    else
+        element.style.border = "nonecg2020
+        ";
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Arkusze Stylów CSS</h1>
+
+<h2>Jak zmieniać wygląd strony?</h2>
+
+<p id="akapit1">Lorem ipsum dolor sit amet, consectetur</p>
+
+<button type="button" onclick='document.getElementById("akapit1").innerHTML = "Cześć, jestem JavaScript!"'>Kliknij mnie!</button>
+
+<p class="akapit_szary" onmouseover="obramuj(this, true)" onmouseout="obramuj(this, false)">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+
+
+<p class="akapit_szary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utali</p>
+
+<ul>
+    <li><a class="odnosnik" href="https://pl.wikipedia.org/wiki/HTML">HTML</a></li>
+    <li><a class="odnosnik" href="https://pl.wikipedia.org/wiki/Kaskadowe_arkusze_styl%C3%B3w">CSS</a></li>
+    <li>JavaScript</li>
+</ul>
+
+
+</body>
+
+</html>

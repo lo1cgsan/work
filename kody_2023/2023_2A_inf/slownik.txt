@@ -1,0 +1,4 @@
+go:pójść iść dojść
+see:widzieć zobaczyć rozumieć
+watch:uważać pilnować oglądać
+print:drukować wypisać zapisać

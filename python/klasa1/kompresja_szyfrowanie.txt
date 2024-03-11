@@ -1,0 +1,29 @@
+Kompresja danych
+Rodzaje kompresji:
+1) kompresja bezstratna: 7zip, zip, xz, rar
+
+1 bit * 8 = 1 B(ajt) 'a', 'ą', ''
+1111111(2) = 127(10)
+11111111(2) = 255(10)
+UTF-8 = 2 bajty
+
+1000B = 1kB
+256GB SSD
+240GB
+
+1024kb = 1Mb
+1024b(ity)
+1024B(ajty) = 1kB
+1024kB = 1MB
+1024MB = 1GB
+1024GB = 1TB
+
+
+Współczynnik kompresji:
+Rc = Vk / Vnk * 100%
+Vnk = 784 kB
+Vk = 110,2 kB
+Rc = 110.2/784 * 100% = 14%
+
+R`c = (1 - Vk/Vnk) * 100%
+

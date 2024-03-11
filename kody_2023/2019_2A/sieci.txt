@@ -1,0 +1,43 @@
+IPv4
+x.x.x.x
+255.255.255.255
+10.0.0.0 - 10.255.255.255
+172.16.0.0 - 172.31.255.255
+192.168.0.0 - 192.168.255.255
+
+Prywatne adresy IP:
+192.168.3.0
+192.168.3.10
+
+Domyślna Brama:
+192.168.3.1
+
+Router
+
+Adres MAC
+Adres IP prywatny
+Adres IP publiczny
+Adres IP Bramy
+
+Jak podłączony jest telewizor
+Dekoder Polsatu
+Kablówka
+Internet
+
+Jaki mam router?
+Nazwę producenta lub usługodawcy
+Ile gniazd Ethernet i czym gniazdo oznaczone WAN
+
+
+ipconfig /all
+tracert
+
+ip addr
+traceroute
+
+localhost:8080
+php -s localhost
+
+
+Numery portów
+

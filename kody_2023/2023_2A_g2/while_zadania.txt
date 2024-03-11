@@ -1,0 +1,5 @@
+1) Napisz program "while1.py", który pobiera liczby wprowadzane przez użytkownika, aż do momentu, gdy ich suma przekroczy wartość 75. Przed końcem program powinien wyświetlić sumę wprowadzonych liczb.
+
+2) Napisz program "while2.py", który pobiera od użytkownika liczby większe od 0, wartość 0 przerywa pobieranie. Program następnie zlicza i drukuje, ile wśród wprowadzonych liczb jest nieparzystych.
+
+3) Napisz program "while3.py", który pobiera od użytkownika znak do momentu, gdy jest on literą 't', 'T', 'n', lub 'N'.
