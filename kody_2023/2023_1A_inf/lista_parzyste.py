@@ -4,19 +4,23 @@ i zapisuje je w liście. Następnie napisz i użyj funkcji
 policz_parzyste(), która zlicza i sumuje liczby parzyste
 zapisane w liście. Wypisz liczbę i sumę.
 """
-def policz_parzyste():
-    pass
-    policz i zsumuj liczby parzyste
+def policz_parzyste(lista):
+    licznik = 0
+    suma = 0
+    for x in lista:
+        if x % 2 == 0:
+            licznik = licznik + 1 # inkrementacja
+            suma = suma + x
+    print('Liczba:', licznik, 'Suma:', suma)
 
 
-program główny
+def main():
+    lista = []
+    for i in range(10):
+        liczba = int(input('Podaj liczbę: '))
+        lista.append(liczba)
+    print(lista)
+    policz_parzyste(lista)
 
-1) utwórz pustą listę
-2) napisz pętlę, która wykona się 10 razy
-3) w pętli pobierz liczbę od użytkownika
-4) w pętli dopisz liczbę do listy
-5) po pętli wypisz listę
 
-
-
-x % y - reszta z dzielenie x przez y
+main() # wywołanie funkcji

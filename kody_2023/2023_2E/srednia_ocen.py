@@ -1,28 +1,47 @@
 def oblicz_srednia(lista, n):
     suma = 0
     for i in range(n):
-        print(i)
+        # print(i)
         suma = suma + lista[i]
 
     srednia = suma / n
     print(srednia)
 
 
-oceny = []
-l_ocen = int(input('Podaj liczbę ocen: '))
+def oblicz_srednia2(lista, n):
+    suma = 0
+    for ocena in lista:
+        # print(ocena)
+        suma = suma + ocena
 
-for i in range(l_ocen):
-    ocena = int(input('Podaj ocenę: '))
+    srednia = suma / n
+    print(srednia)
 
-    while ocena < 1 or ocena > 6:
+
+def oblicz_srednia3(lista):
+    suma = sum(lista)
+    ile = len(lista)
+    print(suma / ile)
+
+
+
+def main():
+    oceny = [] # utwrzenie pustej listy
+    l_ocen = int(input('Podaj liczbę ocen: '))
+
+    for i in range(l_ocen):
         ocena = int(input('Podaj ocenę: '))
 
-    oceny.append(ocena)
+        while ocena < 1 or ocena > 6:
+            ocena = int(input('Podaj ocenę: '))
 
-print(oceny)
-oblicz_srednia(oceny, l_ocen)
+        oceny.append(ocena)
+
+    print(oceny)
+    oblicz_srednia(oceny, l_ocen)
+    oblicz_srednia2(oceny, l_ocen)
+    oblicz_srednia3(oceny)
 
 
 
-
-
+main()
