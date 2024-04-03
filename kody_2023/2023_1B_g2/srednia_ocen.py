@@ -4,6 +4,7 @@ liczy i wpypisuje ich srednią.
 """
 ile_ocen = int(input("Ile ocen? "))
 suma = 0
+
 for i in range(ile_ocen):
     print(i)
     o1 = int(input("Podaj ocena: "))

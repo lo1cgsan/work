@@ -26,7 +26,7 @@ def oblicz_srednia3(lista):
 
 
 def main():
-    oceny = [] # utwrzenie pustej listy
+    oceny = [] # utworzenie pustej listy
     l_ocen = int(input('Podaj liczbę ocen: '))
 
     for i in range(l_ocen):
