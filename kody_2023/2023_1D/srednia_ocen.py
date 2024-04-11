@@ -1,5 +1,4 @@
 """
-srednia_ocen.py
 Napisz program, który pobiera 10 ocen,
 liczy i wypisuje ich średnią.
 """

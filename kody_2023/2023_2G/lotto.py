@@ -1,6 +1,5 @@
 from random import randint
 
-
 def czy_zapisana(x, lista):
     for el in lista:
         if x == el:
@@ -8,17 +7,22 @@ def czy_zapisana(x, lista):
     return False
 
 
-liczby = []
+liczby = [] # utworzenia pustej listy
 
 while len(liczby) < 3:
     liczba = randint(1, 10)
-    print(liczba)
-
     if not czy_zapisana(liczba, liczby):
         liczby.append(liczba)
 
-print(liczby)
-
 typy = []
-for i in range(3):
-    pobierz typ od użytkownika
+while len(typy) < 3:
+    typ = int(input('Podaj typ: '))
+    if not czy_zapisana(typ, typy):
+        typy.append(typ)
+
+licznik = 0
+for typ in typy:
+    if czy_zapisana(typ, liczby):
+        print(typ)
+        licznik += 1
+

@@ -1,31 +1,42 @@
-"""
-Napisz program, który losuje 5 unikalnych liczb
-z zakresu podanego przez użytkownika,
-pobiera typy użytkownika i sprawdza ile liczb
-zostało odgadniętych.
-
-Na końcu program powinien wypisać wylosowane liczby,
-odgadnięte liczby oraz ich liczbę.
-
-Wykorzystaj listy i funkcje.
-"""
 from random import randint
 
-def losuj(parametry):
-    utwórz pustą listę
+def czy_zapisana(lista, liczba):
+    for element in lista:
+        if element == liczba:
+            return True
+    return False
 
-    wykonaj 5 razy
-        wylosuj liczbę z podanego zakresu
-        dopisz liczbę do listy
 
-    randint(a, b)
+def losuj():
+    lista = []
+    while len(lista) < 3:
+        liczba = randint(1, 10)
+        if not czy_zapisana(lista, liczba):
+            lista.append(liczba)
+    return lista
 
-    zwróć wylosowane liczby
+
+def pobierz_typy():
+    lista = []
+    while len(lista) < 5:
+        liczba = int(input('Podaj typ: '))
+        if not czy_zapisana(lista, liczba):
+            lista.append(liczba)
+    return lista
 
 
 def main():
-    1) pobierz zakres losowanych liczb
-    2) utwórz listę wylosowanych z zakresu liczb
-    nazwa = losuj()
+    wylosowane = losuj()
+    typy = pobierz_typy()
 
-    wypisz listę wylosowanych liczb
+    licznik = 0
+    for typ in typy:
+        if czy_zapisana(wylosowane, typ):
+            licznik += 1
+            print(typ)
+
+    print("Liczba trafionych:", licznik)
+    print(wylosowane)
+
+
+main()

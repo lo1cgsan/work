@@ -22,6 +22,11 @@ class PongGra:
     def __init__(self, szer, wys):
         pygame.init()
         self.plansza = Plansza(szer, wys)
+        self.pal1 = Paletka(100, 20, 350, 20, kolor=(255, 0, 0))
+        self.pal2 = Paletka(100, 20, 350, 360, kolor=(0, 0, 255))
+        self.pilka = Pilka(20, 20, 390, 190, kolor=(0, 255, 0))
+        # zegar śledzący czas
+        self.fps_zegar = pygame.time.Clock()
 
     def uruchom(self):
         """ Główna pętla programu """
@@ -30,12 +35,24 @@ class PongGra:
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
-            self.plansza.rysuj()
+
+                if event.type == MOUSEMOTION:
+                    m_x, m_y = event.pos  # współrzędne kursora
+                    self.pal1.przesun(m_x, self.plansza.szer)
+
+            self.pilka.ruszaj(self.plansza.szer, self.plansza.wys)
+            self.plansza.rysuj(
+                self.pal1,
+                self.pal2,
+                self.pilka
+            )
+
+            # ustaw prędkość animacji
+            self.fps_zegar.tick(30)
 
 
 class ObiektGraf:
     """ Klasa bazowa """
-
     def __init__(self, szer, wys, x, y, kolor=(0, 255, 0)):
         self.szer, self.wys = szer, wys
         self.kolor = kolor
@@ -43,7 +60,44 @@ class ObiektGraf:
             [szer, wys], pygame.SRCALPHA, 32
         )
         self.pow.convert_alpha()
-        # toDo
+        self.prost = self.pow.get_rect(x=x, y=y)
+
+
+class Paletka(ObiektGraf):
+    def __init__(self, szer, wys, x, y, kolor=(0, 0, 255), maks_v=10):
+        super().__init__(szer, wys, x, y, kolor)
+        self.maks_v = maks_v
+        self.pow.fill(self.kolor)
+
+    def przesun(self, m_x, szer_p):
+        przesuniecie = m_x - self.maks_v
+        if przesuniecie > szer_p - self.szer:
+            przesuniecie = szer_p - self.szer
+        elif przesuniecie < 0:
+            przesuniecie = 0
+        self.prost.x = przesuniecie
+
+
+class Pilka(ObiektGraf):
+    def __init__(self, szer, wys, x, y, kolor=(255, 0, 0), pv_x=3, pv_y=3):
+        super().__init__(szer, wys, x, y, kolor)
+        pygame.draw.ellipse(self.pow, self.kolor, [0, 0, self.szer, self.wys])
+        self.pv_x = pv_x
+        self.pv_y = pv_y
+        self.start_x = x
+        self.start_y = y
+
+    def ruszaj(self, szer_p, wys_p):
+        self.prost.move_ip(self.pv_x, self.pv_y)
+
+        # piłka wykracza poza pole na lewo/prawo
+        if self.prost.right >= szer_p or self.prost.left <= 0:
+            self.pv_x *= -1
+
+        # piłka uciekła na dół/górę
+        if self.prost.top <= 0 or self.prost.bottom >= wys_p:
+            self.prost.x = szer_p // 2
+            self.prost.y = wys_p // 2
 
 
 if __name__ == "__main__":
