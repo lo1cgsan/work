@@ -10,7 +10,15 @@ def any2dec(l, p):
     return wynik
 
 
-def dec2any(l, p):
+def dec2any(l10, p):
+    reszty = []
+    while l10 > 0:
+        r = l10 % p
+        if r > 9:
+            r = chr(r + 55)
+        reszty.append(r)
+        l10 = l10 // p
+    print(reszty)
 
 
 def main():
@@ -18,6 +26,8 @@ def main():
     liczba = input('Podaj liczbę: ').upper()
     l10 = any2dec(liczba, pw)
     print(l10)
+    pd = int(input('Podaj podstawę docelową: '))
+    dec2any(l10, pd)
 
 
 main()

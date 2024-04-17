@@ -32,8 +32,16 @@ def close_db(error):
 
 @app.route('/')
 def index():
-    return 'Cześć, tu Python!'
-    # return render_template('index.html')
+    # return '<h1>Cześć, tu Python!</h1>'
+    return render_template('index.html')
+
+
+@app.route('/zadania')
+def zadania():
+    db = get_db()
+    kursor = db.execute('SELECT * FROM zadania')
+    zadania = kursor.fetchall()
+    return render_template('zadania_lista.html', zadania=zadania)
 
 
 if __name__ == '__main__':

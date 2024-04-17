@@ -24,7 +24,9 @@ class PongGra:
         self.plansza = Plansza(szer, wys)
         self.pal1 = Paletka(100, 20, 350, 20, kolor=(255, 0, 0))
         self.pal2 = Paletka(100, 20, 350, 360, kolor=(0, 0, 255))
-        self.pilka = Pilka(20, 20, 390, 190, kolor=(0, 255, 0))
+        self.pilka = Pilka(20, 20, 390, 190, kolor=(0, 255, 0), pv_x=6, pv_y=6)
+        self.pilka2 = Pilka(20, 20, 390, 190, kolor=(0, 255, 100), pv_x=-6, pv_y=6)
+        self.gracz_ui = GraczUI(self.pal1, self.pilka, 6)
         # zegar śledzący czas
         self.fps_zegar = pygame.time.Clock()
 
@@ -38,13 +40,19 @@ class PongGra:
 
                 if event.type == MOUSEMOTION:
                     m_x, m_y = event.pos  # współrzędne kursora
-                    self.pal1.przesun(m_x, self.plansza.szer)
+                    self.pal2.przesun(m_x, self.plansza.szer)
 
-            self.pilka.ruszaj(self.plansza.szer, self.plansza.wys)
+            self.pilka.ruszaj(self.plansza.szer, self.plansza.wys,
+                              self.pal1, self.pal2)
+            self.pilka2.ruszaj(self.plansza.szer, self.plansza.wys,
+                               self.pal1, self.pal2)
+            self.gracz_ui.ruszaj()
+
             self.plansza.rysuj(
                 self.pal1,
                 self.pal2,
-                self.pilka
+                self.pilka,
+                self.pilka2
             )
 
             # ustaw prędkość animacji
@@ -53,6 +61,7 @@ class PongGra:
 
 class ObiektGraf:
     """ Klasa bazowa """
+
     def __init__(self, szer, wys, x, y, kolor=(0, 255, 0)):
         self.szer, self.wys = szer, wys
         self.kolor = kolor
@@ -87,7 +96,7 @@ class Pilka(ObiektGraf):
         self.start_x = x
         self.start_y = y
 
-    def ruszaj(self, szer_p, wys_p):
+    def ruszaj(self, szer_p, wys_p, *args):
         self.prost.move_ip(self.pv_x, self.pv_y)
 
         # piłka wykracza poza pole na lewo/prawo
@@ -98,6 +107,26 @@ class Pilka(ObiektGraf):
         if self.prost.top <= 0 or self.prost.bottom >= wys_p:
             self.prost.x = szer_p // 2
             self.prost.y = wys_p // 2
+
+        for obj in args:
+            if self.prost.colliderect(obj.prost):
+                self.pv_y *= -1
+
+
+class GraczUI:
+    def __init__(self, pal, pilka, pal_v=6):
+        self.pal = pal
+        self.pilka = pilka
+        self.pal_v = pal_v
+
+    def ruszaj(self):
+        # jeżeli piłka leci na prawo
+        if self.pilka.prost.centerx > self.pal.prost.centerx:
+            self.pal.prost.x += self.pal_v
+
+        # jeżeli piłka leci w lewo
+        elif self.pilka.prost.centerx < self.pal.prost.centerx:
+            self.pal.prost.x -= self.pal_v
 
 
 if __name__ == "__main__":
