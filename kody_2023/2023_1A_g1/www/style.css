@@ -1,0 +1,25 @@
+body {
+    font-family: sans-serif;
+}
+
+p {
+    font-family: serif;
+}
+
+.nawigacja {
+    background: #97ff00;
+    padding: 10px;
+    border: 2px solid #ff0000;
+    margin: 10px;
+}
+
+.nalewo {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.naprawo {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

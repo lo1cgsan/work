@@ -1,0 +1,21 @@
+body {
+    color: #000000;
+    font-family: helvetica, arial, sans-serif;
+}
+
+a { text-decoration: none; color: red; }
+a:hover { text-decoration: underline; }
+
+p, ol li {
+    font-family: serif;
+    margin: 10px;
+}
+
+p {
+   border: 1px solid green;
+   padding: 5px;
+}
+
+h1 {
+    color: blue;
+}

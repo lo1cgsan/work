@@ -1,0 +1,12 @@
+body {
+    background-color: #E7D7D7;
+    color: #000000;
+    font-family: helvetica, sans-serif;
+    font-size: 14pt;
+}
+
+h2 {
+    margin: 10px;
+    border: 1px solid black;
+    padding: 10px;
+}
