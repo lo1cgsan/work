@@ -9,7 +9,16 @@
 
     <ol>
     {% for zadanie in zadania %}
-        <li>{{ zadanie.zadanie }} – <i>{{ zadanie.data_pub }}</i></li>
+        {% if zadanie.zrobione %}
+            <li class="done">{{ zadanie.zadanie }} – <i>{{ zadanie.data_pub }}</i></li>
+        {% else %}
+            <li>{{ zadanie.zadanie }} – <i>{{ zadanie.data_pub }}</i>
+            <form method="POST" action="{{ url_for('zrobione') }}">
+                <input type="hidden" name="id" value="{{ zadanie.id }}">
+                <button type="submit">Wykonane</button>
+            </form>
+            </li>
+        {% endif %}
     {% endfor %}
     </ol>
 
@@ -30,7 +39,9 @@
       {% endfor %}
     </p>
 
-
+<p>
+    <a href="{{ url_for('index') }}">Strona główna</a>
+</p>
 
 
 </body>

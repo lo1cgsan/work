@@ -1,0 +1,19 @@
+body {
+    background-color: #EBBEEB;
+    color: #000000;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 14pt;
+}
+
+h1 {
+    color: #008000;
+}
+
+.ramka {
+    background-color: lightgray;
+    color: black;
+    padding: 10px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
