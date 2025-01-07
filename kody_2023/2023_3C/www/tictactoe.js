@@ -4,6 +4,9 @@ let POLEGRY = [0, 0, 0,
                0, 0, 0]
 
 let RUCH = 1; // 0 - pole puste, 1 - gracz, 2 - komputer
+let WYGRANY = 0; // 0 - nikt, 1 - gracz, 2 - komputer
+
+
 
 function setup() {
     createCanvas(3 * SZER, 3 * SZER);
@@ -18,17 +21,10 @@ function rysuj_plansze() {
     }
 }
 
-function postaw_znak(pole, RUCH) {
+function postaw_znak(pole) {
     if (POLEGRY[pole] == 0) {
-        if (RUCH == 1) {
-            POLEGRY[pole] = 1;
-            return 2;
-        } else if (RUCHH == 2) {
-            POLEGRY[pole] = 2;
-            return 1;
-        }
+        POLEGRY[pole] = RUCH;
     }
-    return RUCH;
 }
 
 function rysuj_polegry() {
@@ -37,7 +33,24 @@ function rysuj_polegry() {
             pole = i * 3 + j;
             x = j * SZER + SZER / 2;
             y = i * SZER + SZER / 2;
-            // TODO
+
+            if (POLEGRY[pole] == 1) {
+                fill(0, 0, 255);
+                circle(x, y, SZER / 3);
+            } else if (POLEGRY[pole] == 2) {
+                fill(255, 0, 0);
+                circle(x, y, SZER / 3);
+            }
+        }
+    }
+}
+
+function mouseClicked() {
+    if (WYGRANY == 0) {
+        if (RUCH == 1) {
+            let pole = (Math.floor(mouseY / SZER) * 3) + Math.floor(mouseX / SZER);
+            console.log("Pole: ", pole);
+            postaw_znak(pole);
         }
     }
 }
@@ -46,4 +59,5 @@ function draw() {
     background(220);
     strokeWeight(1);
     rysuj_plansze();
+    rysuj_polegry();
 }

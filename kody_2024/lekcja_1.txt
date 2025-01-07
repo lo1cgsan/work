@@ -1,0 +1,71 @@
+1) Otwórz menedżer plików "Pliki"
+
+2) W katalogu domowym utwórz katalog "backup"
+
+3) Otwórz katalog "backup" w nowym oknie
+   Wykorzystaj menu kontekstowe (kliknij prawym klawiszem na katalogu)
+
+4) Rozmieść okna "Katalog domowy" po lewej,
+   a okno "backup" po prawej stronie ekranu.
+
+5) Przenieś wszystkie pliki z katalogu domowego do "backup"
+
+6) Przenieś całą zawartość katalogów "Dokumenty", "Obrazy" i "Pobrane"
+   do katalogu "backup"
+
+   Wskazówka: CTRL+A – zaznacz wszystko, a później przeciągnij-upuść
+   lub CTRL+X, a w oknie "backup" CTRL+V.
+
+7) Z katalogu "backup" usuń:
+   archiwa (*.zip, *.rar, *.tgz)
+   katalogi __pycache__,
+   pliki wykonywalne (*.exe),
+   inne pliki (*.cpp, *.mp4)
+
+   Wskazówka: użyj widoku listy i posortuj pliki wg "Typu"
+   Zaznacz zakres plików: kliknij pierwszy, wciśnij SHIFT
+   i kliknij ostatni
+
+8) Sprawdź rozmiar katalogu "backup"
+
+   Wskazówka: wykorzystaj "Właściwości" z menu kontekstowego
+
+9) W katalogu domowym utwórz archiwum "backup.zip".
+
+   Wskazówka: wykorzystaj "Utwórz archiwum" z menu kontekstowego
+   katalogu "backup"
+
+10) W katalogu domowym pokaż ukryte pliki/katalogi – CTRL+H
+
+11) Usuń katalog ".mozilla" – konfiguracja przeglądarki.
+    Ukryj ponownie pliki/katalogi – CTRL+H
+
+12) Uruchom przeglądarkę Firefox
+
+13) Z menu przeglądarki (prawy górny róg) wybieramy "Dodatki i motywy"
+
+14) W polu "Szukaj" wpisujemy, a później instalujemy dodatki:
+
+    a) ublock Origin
+    b) privacy Badger
+
+    Podczas instalacji zaznaczamy opcję "Działanie w oknach prywatnych".
+
+15) Z menu przeglądarki (prawy górny róg) wybieramy "Ustawienia"
+
+16) Przechodzimy do sekcji "Prywatność i bezpieczeństwo"
+
+17) Zmieniamy tryb "Standardowy" na "Ścisły" ochrony prywatności
+
+18) Odznaczamy opcję "Pytanie o zachowanie haseł"
+
+19) W sekcji "Historia" z listy wybierz opcję
+    "będzie używał ustawień użytkownika",
+    zaznaczamy opcję
+    "Czyszczenie przeglądarki podczas zamykania przeglądarki Firefox"
+    i klikamy "Ustawienia"
+
+20) W oknie "Czyszczenie danych przeglądania i ciasteczek" pozostawiamy
+    zaznaczone tylko opcje:
+    "Ciasteczka i dane witryn", "Ustawienia witryn"
+    Klikamy "Zachowaj zmiany".

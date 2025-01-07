@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config.SITE_NAME }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>{{ config.SITE_NAME }}</h1>
 
     <ol>
     {% for zadanie in zadania %}
+
         {% if zadanie.zrobione %}
             <li class="done">{{ zadanie.zadanie }} – <i>{{ zadanie.data_pub }}</i></li>
         {% else %}
@@ -17,8 +19,13 @@
                 <input type="hidden" name="id" value="{{ zadanie.id }}">
                 <button type="submit">Wykonane</button>
             </form>
-            </li>
         {% endif %}
+            <form method="POST" action="{{ url_for('usun') }}">
+                <input type="hidden" name="id" value="{{ zadanie.id }}">
+                <button type="submit">Usuń</button>
+            </form>
+            </li>
+
     {% endfor %}
     </ol>
 

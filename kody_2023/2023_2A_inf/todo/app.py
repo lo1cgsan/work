@@ -7,6 +7,8 @@ from datetime import datetime
 import os
 import sqlite3
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 app = Flask(__name__)
 
 app.config.update(dict(
@@ -67,6 +69,37 @@ def zrobione():
     db.commit()
     flash('Zmieniono status zadania.')
     return redirect(url_for('zadania'))
+
+
+@app.route('/usun', methods=['POST'])
+def usun():
+    zadanie_id = request.form['id']
+    db = get_db()
+    db.execute('DELETE FROM zadania WHERE id=?', [zadanie_id])
+    db.commit()
+    flash('Usunięto zadanie.')
+    return redirect(url_for('zadania'))
+
+
+@app.route('/users/dodaj', methods=['GET', 'POST'])
+def dodaj_u():
+
+    if request.method == 'POST':
+        email = request.form['email']
+        haslo = generate_password_hash(request.form['haslo'])
+        db = get_db()
+        try:
+            db.execute('INSERT INTO users VALUES (?, ?, ?, ?)',
+                       [None, email, haslo, datetime.now()])
+            db.commit()  # zatwierdzenie zmian w bazie danych
+        except db.IntegrityError:
+            flash(f"Podany email {email} już istnieje!")
+        else:
+            flash(f"Dodano konto {email}")
+            return redirect('users/dodaj')
+
+    return render_template('user_dodaj.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

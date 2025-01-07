@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Java Script</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function pokaz_date() {
+            let elem = document.getElementById('akapit1');
+            elem.innerHTML = Date();
+        }
+
+        function ukryj_date() {
+            let elem = document.getElementById('akapit1');
+            elem.innerHTML = '&nbsp;';
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Podstawy WWW</a>
+        <a href="js.html">Java Script</a>
+    </nav>
+
+    <h1 id="naglowek1">Java Script</h1>
+
+    <p id="akapit1"></p>
+
+    <button onclick="pokaz_date()">Pokaż datę</button>
+    <button onclick="ukryj_date()">Ukryj datę</button>
+
+</body>
+
+</html>

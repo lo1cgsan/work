@@ -1,3 +1,11 @@
+-- tabela użytkowników
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id integer primary key autoincrement, -- unikalny indentyfikator
+    email text unique not null, -- email
+    haslo text not null, -- hasło
+    data_d datetime not null -- data utworzenia konta
+);
 
 -- tabela z zadaniami
 DROP TABLE IF EXISTS zadania;
@@ -5,11 +13,7 @@ CREATE TABLE zadania (
     id integer primary key autoincrement, -- unikalny indentyfikator
     zadanie text not null, -- opis zadania do wykonania
     zrobione boolean not null, -- informacja czy zadania zostalo juz wykonane
-    data_pub datetime not null -- data dodania zadania
+    data_pub datetime not null, -- data dodania zadania
+    u_id integer not null,
+    FOREIGN KEY (u_id) REFERENCES users (id) ON DELETE CASCADE
 );
-
--- pierwsze dane
-INSERT INTO zadania (id, zadanie, zrobione, data_pub)
-VALUES (null, 'Wyrzucić śmieci', 0, datetime(current_timestamp));
-INSERT into zadania (id, zadanie, zrobione, data_pub)
-VALUES (null, 'Nakarmić psa', 0, datetime(current_timestamp));

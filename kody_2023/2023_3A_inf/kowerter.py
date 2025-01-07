@@ -6,7 +6,8 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6.QtWidgets import QLabel, QGridLayout
 from PyQt6.QtWidgets import QLineEdit, QPushButton, QHBoxLayout
 from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtWidgets import QRadioButton, QGroupBox
+# from PyQt6.QtWidgets import QRadioButton, QGroupBox
+from PyQt6.QtWidgets import QComboBox, QCheckBox
 
 class Kalkulator(QWidget):
 
@@ -16,39 +17,47 @@ class Kalkulator(QWidget):
         self.opcja = ''
 
     def interfejs(self):
-        etykieta1 = QLabel("Liczba 1:", self)
-        etykieta2 = QLabel("Liczba 2:", self)
-        etykieta3 = QLabel("Wynik:", self)
+        self.etykieta1 = QLabel("Wartość:", self)
+        self.etykieta3 = QLabel("Wynik:", self)
 
         ukladT = QGridLayout()
-        ukladT.addWidget(etykieta1, 0, 0)
-        ukladT.addWidget(etykieta2, 0, 1)
-        ukladT.addWidget(etykieta3, 0, 2)
+        ukladT.addWidget(self.etykieta1, 0, 0)
+        ukladT.addWidget(self.etykieta3, 0, 2)
 
         self.liczba1 = QLineEdit()
-        self.liczba2 = QLineEdit()
         self.wynik = QLineEdit()
         self.wynik.setReadOnly(True)
 
         ukladT.addWidget(self.liczba1, 1, 0)
-        ukladT.addWidget(self.liczba2, 1, 1)
         ukladT.addWidget(self.wynik, 1, 2)
 
-        self.ukladO = QHBoxLayout()
-        for v in ('m/s => km/s', 'C => F'):
-            self.radio = QRadioButton(v)
-            self.ukladO.addWidget(self.radio)
-        # self.ukladO.itemAt(0).widget().setChecked(True)
-        self.ukladO.itemAt(0).widget().toggled.connect(self.ustawOpcje)
-        self.ukladO.itemAt(1).widget().toggled.connect(self.ustawOpcje)
+        # self.ukladO = QHBoxLayout()
+        # for v in ('m/s => km/h', 'C => F'):
+        #     self.radio = QRadioButton(v)
+        #     self.ukladO.addWidget(self.radio)
+        # # self.ukladO.itemAt(0).widget().setChecked(True)
+        # self.ukladO.itemAt(0).widget().toggled.connect(self.ustawOpcje)
+        # self.ukladO.itemAt(1).widget().toggled.connect(self.ustawOpcje)
+        #
+        # self.grupaO = QGroupBox('Opcje')
+        # self.grupaO.setLayout(self.ukladO)
+        # self.grupaO.setObjectName('Radio')
+        # self.grupaO.setCheckable(True)
+        # ukladG = QHBoxLayout()
+        # ukladG.addWidget(self.grupaO)
+        # ukladT.addLayout(ukladG, 2, 0, 1, 3)
 
-        self.grupaO = QGroupBox('Opcje')
-        self.grupaO.setLayout(self.ukladO)
-        self.grupaO.setObjectName('Radio')
-        self.grupaO.setCheckable(True)
-        ukladG = QHBoxLayout()
-        ukladG.addWidget(self.grupaO)
-        ukladT.addLayout(ukladG, 2, 0, 1, 3)
+        listaK = QComboBox(self)
+        konwersje = ['', 'm/s => km/h', 'C => F', 'h => s']
+        for v in konwersje:
+            listaK.addItem(v)
+        listaK.textActivated[str].connect(self.ustawOpcje)
+        ukladT.addWidget(listaK, 2, 0)
+
+        odwroc = QCheckBox('Odwróć', self)
+        odwroc.stateChanged.connect(self.zamienOpcje)
+        ukladT.addWidget(odwroc, 2, 1, 1, 2)
+
 
         konwertujB = QPushButton("&Konwertuj", self)
         koniecB = QPushButton("&Koniec", self)
@@ -62,38 +71,39 @@ class Kalkulator(QWidget):
 
         koniecB.clicked.connect(self.koniec)
         konwertujB.clicked.connect(self.dzialanie)
-        #self.grupaO.clicked.connect(self.ustawOpcje)
+        # self.grupaO.clicked.connect(self.ustawOpcje)
 
         self.show()
 
     def ustawOpcje(self, wartosc):
-        nadawca = self.sender()
+        # nadawca = self.sender()
         if wartosc:
-            self.opcja = nadawca.text()
-            QMessageBox.warning(self, "Opcja", "Wybrałeś: " + self.opcja, QMessageBox.StandardButton.Ok)
+            # self.opcja = nadawca.text()
+            self.opcja = wartosc
+            etykiety = self.opcja.split(' => ')
+            self.etykieta1.setText(etykiety[0])
+            self.etykieta3.setText(etykiety[1])
+            # QMessageBox.warning(self, "Opcja", "Wybrałeś: " + self.opcja, QMessageBox.StandardButton.Ok)
+
+    def zamienOpcje(self, stan):
+        pass
 
     def koniec(self):
         self.close()
 
     def dzialanie(self):
-        nadawca = self.sender()
-
+        opcja_z = self.etykieta1.text()
+        opcja_d = self.etykieta3.text()
         try:
             liczba1 = float(self.liczba1.text())
-            liczba2 = float(self.liczba2.text())
             wynik = ""
 
-            if nadawca.text() == "&Dodaj":
-                wynik = liczba1 + liczba2
-            elif nadawca.text() == "&Odejmij":
+            if opcja_z == "m/s" and opcja_d == "km/h":
                 pass
-            elif nadawca.text() == "&Mnóż":
+            elif opcja_z == "C" and opcja_d == "F":
                 pass
-            else:
-                try:
-                    wynik = round(liczba1 / liczba2, 9)
-                except ZeroDivisionError:
-                    QMessageBox.critical(self, "Błąd", "Nie można dzielić przez zero!")
+            elif opcja_z == "h" and opcja_d == "s":
+                pass
 
             self.wynik.setText(str(wynik))
 

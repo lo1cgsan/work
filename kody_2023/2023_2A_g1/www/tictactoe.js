@@ -1,22 +1,26 @@
-function setup() {
-    createCanvas(720, 400);
-    background(200, 200, 200);
+let SZER = 60;
 
-    fill(239, 34, 34);
-    stroke(0);
+let POLE_GRY = [0, 0, 0,
+                0, 0, 0,
+                0, 0, 0];
+
+function setup() {
+    createCanvas(3 * SZER, 3 * SZER);
+    background(220);
+    strokeWeight(1);
 }
 
-function draw() {
-    // prostokąt
-    rect(40, 120, 120, 40);
-    ellipse(240, 240, 80, 80);
-    triangle(50, 10, 300, 10, 125, 100);
 
-    // transformacja
-    translate(580, 200);
-    noStroke();
-    for (let i = 0; i < 10; i++) {
-        ellipse(0, 30, 20, 80);
-        rotate(PI/5);
+function rysuj_plansze() {
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            fill(255);
+            rect((j * SZER), (i * SZER), SZER, SZER);
+        }
     }
+}
+
+
+function draw() {
+    rysuj_plansze();
 }

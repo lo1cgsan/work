@@ -37,7 +37,6 @@ function rysuj_polegry() {
     }
 }
 
-
 function postaw_znak(pole) {
     if (POLEGRY[pole] == 0) {
         POLEGRY[pole] = RUCH;
@@ -61,8 +60,58 @@ function mouseClicked() {
     }
 }
 
+function sprawdz_pola(uklady, wygrany = 0) {
+    let indeks = null;
+    POLA_INDEKSY = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // wiersze
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // kolumny
+        [0, 4, 8], [2, 4, 6]
+    ];
+
+    for (const indeksy of POLA_INDEKSY) {
+        kol = []; // tablica pomocnicza
+        for (const ind of indeksy) {
+            kol.push(POLEGRY[ind]);
+        }
+
+        for (const uklad of uklady) {
+            if (kol.toString() == uklad.toString()) {
+                if (wygrany > 0) {
+                    return wygrany;
+                } else {
+                    return indeksy[kol.indexOf(0)];
+                }
+            }
+        }
+    }
+}
+
 function kto_wygral() {;}
-function ai_ruch() {;}
+
+function ai_ruch() {
+    uklady_wygrywam = [[2, 2, 0], [2, 0, 2], [0, 2, 2]];
+    uklady_blokuje = [[1, 1, 0], [1, 0, 1], [0, 1, 1]];
+
+    pole = sprawdz_pola(uklady_wygrywam);
+    if (pole !== null) {
+        postaw_znak(pole);
+        return;
+    }
+
+    pole = sprawdz_pola(uklady_blokuje);
+    if (pole !== null) {
+        postaw_znak(pole);
+        return;
+    }
+
+    while (pole == null) {
+        let poz = Math.floor(Math.random() * 9);
+        if (POLEGRY[poz] == 0) {
+            postaw_znak(poz);
+        }
+    }
+
+}
 
 function draw() {
     background(220);

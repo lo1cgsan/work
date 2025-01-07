@@ -2,10 +2,15 @@ import pygame as pg
 import sys
 
 pg.init()
-SZER = 50
+SZER = 80
 
 PLANSZA = pg.display.set_mode((SZER * 3, SZER * 3), 0, 32)
 pg.display.set_caption('Kółko i krzyżyk')
+
+# 0 – pole puste, 1 – gracz, 2 – komputer
+POLE_GRY = [0, 0, 0,
+            0, 0, 0,
+            0, 0, 0]
 
 def rysuj_plansze():
     for i in range(3):
