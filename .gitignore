@@ -7,10 +7,12 @@
 __pycache__/
 *.py[cod]
 *.pyc
+.venv
 venv
 pve
 
 .DS_Store
 
-# katalog konfiguracyjny WebStorma
+# katalogi konfiguracyjne
 .idea
+.vscode
