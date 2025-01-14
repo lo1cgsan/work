@@ -33,6 +33,7 @@ class Konto:
     def wypisz_bilans(self):
         print(self.bilans)
 
+
 class KontoMinimum(Konto):
     def __init__(self, osoba, ile, bilans_min):
         Konto.__init__(self, osoba, ile)
@@ -43,6 +44,7 @@ class KontoMinimum(Konto):
             print('Brak środków.')
         else:
             Konto.wyplata(self, ile)
+
 
 class Samochod():
     def __init__(self, marka, model, rok, osoba):

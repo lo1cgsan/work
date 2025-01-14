@@ -1,7 +1,13 @@
-def dec2bin(liczba):
+def dec2bin(liczba, p):
     """zamiana liczby dziesiętnej na binarną"""
-    pass
-    return l_bin
+    reszty = []
+    while liczba != 0:
+        reszta = liczba % p
+        if reszta > 9:
+            pass
+        reszty.append(reszta)
+        liczba = liczba // p
+    return reszty
 
 
 def int_to_digit(value):
@@ -28,9 +34,18 @@ def dec2any(value, base):
 
 def poteguj(x, k):
     # k = dec2any(k, 2)
-    k = bin(k)
-    print(k[2:])
-    pass
+    # k = bin(k)
+    # print(k[2:])
+    # 6(10) = 110
+    k = dec2bin(k, 2)
+    k.reverse()
+    p = x
+    for i in range(1, len(k)):
+        if k[i] == 1:
+            p = p * p * x
+        else:
+            p = p * p
+    print(p)
 
 def main():
     x = float(input('Podaj podstawę: '))
