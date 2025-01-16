@@ -14,12 +14,13 @@ class Stos:
     def empty(self):
         return len(self.stos)
 
-stos = Stos()
-stos.push(4)
-stos.push(5)
-stos.push('+')
+def main():
+    stos = Stos()
+    stos.push(4)
+    stos.push(5)
+    stos.push('+')
 
-print(stos.pop())
-print(stos.pop())
-print(stos.pop())
-print(stos.pop())
+    print(stos.pop())
+    print(stos.pop())
+    print(stos.pop())
+    print(stos.pop())
