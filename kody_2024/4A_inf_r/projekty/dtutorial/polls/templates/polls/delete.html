@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Pytanie</title>
+</head>
+<body>
+
+<form action="." method="post">
+    {% csrf_token %}
+<fieldset>
+    <legend><h1>{{ question.question_text }}</h1></legend>
+    <p>Czy na pewno chcesz usunąć to pytanie?</p>
+</fieldset>
+    <input type="submit" value="Usuń">
+</form>
+
+</body>
+</html>

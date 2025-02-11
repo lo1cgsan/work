@@ -21,7 +21,6 @@ class Lista:
 
         self.ogon.nastepny = nowy
         self.ogon = nowy
-
         self.ogon.nastepny = self.glowa
 
     def usun(self, pozycja):
@@ -41,3 +40,35 @@ class Lista:
                 self.ogon = pomocniczy1
         else:
             print("Brak węzła!")
+
+    def wypisz(self):
+        pomocniczy = self.glowa
+        while pomocniczy.nastepny != self.glowa:
+            print(pomocniczy.pozycja, "", end="")
+            pomocniczy = pomocniczy.nastepny
+        print(pomocniczy.pozycja)
+
+    def przejdz(self, krok, wezel=None):
+        pomocniczy = wezel
+        if not wezel:
+            pomocniczy = self.glowa
+
+        for i in range(krok-1):
+            pomocniczy = pomocniczy.nastepny
+
+        return pomocniczy
+
+
+lista = Lista()
+n = 20
+krok = 2
+
+for i in range(n):
+    lista.dodaj(i + 1)
+
+lista.wypisz()
+
+wezel = lista.przejdz(krok)
+toDO
+lista.usun(wezel.pozycja)
+lista.wypisz()

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Pytanie</title>
+</head>
+<body>
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+<fieldset>
+    <legend><h1>{{ question.question_text }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for odp in question.choice_set.all %}
+        <input type="radio" name="choice" value="{{ odp.id }}" id="odp{{ forloop.counter }}">
+        <label for="odp{{ forloop.counter }}">{{ odp.choice_text }}</label>
+        <br>
+    {% endfor %}
+</fieldset>
+    <input type="submit" value="Głosuj">
+</form>
+
+</body>
+</html>
