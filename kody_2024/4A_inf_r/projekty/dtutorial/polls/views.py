@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.db.models import F
-from .models import Question, Choice
+from .models import Pytanie, Choice
 from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import generic
 
 class IndexView(generic.ListView):
@@ -11,18 +13,18 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by("-pub_date")[:5]
+        return Pytanie.objects.order_by("-pub_date")[:5]
 
 class DetailView(generic.DetailView):
-    model = Question
+    model = Pytanie
     template_name = "polls/detail.html"
 
 class ResultsView(generic.DetailView):
-    model = Question
+    model = Pytanie
     template_name = "polls/results.html"
 
 def vote(request, question_id):
-    pytanie = get_object_or_404(Question, pk=question_id)
+    pytanie = get_object_or_404(Pytanie, pk=question_id)
     try:
         odp = pytanie.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
@@ -35,12 +37,19 @@ def vote(request, question_id):
     return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
 
 class QuestionDelete(generic.DeleteView):
-    model = Question
+    model = Pytanie
     template_name = "polls/delete.html"
     success_url = reverse_lazy("polls:index")
 
+
+@method_decorator(login_required, 'dispatch')
+class QuestionCreate(generic.CreateView):
+    model = Pytanie
+    fields = ["tekst_pytania"]
+    success_url = success_url = reverse_lazy('polls:index')
+
 # def index(request):
-#     latest_question = Question.objects.order_by("-pub_date")[:5]
+#     latest_question = Pytanie.objects.order_by("-pub_date")[:5]
 #     print(latest_question)
 #     context = {
 #         "latest_question": latest_question,
@@ -49,13 +58,13 @@ class QuestionDelete(generic.DeleteView):
 
 # def detail(request, pytanie_id):
 #     try:
-#         pytanie = get_object_or_404(Question, pk=pytanie_id)
-#     except Question.DoesNotExist:
+#         pytanie = get_object_or_404(Pytanie, pk=pytanie_id)
+#     except Pytanie.DoesNotExist:
 #         raise Http404("Pytanie nie istnieje!")
 #     return render(request, "polls/detail.html", {"pytanie": pytanie})
 
 # def results(request, question_id):
-#     pytanie = get_object_or_404(Question, pk=question_id)
+#     pytanie = get_object_or_404(Pytanie, pk=question_id)
 #     return render(request, "polls/results.html", {"pytanie": pytanie})
 
 # def info(request):
