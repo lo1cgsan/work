@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Pytanie</title>
-</head>
-<body>
+{% extends "polls/base.html" %}
+{% block tresc %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %}
@@ -20,5 +15,4 @@
     <input type="submit" value="Głosuj">
 </form>
 
-</body>
-</html>
+{% endblock %}
