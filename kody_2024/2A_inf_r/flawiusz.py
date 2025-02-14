@@ -53,14 +53,14 @@ class Lista:
         if not wezel:
             pomocniczy = self.glowa
 
-        for i in range(krok-1):
+        for i in range(krok):
             pomocniczy = pomocniczy.nastepny
 
         return pomocniczy
 
 
 lista = Lista()
-n = 20
+n = 10
 krok = 2
 
 for i in range(n):
@@ -68,7 +68,8 @@ for i in range(n):
 
 lista.wypisz()
 
-wezel = lista.przejdz(krok)
-toDO
-lista.usun(wezel.pozycja)
-lista.wypisz()
+wezel = lista.przejdz(krok - 1)
+while wezel.nastepny != wezel:
+    lista.usun(wezel.pozycja)
+    lista.wypisz()
+    wezel = lista.przejdz(krok, wezel)

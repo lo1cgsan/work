@@ -5,7 +5,7 @@ def czy_palindrom(wyraz):
             return False
     return True
 
-wyraz = 'kokok'
+wyraz = input('Podaj wyraz: ')
 
 if czy_palindrom(wyraz):
     print('palindrom')
