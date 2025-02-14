@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import F
+from .forms import PytanieForm, OdpowiedziFormSet
 from .models import Pytanie, Odpowiedz
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
@@ -28,7 +29,7 @@ class ResultsView(generic.DetailView):
 def vote(request, question_id):
     pytanie = get_object_or_404(Pytanie, pk=question_id)
     try:
-        odp = pytanie.choice_set.get(pk=request.POST["choice"])
+        odp = pytanie.odpowiedz_set.get(pk=request.POST["odpowiedz"])
     except (KeyError, Odpowiedz.DoesNotExist):
         return render(request, "polls/detail.html",
                       {"pytanie": pytanie, "error_message": "Nie wybrałeś odpowiedzi!"}
@@ -54,6 +55,44 @@ class PytanieCreate(generic.CreateView):
         form.instance.autor = self.request.user
         self.object = form.save()
         return HttpResponseRedirect(self.get_success_url())
+
+@method_decorator(login_required, 'dispatch')
+class PytanieDodaj(generic.CreateView):
+    """Widok dodawania pytania i odpowiedzi."""
+
+    model = Pytanie
+    form_class = PytanieForm
+    success_url = reverse_lazy('polls:lista')
+    template_name = 'polls/pytanie_dodaj.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PytanieDodaj, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['odpowiedzi'] = OdpowiedziFormSet(self.request.POST)
+        else:
+            context['odpowiedzi'] = OdpowiedziFormSet()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        odpowiedzi = OdpowiedziFormSet(self.request.POST)
+        if form.is_valid() and odpowiedzi.is_valid():
+            return self.form_valid(form, odpowiedzi)
+        else:
+            return self.form_invalid(form, odpowiedzi)
+
+    def form_valid(self, form, odpowiedzi):
+        form.instance.autor = self.request.user
+        self.object = form.save()
+        odpowiedzi.instance = self.object
+        odpowiedzi.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form, odpowiedzi):
+        return self.render_to_response(
+            self.get_context_data(form=form, odpowiedzi=odpowiedzi)
+        )
 
 @method_decorator(login_required, 'dispatch')
 class OdpowiedzCreate(generic.CreateView):

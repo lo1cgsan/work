@@ -11,6 +11,8 @@ urlpatterns = [
     path("<int:pk>/delete/", views.PytanieDelete.as_view(), name="delete"),
     path("<int:question_id>/vote/", views.vote, name="vote"),
     path("create/", views.PytanieCreate.as_view(), name="create"),
+    path('dodaj/', views.PytanieDodaj.as_view(), name='dodaj'),
+
 ]
 
 # urlpatterns = [
