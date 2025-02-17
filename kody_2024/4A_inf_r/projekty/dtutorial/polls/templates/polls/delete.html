@@ -4,8 +4,8 @@
 <form action="." method="post">
     {% csrf_token %}
 <fieldset>
-    <legend><h1>{{ question.question_text }}</h1></legend>
-    <p>Czy na pewno chcesz usunąć to pytanie?</p>
+    <h1>Czy na pewno chcesz usunąć to pytanie?</h1>
+    <p>{{ pytanie.tekst_pytania }}</p>
 </fieldset>
     <input type="submit" value="Usuń">
 </form>

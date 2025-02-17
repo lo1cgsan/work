@@ -1,7 +1,5 @@
 from django.forms import ModelForm
 from .models import Pytanie, Odpowiedz
-
-from django.forms import ModelForm
 from django.forms.models import inlineformset_factory
 
 
@@ -22,6 +20,7 @@ OdpowiedziFormSet = inlineformset_factory(
     extra=2,
     fields=('tekst_odp',)
 )
+
 
 class OdpowiedzForm(ModelForm):
     class Meta:

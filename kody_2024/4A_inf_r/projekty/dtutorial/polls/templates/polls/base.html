@@ -12,7 +12,7 @@
     <li><a href="{% url 'django_registration_register' %}">Utwórz konto</a></li>
 {% else %}
     <li><a href="{% url 'polls:lista' %}">Lista pytań</a></li>
-    <li><a href="{% url 'polls:dodaj' %}">Dodaj pytanie</a></li>
+    <li><a href="{% url 'polls:create' %}">Dodaj pytanie</a></li>
     <li><form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Wyloguj się">

@@ -1,13 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, Http404
 from django.db.models import F
+from . models import Pytanie, Odpowiedz
 from .forms import PytanieForm, OdpowiedziFormSet
-from .models import Pytanie, Odpowiedz
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
-from django.forms.models import inlineformset_factory
+from django.forms.models import modelformset_factory
 
 
 def index(request):
@@ -56,6 +56,26 @@ class PytanieCreate(generic.CreateView):
         self.object = form.save()
         return HttpResponseRedirect(self.get_success_url())
 
+@login_required
+def dodaj_odpowiedzi(request, pytanie_id):
+    try:
+        pytanie = get_object_or_404(Pytanie, pk=pytanie_id)
+    except Pytanie.DoesNotExist:
+        raise Http404("Pytanie nie istnieje!")
+    OdpowiedziFormSet = modelformset_factory(Odpowiedz, fields=["tekst_odp"], min_num=1, max_num=5, extra=2, validate_max=True)
+    queryset = Odpowiedz.objects.filter(pytanie=pytanie)
+    if request.method == "POST":
+        formset = OdpowiedziFormSet(
+            request.POST,
+            queryset=queryset
+        )
+        if formset.is_valid():
+            formset.save()
+            # Do something.
+    else:
+        formset = OdpowiedziFormSet(queryset=queryset)
+    return render(request, "polls/odpowiedzi_form.html", {"pytanie": pytanie, "formset": formset})
+
 @method_decorator(login_required, 'dispatch')
 class PytanieDodaj(generic.CreateView):
     """Widok dodawania pytania i odpowiedzi."""
@@ -94,10 +114,6 @@ class PytanieDodaj(generic.CreateView):
             self.get_context_data(form=form, odpowiedzi=odpowiedzi)
         )
 
-@method_decorator(login_required, 'dispatch')
-class OdpowiedzCreate(generic.CreateView):
-    model = Odpowiedz
-    
 # def index(request):
 #     latest_question = Pytanie.objects.order_by("-data_pub")[:5]
 #     print(latest_question)
@@ -113,8 +129,8 @@ class OdpowiedzCreate(generic.CreateView):
 #         raise Http404("Pytanie nie istnieje!")
 #     return render(request, "polls/detail.html", {"pytanie": pytanie})
 
-# def results(request, question_id):
-#     pytanie = get_object_or_404(Pytanie, pk=question_id)
+# def results(request, pytanie_id):
+#     pytanie = get_object_or_404(Pytanie, pk=pytanie_id)
 #     return render(request, "polls/results.html", {"pytanie": pytanie})
 
 # def info(request):
