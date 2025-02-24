@@ -2,7 +2,7 @@ from django.contrib.messages import success
 from django.urls import path
 from . import views  # import widoków aplikacji
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
@@ -26,6 +26,17 @@ urlpatterns = [
         views.DodajWiadomosc.as_view(),
         login_url='/loguj'),
         name='dodaj'),
+    path('<pk>/edytuj/', login_required(
+        views.EdytujWiadomosc.as_view(),
+        login_url='/loguj'),
+        name='edytuj'),
+    path('<pk>/usun/', login_required(
+        DeleteView.as_view(
+            model=Wiadomosc,
+            template_name='czat/wiadomosc_usun.html',
+            success_url='/wiadomosci'),
+        login_url='/loguj'),
+        name='usun'),
     path("loguj/", auth_views.LoginView.as_view(template_name="czat/loguj.html"), name='loguj'),
     path('wyloguj/', auth_views.LogoutView.as_view(), name='wyloguj'),
 ]
