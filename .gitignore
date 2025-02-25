@@ -16,3 +16,6 @@ pve
 # katalogi konfiguracyjne
 .idea
 .vscode
+
+# bazy SQlite3
+*.sqlite3
