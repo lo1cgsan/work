@@ -14,8 +14,9 @@ def dec2any(l_dec, p):
         reszta = l_dec % p
         l_wyj += str(reszta)
         l_dec //= p
-
-    wypisz l_wyj wspak
+    print(l_wyj)
+    # odwróć znaki w l_wyj
+    return l_wyj
 
 def main():
     p = int(input('Podstawa: '))
@@ -23,5 +24,4 @@ def main():
     l_wyj = dec2any(l_wej, p)
     print(l_wej, l_wyj)
 
-print(any2dec('1101', 2))
-main()
+print(dec2any(11, 2))

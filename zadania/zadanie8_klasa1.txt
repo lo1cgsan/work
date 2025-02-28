@@ -1,0 +1,10 @@
+n - liczba pracowników
+lng - liczba nadgodzin
+s - stawka
+placa - obliczona płaca
+
+input()
+int()
+for i in range()
+float()
+if

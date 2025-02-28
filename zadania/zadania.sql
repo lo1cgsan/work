@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS users;  -- usunięcie tabeli
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    haslo TEXT NOT NULL
+);
+
+INSERT INTO users VALUES (NULL, 'admin@wp.pl', 'pbkdf2:sha256:600000$D80iPGFFhonTUHno$ce6148bfe733d5007f5b8129916c7f59e6734ce66072b8a01171d341151d885e');
+
+DROP TABLE IF EXISTS zadania;  -- usunięcie tabeli
+CREATE TABLE zadania (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_user INTEGER NOT NULL,
+    zadanie TEXT NOT NULL,
+    zrobione BOOLEANNOT NULL DEFAULT 0,
+    data_pub TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_user) REFERENCES users(id)
+);
