@@ -22,7 +22,7 @@ def dec2any(l_dec, p):
         l_wyj += str(reszta)
         l_dec //= p
 
-    l_wyj
+    print(l_wyj)
 
 
 def main():

@@ -9,17 +9,21 @@ def any2dec(l_wej, p):
 
 
 def dec2any(l_dec, p):
+    l_dec = int(l_dec)
     l_wyj = ''  # pusty ciąg znaków
     while l_dec > 0:
         reszta = l_dec % p
-        l_wyj += reszta
+        l_wyj += str(reszta)
         l_dec //= p
-    toDo: sprawdzić poprawność
-    return l_wyj
+    n = len(l_wyj)
+    wynik = ''
+    for i in range(n):
+        wynik += l_wyj[-1-i]
+    return wynik
 
 p = int(input('Podaj podstawę: '))
 l_wej = input('Podaj liczbę: ')
 
-l_wyj = any2dec(l_wej, p)
+l_wyj = dec2any(l_wej, p)
 
-print(f"{l_wej}({p}) =>  {l_wyj}(10)")
+print(f"{l_wej}(10) =>  {l_wyj}({p})")

@@ -17,9 +17,15 @@ class Przedmiot:
     def __str__(self):
         return f'P{self.id}: w/p/v: {self.w}/{self.p}/{self.v}'
 
+def zwroc_wartosc(przedmiot):
+    return przedmiot.p
+
 def wczytaj_przedmioty(n_pliku, lista_prz, sortuj=[False]):
     import csv
     with open(n_pliku, newline='') as plik:
         for r in csv.reader(plik, delimiter=';'):
             r = list(map(float, r))
             lista_prz.append(Przedmiot(r[0], r[1]))
+
+    if sortuj:
+        lista_prz.sort(key=lambda przedmiot: przedmiot.v, reverse=True)
