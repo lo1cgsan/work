@@ -17,7 +17,7 @@ class Stos:
     def odloz(self, liczba):
         print('Odkładam:', liczba)
         nowy = Wezel(liczba)
-        toDO: nowy.nastepny = self.wierzcholek
+        nowy.nastepny = self.wierzcholek
         self.wierzcholek = nowy
 
     def zdejmij(self):
@@ -41,4 +41,9 @@ stos.odloz(7)
 stos.odloz(1)
 stos.odloz(9)
 stos.wypisz()
-
+print(stos.zdejmij())
+stos.wypisz()
+print(stos.zdejmij())
+print(stos.zdejmij())
+print(stos.zdejmij())
+print(stos.zdejmij())

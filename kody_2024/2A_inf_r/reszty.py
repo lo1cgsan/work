@@ -13,7 +13,7 @@ def wydaj_reszte(nominaly, reszta):
 
 
 def main():
-    nominaly = (20, 50, 10, 5, 2, 1)
+    nominaly = (50, 20, 10, 5, 2, 1)
     reszta = int(input('Podaj resztę: '))
     wydaj_reszte(nominaly, reszta)
 

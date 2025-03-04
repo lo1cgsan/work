@@ -14,12 +14,9 @@ def dec2any(l_dec, p):
         reszta = l_dec % p
         l_wyj += str(reszta)
         l_dec //= p
-    n = len(l_wyj)
-    wspak = ''
-    for i in range(len(l_wyj)):
-        # wspak += l_wyj[n-1-i]
-        wspak += l_wyj[-1-i]
-    return wspak
+    print(l_wyj)
+    wypisz wspak l_wyj
+
 
 def main():
     p = int(input('Podaj podstawę: '))
@@ -27,4 +24,4 @@ def main():
     l_wyj = dec2any(l_wej, p)
     print(l_wej, l_wyj)
 
-main()
+print(dec2any(11, 2))

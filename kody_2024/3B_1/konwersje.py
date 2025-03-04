@@ -11,7 +11,13 @@ def any2dec(l_wej, p):
     return l_dec
 
 def dec2any(l_dec, p):
-    
+    l_wyj = ''
+
+    while l_dec > 0:
+        reszta = l_dec % p
+        l_wyj += str(reszta)
+        l_dec //= p
+    print(l_wyj)
 
 def main():
     l_wej = input('Podaj liczbę: ')
@@ -19,4 +25,4 @@ def main():
     l_wyj = any2dec(l_wej, p)
     print(l_wej, l_wyj)
 
-main()
+dec2any(11, 2)
