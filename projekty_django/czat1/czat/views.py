@@ -1,6 +1,6 @@
+from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
