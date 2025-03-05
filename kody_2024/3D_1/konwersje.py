@@ -17,6 +17,7 @@ def dec2any(l_dec, p):
         reszta = l_dec % p
         l_wyj += str(reszta)
         l_dec //= p
+    odwroc l_wyj
     print(l_wyj)
 
 
@@ -28,4 +29,3 @@ def main():
     print()
     print(f"{l_wej}{p} = {l_wyj}(10)")
 
-main()
