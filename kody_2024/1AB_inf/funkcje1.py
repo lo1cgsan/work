@@ -19,4 +19,5 @@ def wypisz_parzyste_3(n):
             licznik += 1
     return licznik
 
+wypisz_parzyste_2(25)
 

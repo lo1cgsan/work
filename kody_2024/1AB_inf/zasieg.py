@@ -1,6 +1,6 @@
 def licznik(x):
     # global x
-    # x = 7  # przesłonięcie zmiennej x
+    x = 7  # przesłonięcie zmiennej x
 
     x += 1
     for i in range(x):

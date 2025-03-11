@@ -26,7 +26,7 @@ class Lista:
 
     def usun(self, pozycja):
         if self.glowa.pozycja == pozycja:
-            self.ogon.nastepny = self.glowa.nastepy
+            self.ogon.nastepny = self.glowa.nastepny
             self.glowa = self.glowa.nastepny
             return
 
@@ -50,4 +50,26 @@ class Lista:
         print(pomocniczy.pozycja)
 
     def przejdz(self, krok, wezel=None):
-        pass
+        pomocniczy = wezel
+        if not wezel:
+            pomocniczy = self.glowa
+
+        for i in range(krok):
+            pomocniczy = pomocniczy.nastepny
+
+        return pomocniczy
+
+lista = Lista()
+n = 10
+k = 3
+
+for i in range(n):
+    lista.dodaj(i + 1)
+
+lista.wypisz()
+
+wezel = lista.przejdz(k - 1, None)
+while wezel.nastepny != wezel:
+    lista.usun(wezel.pozycja)
+    lista.wypisz()
+    wezel = lista.przejdz(k, wezel)
