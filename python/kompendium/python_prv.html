@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>python.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="j%C4%99zyk-python">Język Python</h1>
+<p>Python to język interpretowany, wysokiego poziomu, obiektowy, umożliwia również programowanie strukturalne i funkcyjne.</p>
+<h2 id="interpreter">Interpreter</h2>
+<p>Interpreter Pythona to program, który wykonuje skrypty zapisane w plikach z rozszerzeniem &quot;.py&quot; i polecenia wprowadzane w trybie interaktywnym. W systemach Linux interpreter jest preinstalowany. W systemie MS Windows należy do zainstalować.</p>
+<p><img src="interpreter_instalacja.png" alt="Instalacja interpretera Pytohna w MS Windows" title="Instalacja interpretera Pytohna w MS Windows"></p>
+<h2 id="tryb-interaktywny">Tryb interaktywny</h2>
+<p>Uruchom terminal (wiersz poleceń) i wpisz polecenie <code>python3</code>. Interpreter Pythona zostanie uruchomiony w trybie interaktywnym. Po znaku zachęty <code>&gt;&gt;&gt;</code> możesz wpisywać wyrażenia i instrukcje, które chcesz przetestować. Wpisz <code>exit()</code>, aby opuścić tryb interaktywny.</p>
+<p><img src="tryb_interaktywny_linux.png" alt="Tryb interaktywny interpretera (Linux)" title="Tryb interaktywny interpretera (Linux)"></p>
+<h2 id="wykonywanie-skryptu">Wykonywanie skryptu</h2>
+<p>Uruchom terminal (wiersz poleceń) w katalogu zawierającym skrypt, który chcesz wykonać. Wydaj polecenie:
+<code>python3 nazwa_skryptu.py</code> – które spowoduje wykonanie podanego skryptu przez interpreter.</p>
+<p><img src="wykonanie_skryptu_linux.png" alt="Wykonanie skryptu w wierszu poleceń (Linux)" title="Wykonanie skryptu w wierszu poleceń (Linux)"></p>
+<p>Skrypty Pythona możesz uruchamiać również z poziomu edytora kodu, o ile oferuje taką funkcję. Na przykład w edytorze IDLE wczytany skrypt uruchomisz naciskając klawisz <code>F5</code>.</p>
+<p><img src="wykonanie_skryptu_idle_linux.png" alt="Wykonanie skryptu w IDLE (Linux)" title="Wykonanie skryptu w IDLE (Linux)"></p>
+<h2 id="konwencja-formatowania-kodu">Konwencja formatowania kodu</h2>
+<ul>
+<li>
+<p>ciągi znaków otaczamy cudzysłowami albo pojedynczymi, albo podwójnymi</p>
+</li>
+<li>
+<p>nawiasy, o ile nie są częścią ciągu znaków, występują zawsze parami</p>
+</li>
+<li>
+<p>operatory otacza się spacjami</p>
+</li>
+<li>
+<p>dwukropek (<code>:</code>) zapowiada blok kodu, czyli wcięcia</p>
+</li>
+<li>
+<p>bloki kodu wcina się 4 spacjami i ich wielokrotnościami</p>
+</li>
+<li>
+<p>w wierszu powinny występować maksymalnie 72 znaki</p>
+</li>
+<li>
+<p>znak <code>#</code> oznacza komentarz, przy czym:</p>
+<ul>
+<li>pierwszy wiersz skryptu może (nie musi) zawierać wskazanie interpretera (<em>shebang</em>), np.: <code>#!/usr/bin/env python3</code></li>
+<li>skrypt może (nie musi) zawierać preferowane kodowanie znaków: <code># -*- coding: utf-8 -*-</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="co-zawiera-kod-%C5%BAr%C3%B3d%C5%82owy">Co zawiera kod źródłowy?</h2>
+<ul>
+<li><strong>identyfikatory zmiennych</strong>, tj. nazwy, które wskazuje na wartość określonego typu</li>
+<li><strong>identyfikatory słów kluczowych</strong>, tj. nazwy zarezerwowane przez język, np.: <code>if, elif, else, for, while</code></li>
+<li><strong>konkretne wartości</strong> (tzw. literały), np. znakowe <code>&quot;Adam&quot;</code> lub liczbowe <code>10</code>, <code>2.345</code> – które mogą być przypisywane zmiennym</li>
+<li><strong>operatory</strong>, np. arytmetyczne (<code>+, -, /, *</code>) lub logiczne (<code>&lt;, &gt;, ==, !=</code>)</li>
+<li><strong>ograniczniki</strong>, np. przecinek, dwukropek, nawiasy okrągłe, kwadratowe, klamrowe</li>
+<li><strong>wyrażenia</strong>, tj. kombinacje zmiennych, wartości, operatorów i/lub wywołań funkcji, która są obliczane i dają jakąś wartość, np.: <code>int((a + b) / 2)</code></li>
+</ul>
+<h2 id="nazywanie-zmiennych">Nazywanie zmiennych</h2>
+<ul>
+<li>nazwa zaczyna się najczęściej od litery</li>
+<li>nazwa zawiera tylko znaki, cyfry i/lub podkreślenia, nie zawiera spacji i znaków narodowych</li>
+<li>rozróżniane są małe i duże litery</li>
+<li>używaj konwencji <strong>snake_case</strong> do nazywania zmiennych (także funkcji, metod, modułów i pakietów), czyli małych liter i wyrazów oddzielanych podkreśleniem, np. <code>moja_zmienna</code></li>
+</ul>
+<h2 id="typ-danych-ang-data-type">Typ danych (ang. <em>data type</em>)</h2>
+<p>Python wykorzystuje <strong>typowanie dynamiczne</strong> (ang. <em>duck typing</em>). Zmienne inicjuje się przez przypisanie im jakiejś wartości. Zmienne &quot;przechowują&quot; lub inaczej &quot;wskazują na&quot; wartości określonego typu.</p>
+<ul>
+<li><strong>ciąg znaków</strong>  (&lt;class 'str'&gt;, ang. <em>string</em>) – np. <code>&quot;&quot;, '', &quot; &quot;, '12345'</code></li>
+<li><strong>liczba całkowita</strong> (&lt;class 'int'&gt;, ang. <em>integer</em>) – np. <code>10</code>,</li>
+<li><strong>liczba zmiennoprzecinkowa</strong> (&lt;class 'float'&gt;, ang. <em>floating point</em>) – np. <code>1.2345</code>,</li>
+<li><strong>typ logiczny</strong> (&lt;class 'bool'&gt;, ang. <em>boolean type</em>) – podtyp liczb całkowitych, zawiera dwie wartości: <code>True</code> (1, prawda) lub <code>False</code> (0, fałsz)</li>
+</ul>
+<h2 id="inicjacja-zmiennych">Inicjacja zmiennych</h2>
+<p>Inicjacja zmiennej wymaga operacji przypisania, tj. podania nazwy, operatora przypisania (<code>=</code>) oraz wartości określonego typu, np. ciągu znaków, liczby całkowitej itd. Wartość może być wynikiem wyrażenia lub funkcji.</p>
+<ul>
+<li><code>imie = &quot;Adam&quot;</code> – inicjacja zmiennej zawierającej znaki</li>
+<li><code>liczba = input(&quot;Podaj liczbę: &quot;)</code> – inicjacja zmiennej wartością zwróconą przez funkcję</li>
+<li><code>a = 5</code>, <code>pi = 3.14</code> – inicjacja zmiennej zawierającej liczby</li>
+<li><code>parzysta = False</code> – inicjacja zmiennej zawierającej wartość logiczną</li>
+<li><code>iloczyn = (2 * a) + 1</code> – inicjacja zmiennej za pomocą wyrażenia</li>
+</ul>
+<h2 id="operatory-i-ich-priorytet">Operatory i ich priorytet</h2>
+<ol>
+<li><code>**</code> – potęgowanie</li>
+<li><code>*, /, //, %</code> – mnożenie, dzielenie, dzielenie całkowite, dzielenie modulo (reszta z dzielenia)</li>
+<li><code>+, -</code> – dodawanie, odejmowanie</li>
+<li><code>&lt;, &lt;=, &gt;, &gt;=, !=, ==</code> – operatory porównań, mniejsze, mniejsze lub równe, większe, większe lub równe, różne, równe</li>
+<li><code>not x</code> – operator logiczny, negacja</li>
+<li><code>and</code> – operator logiczny, koniunkcja</li>
+<li><code>or</code> – operator logiczny, alternatywa</li>
+</ol>
+<h2 id="typowe-operacje">Typowe operacje</h2>
+<ul>
+<li>
+<p><strong>łączenie ciągów znakowych</strong> (tzw. konkatenacja) za pomocą operatora <code>+</code>, np. <code>&quot;10&quot; + &quot;1&quot;</code></p>
+</li>
+<li>
+<p><strong>operacje arytmetyczne</strong> zgodne z kolejnością działań: 1. nawiasy, 2. potęgowanie, 3. mnożenie, 4. dzielenie, 5. dodawanie, 6. odejmowanie – i priorytetem operatorów, np.: <code>(a + 2.5) // 2**b</code></p>
+</li>
+<li>
+<p><strong>testowanie wyrażeń logicznych</strong>, które:</p>
+<ul>
+<li>mają wartość <strong>True</strong> (1) lub <strong>False</strong> (0), przy czym za <strong>False</strong> uznaje się: <code>None</code>, <code>False</code>, <code>0</code>, puste sekwencje lub kolekcje, tj. <code>''</code>, <code>()</code>, <code>[]</code>, <code>{}</code>, <code>set()</code>, <code>range(0)</code></li>
+<li>wykorzystują operatory porównań (<code>&lt;, &lt;=, &gt;, &gt;=, !=, ==</code>) i operatory logiczne <code>not, and, or</code></li>
+<li>są używane jako warunki, np.: <code>a == b</code> – operacja porównania</li>
+</ul>
+</li>
+<li>
+<p><strong>pobieranie danych z klawiatury</strong> – instrukcja wejścia <code>input(&quot;komunikat dla użytkownika&quot;)</code> zwraca dane jako tekst (typ <code>str</code>!)</p>
+</li>
+<li>
+<p><strong>wypisywanie komunikatów</strong> – instrukcja <code>print(&quot;komunikat&quot;)</code> wypisuje znaki lub zmienne w terminalu</p>
+<ul>
+<li><code>print(&quot;komunikat&quot;, a)</code> – wypisanie ciągu znaków i wartości zmiennej <code>a</code></li>
+<li><code>print(*lista)</code> – wypisanie elementów listy (sekwencji)</li>
+<li><code>print(f&quot;{a} jest większe od {b}&quot;)</code> – wypisanie ciągu formatowanego (tzw. <em>f-string</em>), w miejsce nawiasów klamrowych wstawiane są wartości zmiennych lub wyrażeń</li>
+</ul>
+</li>
+<li>
+<p><strong>rzutowanie typów danych</strong>:</p>
+<ul>
+<li><code>int(&quot;123&quot;)</code> – zamiana tekstu na liczbę całkowitą</li>
+<li><code>float(&quot;2.5&quot;)</code> – zamiana na liczbę zmiennoprzecinkową</li>
+<li><code>str(10)</code> – zamiana np. liczby na tekst</li>
+</ul>
+</li>
+</ul>
+<h2 id="instrukcja-warunkowa">Instrukcja warunkowa</h2>
+<p>Ogólna forma:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> warunek1:
+    instrukcja lub blok instrukcji wykonywanych gdy warunek1 jest prawdą
+<span class="hljs-keyword">elif</span> warunek2:
+    instrukcja lub blok instrukcji wykonywanych gdy warunek2 jest prawdą
+<span class="hljs-keyword">else</span>:
+    instrukcja lub blok instrukcji wykonywanych gdy warunki nie są prawdziwe
+</div></code></pre>
+<p>Przykłady:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># sprawdzamy, czy a jest parzyste</span>
+<span class="hljs-keyword">if</span> a % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+    print(<span class="hljs-string">"Liczba"</span>, a, <span class="hljs-string">"jest parzysta!"</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"Liczba"</span>, a, <span class="hljs-string">"nie jest parzysta!"</span>)
+</div></code></pre>
+<p>Forma z dodatkowym testem:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># sprawdzamy, czy a jest większe, czy równe b</span>
+<span class="hljs-keyword">if</span> a &gt; b:
+    printf(<span class="hljs-string">"Liczba {a} jest większa od {b}!"</span>)
+<span class="hljs-keyword">elif</span> a == b:
+    printf(<span class="hljs-string">"Liczby {a} i {b} są równe!"</span>)
+<span class="hljs-keyword">else</span>:
+    printf(<span class="hljs-string">"Liczba {a} jest mniejsza od {b}!"</span>)
+</div></code></pre>
+<p>Zagnieżdżanie instrukcji warunkowych:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># sprawdzamy, czy a jest większe od b i c</span>
+<span class="hljs-keyword">if</span> a &gt; b:
+    <span class="hljs-comment"># ewentualna instrukcja lub instrukcje</span>
+    <span class="hljs-keyword">if</span> a &gt; c:
+        print(<span class="hljs-string">"Liczba {a} jest największa."</span>)
+<span class="hljs-keyword">else</span>:
+    ewentualna instrukcja lub instrukcje
+</div></code></pre>
+<p>Zastąpienie zagnieżdżonych instrukcji warunkowych warunkiem złożonym:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> a &gt; b <span class="hljs-keyword">and</span> a &gt; c:
+    print(<span class="hljs-string">"Liczba {a} jest największa."</span>)
+<span class="hljs-keyword">elif</span> a == b <span class="hljs-keyword">or</span> a == c:
+    print(<span class="hljs-string">"Liczba a jest równa b lub c."</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">"Liczba a jest mniejsza od b lub c."</span>)
+</div></code></pre>
+<h2 id="instrukcje-iteracji-p%C4%99tle">Instrukcje iteracji (pętle)</h2>
+<p>Przykłady pętli <code>for</code> (wykonuje się określoną liczbę razy):</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># pętla, która wykona się 10 razy</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+    print(i)  <span class="hljs-comment"># powtarzana instrukcja wypisująca wartość i</span>
+
+<span class="hljs-comment"># pętla, która odczyta wszystkie znaki z napisu</span>
+napis = <span class="hljs-string">"abcde"</span>
+<span class="hljs-keyword">for</span> znak <span class="hljs-keyword">in</span> napis:
+    print(znak)  <span class="hljs-comment"># powtarzana instrukcja wypisująca kolejne znaki</span>
+</div></code></pre>
+<p>Przykłady pętli <code>while</code> (wykonuje się, dopóki warunek jest prawdziwy):</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># pętla, która wykonuje się dopóki warunek a &gt; 0 jest prawdziwy</span>
+a = <span class="hljs-number">10</span>
+<span class="hljs-keyword">while</span> a &gt; <span class="hljs-number">0</span>:
+    a = a - <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># pętla, która pobiera liczbę z klawiatury, dopóki liczba jest ujemna lub równa 0</span>
+liczba = int(input(<span class="hljs-string">"Podaj liczbę: "</span>))
+<span class="hljs-keyword">while</span> liczba &lt;= <span class="hljs-number">0</span>:
+    liczba = int(input(<span class="hljs-string">"Podaj liczbę: "</span>))
+</div></code></pre>
+<h2 id="najcz%C4%99stsze-typy-b%C5%82%C4%99d%C3%B3w">Najczęstsze typy błędów</h2>
+<ul>
+<li><strong>IndentationError</strong> – błąd wcięcia, najczęściej polega na niezachowywaniu tych samych wcięć w bloku kodu</li>
+<li><strong>TypeError</strong> – błąd typu, występuje, kiedy chcemy wykonać operację na złym typie danych</li>
+<li><strong>NameError</strong> – błąd nazwy, występuje, kiedy używamy niezdefiniowanej nazwy, np. niezainicjowanej zmiennej, błędnie zapisanej funkcji itp.</li>
+</ul>
+
+</body>
+</html>
