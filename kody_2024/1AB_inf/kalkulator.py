@@ -1,4 +1,5 @@
-zdefiniować funkcje z parametrami zwracające wyniki
+# kalulator
+
 def dodaj(a, b):
     return a + b
 
@@ -6,7 +7,7 @@ def odejmij(a, b):
     return a - b
 
 def iloczyn(a, b):
-    return * B
+    return a * b
 
 def iloraz(a, b):
     if b != 0:
@@ -23,5 +24,4 @@ operacja = input('Wybierz działanie (+, -, *, /): ')
 if operacja == '+':
     print(dodaj(a, b))
 elif operacja == '-':
-    pass
-
+    print(odejmij(a, b))
