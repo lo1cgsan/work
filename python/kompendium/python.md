@@ -50,13 +50,14 @@ Skrypty Pythona możesz uruchamiać również z poziomu edytora kodu, o ile ofer
 - w jednym wierszu powinno występować maksymalnie 72 znaków
 - znak `#` oznacza komentarz, przy czym:
 
-  - pierwszy wiersz skryptu może (nie musi) zawierać wskazanie interpretera (*shebang*), np.: `#!/usr/bin/env python3`
+  - pierwszy wiersz skryptu może (nie musi) zawierać wskazanie interpretera (ang. *shebang*), np.: `#!/usr/bin/env python3`
   - skrypt może (nie musi) zawierać preferowane kodowanie znaków: `# -*- coding: utf-8 -*-`
 
 ## Co zawiera kod źródłowy?
 
 * **Identyfikatory zmiennych**, tj. nazwy, które wskazują na wartość określonego typu, np. <code>a = 5</code>.
 * **Identyfikatory słów kluczowych**, tj. nazwy zarezerwowane przez język, np.: <code>if, elif, else, for, while</code>.
+* **Nazwy wbudowanych funkcji**, np.: <code>input(), print(), int(), float(), range()</code>.
 * **Konkretne wartości** (tzw. literały), np. znakowe <code>"Adam"</code> lub liczbowe <code>10</code>, <code>2.345</code> – które mogą być przypisywane zmiennym.
 * **Operatory**, np. arytmetyczne (<code>+, -, /, *</code>) lub porównań (<code><, >, ==, !=</code>).
 * **Ograniczniki**, np. przecinek, dwukropek, nawiasy okrągłe, kwadratowe, klamrowe.
@@ -64,10 +65,10 @@ Skrypty Pythona możesz uruchamiać również z poziomu edytora kodu, o ile ofer
 
 ## Nazywanie zmiennych
 
-- nazwa zaczyna się najczęściej od litery
-- nazwa zawiera tylko znaki, cyfry i/lub podkreślenia, nie zawiera spacji i znaków narodowych
-- rozróżniane są małe i duże litery
-- używamy konwencji **snake_case** do nazywania zmiennych (także funkcji, metod, modułów i pakietów), czyli małych liter i wyrazów oddzielanych podkreśleniem, np. <code>moja_zmienna</code>
+- Nazwa zaczyna się najczęściej od litery.
+- Nazwa zawiera tylko znaki, cyfry i/lub podkreślenia, nie zawiera spacji i znaków narodowych.
+- Rozróżniane są małe i duże litery.
+- Używamy konwencji **snake_case** do nazywania zmiennych (także funkcji, metod, modułów i pakietów), czyli małych liter i wyrazów oddzielanych podkreśleniem, np. <code>moja_zmienna</code>.
 
 ## Typ danych (ang. *data type*) i zmienne
 
@@ -131,6 +132,11 @@ Python wykorzystuje **typowanie dynamiczne** (ang. *duck typing*). Zmienne inicj
   - `float('2.5')` – zamiana znaków liczbę zmiennoprzecinkową
   - `str(10)` – zamiana liczby na tekst
 
+- **operacje na znakach**:
+
+  - `ord('a')` – zwraca kod Unicode (w tym ASCII) podanego znaku
+  - `chr(97)` – zwraca znak o podanym kodzie Unicode (w tym ASCII)
+
 ## Instrukcja warunkowa
 
 Ogólna forma:
@@ -144,7 +150,7 @@ else:
     instrukcja lub blok instrukcji wykonywanych gdy warunki nie są prawdziwe
 ```
 
-Przykłady:
+Sprawdzanie jednego warunku:
 
 ```Python
 # sprawdzamy, czy a jest parzyste
@@ -154,7 +160,7 @@ else:
     print("Liczba", a, "nie jest parzysta!")
 ```
 
-Forma z dodatkowym testem:
+Sprawdzanie wielu warunków:
 
 ```Python
 # sprawdzamy, czy a jest większe, czy równe b
@@ -178,7 +184,7 @@ else:
     ewentualna instrukcja lub instrukcje
 ```
 
-Zastąpienie zagnieżdżonych instrukcji warunkowych warunkiem złożonym:
+Zastąpienie zagnieżdżonych instrukcji warunkowych warunkiem złożonym oraz sprawdzanie wielu warunków:
 
 ```Python
 if a > b and a > c:
@@ -189,7 +195,7 @@ else:
     print("Liczba a jest mniejsza od b lub c.")
 ```
 
-## Instrukcje iteracji (pętle)
+## Instrukcje iteracji (powtórzenia, pętle)
 
 Przykłady pętli <code>for</code> (wykonuje się określoną liczbę razy):
 
@@ -204,7 +210,7 @@ for znak in napis:
     print(znak)  # powtarzana instrukcja wypisująca kolejne znaki
 ```
 
-Przykłady pętli <code>while</code> (wykonuje się, dopóki warunek jest prawdziwy):
+Przykłady pętli <code>while</code> – wykonuje się, dopóki warunek jest prawdziwy:
 
 ```Python
 # pętla, która wykonuje się dopóki warunek a > 0 jest prawdziwy
