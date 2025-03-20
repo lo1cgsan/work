@@ -1,0 +1,12 @@
+<!-- projekty_flask/templates/index.html -->
+<html>
+  <head>
+    <title>{{ config.SITE_NAME }}</title>
+  </head>
+<body>
+  <h1>{{ config.SITE_NAME }}</h1>
+  <p>
+    <a href="{{ url_for('todo.index') }}">Zadania »»»</a>
+  </p>
+</body>
+</html>
