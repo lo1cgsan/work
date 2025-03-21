@@ -7,6 +7,7 @@ app = Flask(__name__)
 # konfiguracja aplikacji
 app.config.update(dict(
     SECRET_KEY='bradzosekretnawartosc',
+    SITE_NAME='Quiz Python'
 ))
 
 # lista pytań

@@ -1,9 +1,9 @@
 from flask import (
     Blueprint, flash, render_template, request, redirect, url_for
 )
+from db import get_db
 
 bp = Blueprint('todo', __name__, template_folder='templates', url_prefix='/todo')
-from db import get_db
 
 @bp.route('/')
 def index():
