@@ -1,0 +1,13 @@
+<!-- projekty_flask/todo/templates/users/dodaj.html -->
+{% extends "index.html" %}
+{% block h1 %} Rejestracja użytkownika {% endblock %}
+{% block body %}
+    <form method="POST" action="{{ url_for('users.dodaj') }}">
+      <label for="login">Login:</label>
+      <input type="text" id="login" name="login" required>
+      <br>
+      <label for="haslo">Hasło:</label>
+      <input type="password" id="haslo" name="haslo" required />
+      <button type="submit">Dodaj</button>
+    </form>
+{% endblock %}

@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, current_app
 from db import init_app, init_db
+import users
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ app.config.update(dict(
 init_app(app)
 
 # rejestracja blueprintów
-app.register_blueprint(todo.bp)
+app.register_blueprint(users.bp)
 
 @app.route('/')
 def index():

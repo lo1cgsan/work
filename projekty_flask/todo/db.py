@@ -23,6 +23,7 @@ def init_app(app):
 
 def init_db():
     """Funkcja tworzy bazę i tabele"""
+    from werkzeug.security import generate_password_hash
     db = get_db()
-    with current_app.open_resource('todo.sql') as f:
+    with current_app.open_resource('modele.sql') as f:
         db.executescript(f.read().decode('utf8'))

@@ -1,6 +1,7 @@
-# tik201920
+# Work
 
-github.com/lo1cgsan/tik201920
+Repozytorium zawiera bieżące materiały realizowane na zajęciach i szkoleniach
+informatycznych.
 
 ## Instalacja Gita
 
@@ -23,7 +24,7 @@ github.com/lo1cgsan/tik201920
 5) git status – sprawdzenie stanu repozytorium
 6) git add . – dodaje wszystkie zmiany do repozytorium
 7) git commit -m"obsługa gita w README"
-8) git push – synchronizuje reozytorium loklane ze zdalnym
-9) git pull – śćiągnięcie zmian z serwera zdalnego
+8) git push – synchronizuje repozytorium lokalne ze zdalnym
+9) git pull – ściągnięcie zmian z serwera zdalnego
 
 Polecenia 1, 3, 4 wydajemy tylko raz na komputerze.

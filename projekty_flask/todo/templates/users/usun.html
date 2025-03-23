@@ -1,0 +1,18 @@
+<!-- projekty_flask/todo/templates/users/usun.html -->
+<html>
+  <head>
+  <!-- nazwa aplikacji pobrana z ustawień -->
+    <title>{{ config.SITE_NAME }} – Lista zadań</title>
+  </head>
+  <body>
+    <h1>Usuwanie użytkownika</h1>
+
+    <form method="POST" action="{{ url_for('users.usun', user_id=dane.id) }}">
+      <p>Czy na pewno usunąć użytkownika:</p>
+      <p>{{ dane.id }}, {{ dane.nick }}, {{ dane.grupa }}</p>
+      <br>
+      <button type="submit">Usuń</button>
+    </form>
+
+  </body>
+</html>
