@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, current_app
 from db import init_app, init_db
-import users
+import users, todo
 
 app = Flask(__name__)
 
@@ -16,6 +16,7 @@ init_app(app)
 
 # rejestracja blueprintów
 app.register_blueprint(users.bp)
+app.register_blueprint(todo.bp)
 
 @app.route('/')
 def index():

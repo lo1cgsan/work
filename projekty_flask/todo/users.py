@@ -31,7 +31,29 @@ def loguj():
             flash(f'Zalogowano użytkownika {user['login']}!')
             return redirect(url_for('index'))
         flash(error)
-    return render_template('users/loguj.html')
+    return render_template('users/user_loguj.html')
+
+@bp.before_app_request
+def load_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = get_db().execute('SELECT * FROM user WHERE id = ?', [user_id]).fetchone()
+
+@bp.route('/wyloguj')
+def wyloguj():
+    session.clear()
+    flash(f'Wylogowano użytkownika {g.user['login']}.')
+    return redirect(url_for('index'))
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('users.loguj'))
+        return view(**kwargs)
+    return wrapped_view
 
 @bp.route('/dodaj', methods=['GET', 'POST'])
 def dodaj():
@@ -47,47 +69,20 @@ def dodaj():
             flash(f'Podany login {login} jest już używany.')
         else:
             flash(f'Dodano konto {login}')
-            return redirect(url_for('users.lista'))
+            return redirect(url_for('index'))
 
-    return render_template('users/dodaj.html')
+    return render_template('users/user_dodaj.html')
 
-@bp.before_app_request
-def load_user():
-    user_id = session.get('user_id')
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = get_db().execute('SELECT * FROM user WHERE id = ?', [user_id]).fetchone()
-
-@bp.route('/wyloguj')
-def wyloguj():
-    flash(f'Wylogowano użytkownika {g.user['login']}.')
-    session.clear()
-    return redirect(url_for('index'))
-
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        if g.user is None:
-            return redirect(url_for('users.loguj'))
-        return view(**kwargs)
-    return wrapped_view
-
-def get_user(user_id):
-    db = get_db()
-    user = db.execute('SELECT * FROM user WHERE id = ?', [user_id]).fetchone()
-    if user is None:
-        abort(404, f'Użytkownik o id {user_id} nie istnieje.')
-    return user
-
-@bp.route('/<int:user_id>/usun', methods=['GET', 'POST'])
+@bp.route('/usun', methods=['GET', 'POST'])
 @login_required
-def usun(user_id):
-    user = get_user(user_id)
+def usun():
     if request.method == 'POST':
         db = get_db()
+        login = g.user['login']
+        user_id = g.user['id']
         db.execute('DELETE FROM user WHERE id = ?', [user_id])
         db.commit()
-        flash(f'Usunięto użytkownika {user['login']}!')
+        flash(f'Usunięto użytkownika {login}!')
         return redirect(url_for('index'))
-    return render_template('users/usun.html', dane=user)
+
+    return render_template('users/user_usun.html')

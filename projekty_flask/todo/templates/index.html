@@ -17,8 +17,16 @@
   {% block body %} {% endblock %}
 
   <nav>
-    <a href="{{ url_for('index') }}">Strona główna »»»</a> –
-    <a href="{{ url_for('users.loguj') }}">Zaloguj się »»»</a>
+    {% if g.user %}
+      <p>Zalogowany: {{ g.user['login'] }}</p>
+      <a href="{{ url_for('todo.index') }}">Lista zadań »»»</a> <br>
+      <a href="{{ url_for('users.wyloguj') }}">Wyloguj się »»»</a> <br>
+      <a href="{{ url_for('users.usun') }}">Usuń konto »»»</a> <br>
+    {% else %}
+      <a href="{{ url_for('users.loguj') }}">Zaloguj się »»»</a> <br>
+      <a href="{{ url_for('users.dodaj') }}">Dodaj konto »»»</a> <br>
+    {% endif %}
+    <a href="{{ url_for('index') }}">Strona główna »»»</a>
   </nav>
 
 </body>

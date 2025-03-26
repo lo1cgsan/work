@@ -22,5 +22,5 @@ CREATE TABLE zadanie (
 );
 
 -- początkowe dane
-INSERT INTO zadanie VALUES (null, 0, 'Wyrzucić śmieci', 0, CURRENT_TIMESTAMP);
-INSERT into zadanie VALUES (null, 0, 'Nakarmić psa', 0, CURRENT_TIMESTAMP);
+INSERT INTO zadanie VALUES (null, 1, 'Wyrzucić śmieci', 0, CURRENT_TIMESTAMP);
+INSERT into zadanie VALUES (null, 1, 'Nakarmić psa', 0, CURRENT_TIMESTAMP);
