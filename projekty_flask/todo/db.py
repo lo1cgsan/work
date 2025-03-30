@@ -21,6 +21,12 @@ def init_app(app):
     """Funkcja rejestruje funkcję close_db() w aplikacji"""
     app.teardown_appcontext(close_db)
 
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
+
 def init_db():
     """Funkcja tworzy bazę i tabele"""
     from werkzeug.security import generate_password_hash

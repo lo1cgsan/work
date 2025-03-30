@@ -5,7 +5,7 @@
     <ol>
       <!-- wypisujemy kolejno wszystkie zadania -->
       {% for zadanie in zadania %}
-        <li>{{ zadanie.zadanie }} – <em>{{ zadanie.data_pub }}</em>
+        <li>{{ zadanie.zadanie }} – <em>{{zadanie.data_pub}}</em>
 
         <!-- formularz zmiany statusu zadania -->
         {% if not zadanie.zrobione %}
