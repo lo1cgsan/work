@@ -8,4 +8,5 @@ def sumuj_tv(l_dostaw_tv):
     return suma_tv
 
 l_dostaw_tv = int(input('Podaj liczbę dostaw: '))
-toDo: dokończyć
+suma_tv = sumuj_tv(l_dostaw_tv)
+print('Dostarczono', suma_tv, 'telewizorów.')

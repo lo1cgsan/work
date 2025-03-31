@@ -13,14 +13,30 @@ class Ulamek:
         while a > 0:
             a = a % b
             b = b - a
-        return b 
+        return b
 
-def dodaj_ulamki(u1, u2):
-    licz = u1.l * u2.m + u2.l * u1.m
-    mian = u1.m * u2.m
-    return Ulamek(licz, mian)
+    def __add__(self, u):
+        licz = self.l * u.m + u.l * self.m
+        mian = self.m * u.m
+        return Ulamek(licz, mian)
+
+    def __sub__(self, u):
+        licz = self.l * u.m - u.l * self.m
+        mian = self.m * u.m
+        return Ulamek(licz, mian)
+
+    def __mul__(self, u):
+        return Ulamek(self.l * u.l, self.m * u.m)
+
+    def __floordiv__(self, u):
+        return Ulamek(self.l * u.m, self.m * u.l)
+
+    def skroc(self):
+        self.l = self.l // self.nwd
+        self.m = self.m // self.nwd
 
 u1 = Ulamek(4, 8)
 u2 = Ulamek(3, 4)
-u3 = dodaj_ulamki(u1, u2)
-print(f'{u1} + {u2} = {u3}')
+u3 = u1 // u2
+u3.skroc()
+print(f'{u1} // {u2} = {u3}')
