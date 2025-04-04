@@ -1,10 +1,11 @@
-# szlaczki.py
+# choinka.py
 
-#############
-#           #
-#           #
-#           #
-#############
+#
+##
+###
+####
+#####
+######
 
 znak = input('Podaj znak: ')
 n = int(input('Ile kolumn: '))

@@ -1,4 +1,10 @@
-slowo = str(input("Podaj słowo do odgadnięcia: "))
+from random import randint
+
+slowa = ['Warszawa', 'Berlin', 'Praga', 'Londyn', 'Paryż', 'Sofia']
+pozycja = randint(0, len(slowa)-1)
+
+slowo = slowa[pozycja].lower()
+
 zycia = len(slowo)
 odgadniete = 0
 zgadniete_litery = []
