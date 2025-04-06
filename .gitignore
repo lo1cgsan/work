@@ -38,8 +38,8 @@ coverage.xml
 .DS_Store
 
 # SQLite databases
-db.sqlite
-db.sqlite3
+*.sqlite
+*.sqlite3
 
 # Sphinx documentation
 docs/_build/
