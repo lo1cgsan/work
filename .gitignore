@@ -82,6 +82,7 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Python Virtual Environment
+.venv
 venv/
 pve
 env
