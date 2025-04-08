@@ -1,8 +1,6 @@
-from sqlalchemy import Column, Integer, String
-from db import Base
+from app import db
 
-class User(Base):
-    __tablename__ = 'users'
+class User(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True)
     email = Column(String(120), unique=True)
@@ -14,22 +12,22 @@ class User(Base):
     def __repr__(self):
         return f'<User {self.name!r}>'
 
-class Pytanie(Base):
-    id = Column(baza.Integer, primary_key=True)
-    pytanie = Column(Unicode(255), unique=True)
-    odpok = Column(Unicode(100))
+class Pytanie(db.Model):
+    id = Column(Integer, primary_key=True)
+    pytanie = Column(String(255), unique=True)
+    odpok = Column(String(100))
     odpowiedzi = relationship(
-        'Odpowiedz', backref=baza.backref('pytanie'),
+        'Odpowiedz', back_populates='pytanie',
         cascade="all, delete, delete-orphan")
 
-    def __str__(self):
+    def __repr__(self):
         return self.pytanie
 
+class Odpowiedz(db.Model):
+    id = Column(Integer, primary_key=True)
+    pytanie_id = Column(Integer, ForeignKey('pytanie.id', ondelete="CASCADE"))
+    pytanie = relationship("Pytanie", back_populates="odpowiedzi")
+    odpowiedz = Column(String(100))
 
-class Odpowiedz(baza.Model):
-    id = baza.Column(baza.Integer, primary_key=True)
-    pnr = baza.Column(baza.Integer, baza.ForeignKey('pytanie.id'))
-    odpowiedz = baza.Column(baza.Unicode(100))
-
-    def __str__(self):
+    def __repr__(self):
         return self.odpowiedz

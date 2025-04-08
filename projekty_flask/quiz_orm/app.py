@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, current_app
-from db import db_session, init_db
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
 app = Flask(__name__)
 
@@ -14,10 +15,11 @@ app.config.update(dict(
     TYTUL='Quiz ORM SQLAlchemy'
 ))
 
-# init_app(app)
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    db_session.remove()
+class Base(DeclarativeBase):
+  pass
+
+db = SQLAlchemy(model_class=Base)
+db.init_app(app)
 
 @app.route('/')
 def index():
@@ -25,6 +27,6 @@ def index():
 
 with app.app_context():
     if not os.path.exists(current_app.config['DATABASE']):
-        init_db()
+        db.create_all()
     if __name__ == "__main__":
         app.run(debug=True)
