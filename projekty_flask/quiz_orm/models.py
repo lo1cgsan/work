@@ -1,9 +1,12 @@
+from typing import List
+from sqlalchemy import Integer, String, ForeignKey, event
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app import db
 
 class User(db.Model):
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), unique=True)
-    email = Column(String(120), unique=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(50), unique=True)
+    email: Mapped[str] = mapped_column(String(120), unique=True)
 
     def __init__(self, name=None, email=None):
         self.name = name
@@ -12,11 +15,16 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.name!r}>'
 
+@event.listens_for(User.__table__, 'after_create')
+def create_user(*args, **kwargs):
+    db.session.add(User(name='adam', email='adam@domain.com'))
+    db.session.commit()
+
 class Pytanie(db.Model):
-    id = Column(Integer, primary_key=True)
-    pytanie = Column(String(255), unique=True)
-    odpok = Column(String(100))
-    odpowiedzi = relationship(
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    pytanie: Mapped[str] = mapped_column(String(255), unique=True)
+    odpok: Mapped[str] = mapped_column(String(100))
+    odpowiedzi: Mapped[List['Odpowiedz']] = relationship(
         'Odpowiedz', back_populates='pytanie',
         cascade="all, delete, delete-orphan")
 
@@ -24,10 +32,10 @@ class Pytanie(db.Model):
         return self.pytanie
 
 class Odpowiedz(db.Model):
-    id = Column(Integer, primary_key=True)
-    pytanie_id = Column(Integer, ForeignKey('pytanie.id', ondelete="CASCADE"))
-    pytanie = relationship("Pytanie", back_populates="odpowiedzi")
-    odpowiedz = Column(String(100))
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    pytanie_id: Mapped[int] = mapped_column(ForeignKey('pytanie.id', ondelete="CASCADE"))
+    pytanie: Mapped['Pytanie'] = relationship("Pytanie", back_populates="odpowiedzi")
+    odpowiedz: Mapped[str] = mapped_column(String(100))
 
     def __repr__(self):
         return self.odpowiedz

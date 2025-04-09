@@ -27,6 +27,10 @@ def index():
 
 with app.app_context():
     if not os.path.exists(current_app.config['DATABASE']):
+        import models
+        from dane import pobierz_dane, dodaj_pytania
         db.create_all()
+        pytania = pobierz_dane('pytania.csv')
+        dodaj_pytania(pytania)
     if __name__ == "__main__":
         app.run(debug=True)
