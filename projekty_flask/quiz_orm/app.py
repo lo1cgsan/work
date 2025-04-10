@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, current_app
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
+from db import db
+import quiz
 
 app = Flask(__name__)
 
@@ -15,11 +15,10 @@ app.config.update(dict(
     TYTUL='Quiz ORM SQLAlchemy'
 ))
 
-class Base(DeclarativeBase):
-  pass
-
-db = SQLAlchemy(model_class=Base)
 db.init_app(app)
+
+# rejestracja blueprintów
+app.register_blueprint(quiz.bp)
 
 @app.route('/')
 def index():

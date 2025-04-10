@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+</head>
+<body>
+
+<ul>
+    <li><a href="{{ url_for('index') }}">Strona główna</a></li>
+</ul>
+<!-- pętla odczytująca kolejne pytania z listy -->
+  <ol>
+  {% for p in pytania %}
+    <li>
+      <!-- wypisujemy pytanie -->
+      {{ p.pytanie }}
+    </li>
+  {% endfor %}
+  </ol>
+
+</body>
+</html>
