@@ -17,13 +17,13 @@ informatycznych.
 
 ## Obsługa Gita
 
-1) git clone https://github.com/lo1cgsan/tik201920.git
-2) cd tik201920
-3) git config --local user.name lo1cgsan
-4) git config --local user.email lo1cgsan@gmail.com
+1) git clone https://github.com/lo1cgsan/work.git
+2) cd work
+3) git config --local user.name nazwa_użytkownika
+4) git config --local user.email email użytkownika
 5) git status – sprawdzenie stanu repozytorium
 6) git add . – dodaje wszystkie zmiany do repozytorium
-7) git commit -m"obsługa gita w README"
+7) git commit -m "obsługa gita w README"
 8) git push – synchronizuje repozytorium lokalne ze zdalnym
 9) git pull – ściągnięcie zmian z serwera zdalnego
 
