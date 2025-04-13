@@ -12,7 +12,7 @@ app.config.update(dict(
     SQLALCHEMY_DATABASE_URI='sqlite:///' +
                             os.path.join(app.root_path, 'quiz.db'),
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
-    TYTUL='Quiz ORM SQLAlchemy'
+    SITE_NAME='Quiz ORM SQLAlchemy'
 ))
 
 db.init_app(app)
@@ -22,7 +22,8 @@ app.register_blueprint(quiz.bp)
 
 @app.route('/')
 def index():
-    return 'Cześć, tu Python i Flask!'
+    # return 'Cześć, tu Python i Flask!'
+    return render_template('index.html')
 
 with app.app_context():
     if not os.path.exists(current_app.config['DATABASE']):

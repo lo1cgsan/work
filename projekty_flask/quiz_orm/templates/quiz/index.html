@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Quiz</title>
-</head>
-<body>
-
-<ul>
-    <li><a href="{{ url_for('index') }}">Strona główna</a></li>
-</ul>
-<!-- pętla odczytująca kolejne pytania z listy -->
-  <ol>
-  {% for p in pytania %}
-    <li>
-      <!-- wypisujemy pytanie -->
-      {{ p.pytanie }}
-    </li>
-  {% endfor %}
-  </ol>
-
-</body>
-</html>
+<!-- projekty_flask/quiz_orm/templates/quiz/index.html -->
+{% extends "index.html" %}
+{% block h1 %} Quiz {% endblock %}
+{% block body %}
+    <p>
+        <a href="{{ url_for('quiz.lista') }}">Lista pytań »</a>
+        <a href="{{ url_for('quiz.quiz') }}">Quiz »</a>
+        <a href="{{ url_for('quiz.dodaj_pytanie') }}">Dodaj pytanie »</a>
+    </p>
+{% endblock %}
