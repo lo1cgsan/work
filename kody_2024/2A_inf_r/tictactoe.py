@@ -56,7 +56,10 @@ class Plansza:
     def ruch_gracza(self, x, y):
         x //= self.szer
         y //= self.szer
-        self.pole_gry[x + y * 3] = 1
+        if self.pole_gry[x + y * 3] == 0:
+            self.pole_gry[x + y * 3] = 1
+            return True
+        return False
 
     def sprawdz_pola(self, uklad, wygrany=0):
         wartosc = None
@@ -84,6 +87,7 @@ class Gra:
         self.plansza = Plansza(szer)
         self.ai = Ai(self.plansza)
         self.ai_ruch = False
+        self.wygrany = 0
 
     def run(self):
         while True:
@@ -95,22 +99,41 @@ class Gra:
                     if self.ai_ruch:
                         continue
                     x, y = pg.mouse.get_pos()
-                    self.plansza.ruch_gracza(x, y)
-                    self.ai_ruch = True
+                    if self.plansza.ruch_gracza(x, y):
+                        self.ai_ruch = True
 
             self.plansza.rysuj()
 
-            if self.ai_ruch:
+            if self.ai_ruch and not self.wygrany:
                 self.ai.wykonaj_ruch(self.plansza.pole_gry)
                 self.ai_ruch = False
+
+            self.czy_jest_wygrany()
+            if self.wygrany:
+                print(self.wygrany)
+                # self.wypisz_tekst()
 
             self.fps_clock.tick(15)
 
     def czy_jest_wygrany(self):
-        pass
+        uklad_gracz = [[1, 1, 1]]
+        uklad_ai = [[2, 2, 2]]
+
+        self.wygrany = self.plansza.sprawdz_pola(uklad_gracz, 1)
+        if self.wygrany != 1:
+            self.wygrany = self.plansza.sprawdz_pola(uklad_ai, 2)
+
+        if 0 not in self.plansza.pole_gry and self.wygrany not in [1, 2]:
+            self.wygrany = 3
 
     def wypisz_tekst(self):
-        pass
+        srodek = (3 * self.plansza.szer // 2, 3 * self.plansza.szer // 2)
+        if self.wygrany == 1:
+            self.plansza.rysuj_tekst('Wygrałeś!', srodek, (20, 255, 20))
+        elif self.wygrany == 2:
+            self.plansza.rysuj_tekst('Wygrało AI!', srodek, (20, 255, 20))
+        else:
+            self.plansza.rysuj_tekst('Remis!', srodek, (20, 255, 20))
 
 class Ai():
     def __init__(self, plansza):
@@ -132,9 +155,9 @@ class Ai():
             pole_gry[pole] = 2
             return
 
-        while pole is None:
+        while pole is None and 0 in pole_gry:
             pos = random.randint(0, 8)
-            if self.plansza.pole_gry[pos] == 0:
+            if pole_gry[pos] == 0:
                 pole = pos
 
         pole_gry[pole] = 2
