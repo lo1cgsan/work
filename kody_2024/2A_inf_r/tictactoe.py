@@ -111,7 +111,7 @@ class Gra:
             self.czy_jest_wygrany()
             if self.wygrany:
                 print(self.wygrany)
-                # self.wypisz_tekst()
+                self.wypisz_tekst()
 
             self.fps_clock.tick(15)
 
@@ -132,7 +132,7 @@ class Gra:
             self.plansza.rysuj_tekst('Wygrałeś!', srodek, (20, 255, 20))
         elif self.wygrany == 2:
             self.plansza.rysuj_tekst('Wygrało AI!', srodek, (20, 255, 20))
-        else:
+        elif self.wygrany == 3:
             self.plansza.rysuj_tekst('Remis!', srodek, (20, 255, 20))
 
 class Ai():
