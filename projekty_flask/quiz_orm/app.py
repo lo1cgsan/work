@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, current_app
 from db import db
-import quiz
+import users, quiz
 
 app = Flask(__name__)
 
@@ -18,6 +18,7 @@ app.config.update(dict(
 db.init_app(app)
 
 # rejestracja blueprintów
+app.register_blueprint(users.bp)
 app.register_blueprint(quiz.bp)
 
 @app.route('/')
@@ -32,5 +33,6 @@ with app.app_context():
         db.create_all()
         pytania = pobierz_dane('pytania.csv')
         dodaj_pytania(pytania)
-    if __name__ == "__main__":
-        app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(debug=True)

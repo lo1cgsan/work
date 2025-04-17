@@ -5,19 +5,19 @@ from app import db
 
 class User(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(String(50), unique=True)
-    email: Mapped[str] = mapped_column(String(120), unique=True)
+    login: Mapped[str] = mapped_column(String(50), unique=True)
+    haslo: Mapped[str] = mapped_column(String(120))
 
-    def __init__(self, name=None, email=None):
-        self.name = name
-        self.email = email
+    def __init__(self, login=None, haslo=None):
+        self.login = login
+        self.haslo = haslo
 
     def __repr__(self):
-        return f'<User {self.name!r}>'
+        return f'<User {self.login!r}>'
 
 @event.listens_for(User.__table__, 'after_create')
 def create_user(*args, **kwargs):
-    db.session.add(User(name='adam', email='adam@domain.com'))
+    db.session.add(User(login='adam', haslo='adam@domain.com'))
     db.session.commit()
 
 class Pytanie(db.Model):
