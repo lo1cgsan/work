@@ -4,24 +4,26 @@ n = int(input('Ile liczb wylosować? '))
 start = 1
 stop = 10
 
-liczby = []  # utworzenie pustej listy
+liczby = []
 while len(liczby) < n:
     liczba = randint(start, stop)
     wylosowana = False
     for j in range(len(liczby)):
-        if liczby[j] == liczba:
+        if liczba == liczby[j]:
             wylosowana = True
     if not wylosowana:
         liczby.append(liczba)
 
+print(liczby)
+
 typy = []
 while len(typy) < n:
-    liczba = int(input('Podaj liczbę: '))
-    wylosowana = False
+    liczba = int(input('Podaj typ: '))
+    podana = False
     for j in range(len(typy)):
-        if typy[j] == liczba:
-            wylosowana = True
-    if not wylosowana:
+        if liczba == typy[j]:
+            podana = True
+    if not podana:
         typy.append(liczba)
 
 trafione = []

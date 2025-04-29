@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikacja Quiz</title>
+    <style>
+body {
+  background-color: lightgray;
+}
+
+h1 {
+  color: white;
+  text-align: right;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+    </style>
+</head>
+<body>
+
+<h1>Pytania</h1>
+<p>Odpowiedz na pytania:</p>
+
+{% for p in pytania %}
+    <p>
+        {{ p.pytanie }}
+        <br>
+        {% set nr_pyt = loop.index0 %}
+        {% for odp in p.odpowiedzi %}
+        <label>
+            <input type="radio" value="{{ odp }}" name="{{ nr_pyt }}">
+            {{ odp }}
+        </label>
+        {% endfor %}
+    </p>
+{% endfor %}
+
+</body>
+</html>

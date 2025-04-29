@@ -1,3 +1,4 @@
+# totolotek.py
 from random import randint
 
 n = int(input('Ile liczb wylosować? '))
@@ -9,20 +10,18 @@ while len(liczby) < n:
     liczba = randint(start, stop)
     wylosowana = False
     for j in range(len(liczby)):
-        if liczby[j] == liczba:
+        if liczba == liczby[j]:
             wylosowana = True
     if not wylosowana:
         liczby.append(liczba)
 
-typy = []
+typy = []  # utworzenie pustej listy
 while len(typy) < n:
     liczba = int(input('Podaj liczbę: '))
-    wylosowana = False
-    for j in range(len(typy)):
-        if typy[j] == liczba:
-            wylosowana = True
-    if not wylosowana:
+    if start <= liczba <= stop:
         typy.append(liczba)
+    else:
+        print('Typ poza zakresem...')
 
 trafione = []
 for i in range(n):

@@ -7,6 +7,12 @@
 <body>
   <h1>Lista pytań:</h1>
 
+  <p>
+    {% for kom in get_flashed_messages() %}
+      {{ kom }}
+    {% endfor %}
+  </p>
+
   <form method="POST">
     {% for p in pytania %}
       <p>
@@ -14,7 +20,7 @@
         <br>
         {% set pnr = loop.index0 %}
         {% for o in p.odpowiedzi %}
-          <input type="radio" value="{{ o }}" name="{{pnr}}">
+          <input type="radio" value="{{ o }}" name="{{ pnr }}">
           <label>{{ o }}</label>
         {% endfor %}
         <br>
