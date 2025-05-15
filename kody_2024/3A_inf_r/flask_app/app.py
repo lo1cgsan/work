@@ -3,6 +3,7 @@ import os
 from flask import Flask, request, flash, redirect, url_for, current_app
 from flask import render_template
 from db import init_app, init_db
+import users
 
 app = Flask(__name__)
 
@@ -13,6 +14,7 @@ app.config.update(dict(
 ))
 
 init_app(app)
+app.register_blueprint(users.bp)
 
 dane = [
     {'pytanie': 'Stolica Hiszpanii to:',

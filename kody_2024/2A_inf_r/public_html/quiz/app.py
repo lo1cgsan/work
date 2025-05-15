@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -19,8 +19,10 @@ dane = [
 def index():
     return render_template('index.html')
 
-@app.route('/pytania')
+@app.route('/pytania', methods=['GET', 'POST'])
 def pytania():
+    if request.method == 'POST':
+        print(request.form)
 
     return render_template('pytania.html', pytania=dane)
 

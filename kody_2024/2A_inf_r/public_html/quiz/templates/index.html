@@ -4,25 +4,29 @@
     <meta charset="UTF-8">
     <title>Aplikacja Quiz</title>
     <style>
-body {
-  background-color: lightgray;
-}
+        body {
+          background-color: lightgray;
+        }
 
-h1 {
-  color: white;
-  text-align: right;
-}
+        h1 {
+          color: white;
+          text-align: center;
+        }
 
-p {
-  font-family: verdana;
-  font-size: 20px;
-}
+        p {
+          font-family: verdana;
+          font-size: 20px;
+        }
     </style>
 </head>
 <body>
 
 <h1>Quiz</h1>
 <p>Rozwiązuj quizy i testy...</p>
-
+<p>
+    <a href="{{ url_for('pytania') }}">
+        Pytania »»»
+    </a>
+</p>
 </body>
 </html>
