@@ -5,6 +5,27 @@
     <title>Quiz</title>
 </head>
 <body>
+
+<nav>
+     <ul>
+         <li>
+             <a href="{{ url_for('index') }}">Strona główna</a>
+         </li>
+         {% if g.user %}
+             <li>
+                 <a href="{{ url_for('users.wyloguj') }}">Wyloguj</a>
+             </li>
+         {% else %}
+             <li>
+                 <a href="{{ url_for('users.loguj') }}">Zaloguj</a>
+             </li>
+             <li>
+                 <a href="{{ url_for('users.dodaj') }}">Dodaj konto</a>
+             </li>
+         {% endif %}
+     </ul>
+</nav>
+
     <h1>Aplikacja Quiz</h1>
     <ul>
         <li>
