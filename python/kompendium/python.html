@@ -1,0 +1,428 @@
+<!doctype html>
+<html>
+ <head>
+  <title>IntelliJ Markdown Preview</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
+script-src 'self';
+style-src 'unsafe-inline';
+img-src file: *;
+connect-src 'none';
+font-src * data: *;
+object-src 'none';
+media-src 'none';
+child-src 'none';">
+  <style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style>
+  <style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style>
+  <style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style>
+  <style id="MJX-SVG-styles">
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+</style>
+  <style>/* Reworked by IntelliJ Team The MIT License (MIT) Copyright (c) JetBrains Adapted from https://github.com/sindresorhus/github-markdown-css The MIT License (MIT) Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (sindresorhus.com) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */ @font-face { font-family: octicons-anchor; src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff'); } body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, freesans, sans-serif; font-size: 14px; line-height: 1.6; word-wrap: break-word; margin: 0 2em; } strong { font-weight: bold; } img { border: 0; } input { color: inherit; font: inherit; margin: 0; line-height: normal; } html input[disabled] { cursor: default; } input[type="checkbox"] { box-sizing: border-box; padding: 0; } body * { box-sizing: border-box; } input { font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; } a { text-decoration: none; } a:hover, a:active { text-decoration: underline; } hr { height: 1px; padding: 0; margin: 20px 0; border: 0 none; } hr:before { display: table; content: ""; } hr:after { display: table; clear: both; content: ""; } blockquote { margin: 0; } ul, ol { padding: 0; margin-top: 0; margin-bottom: 0; } ol ol, ul ol { list-style-type: lower-roman; } ul ul ol, ul ol ol, ol ul ol, ol ol ol { list-style-type: lower-alpha; } dd { margin-left: 0; } .octicon { font: normal normal normal 16px/1 octicons-anchor; display: inline-block; text-decoration: none; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .octicon-link:before { content: '\f05c'; } .markdown-body &gt; *:first-child { margin-top: 0 !important; } .markdown-body &gt; *:last-child { margin-bottom: 0 !important; } .anchor { position: absolute; top: 0; left: 0; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; } .anchor:focus { outline: none; } h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; } h1 .octicon-link, h2 .octicon-link, h3 .octicon-link, h4 .octicon-link, h5 .octicon-link, h6 .octicon-link { display: none; color: #000; vertical-align: middle; } h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; } h1:hover .anchor .octicon-link, h2:hover .anchor .octicon-link, h3:hover .anchor .octicon-link, h4:hover .anchor .octicon-link, h5:hover .anchor .octicon-link, h6:hover .anchor .octicon-link { display: inline-block; } h1 { font-size: 2.2em; padding-top: 0.6em; } h1 .anchor { line-height: 1; } h2 { font-size: 1.8em; line-height: 1.2; padding-top: 0.6em; } h2 .anchor { line-height: 1.2; } h3 { font-size: 1.3em; line-height: 1; padding-top: 0.6em; } h3 .anchor { line-height: 1.2; } h4 { font-size: 1em; } h4 .anchor { line-height: 1.2; } h5 { font-size: 1em; } h5 .anchor { line-height: 1.1; } h6 { font-size: 1em; } h6 .anchor { line-height: 1.1; } p, blockquote, ul, ol, dl, table, pre { margin-top: 16px; margin-bottom: 16px; } pre.frontmatter-header { background-color: transparent; margin: 0; padding: 0; } ul, ol { padding-left: 2em; } ul ul, ul ol, ol ol, ol ul { margin-top: 0; margin-bottom: 0; } li &gt; p { margin-top: 0; margin-bottom: 0; } dl { padding: 0; } dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; } dl dd { padding: 0 16px; margin-bottom: 16px; } blockquote { padding: 10px 10px 10px 16px; border-left: 2px solid; border-radius: 0 3px 3px 0; } blockquote &gt; :first-child { margin-top: 0; } blockquote &gt; :last-child { margin-bottom: 0; } table { display: block; width: 100%; overflow: auto; word-break: normal; border-collapse: collapse; border-spacing: 0; font-size: 1em; } table th { font-weight: bold; } table th, table td { padding: 6px 13px; background: transparent; } table tr { border-top: 1px solid; } img { max-width: 100%; box-sizing: border-box; } code { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } pre &gt; code { padding: 0; margin: 0; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0; } .highlight { margin-bottom: 16px; } .highlight pre, pre { font: 0.85em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 16px; overflow: auto; line-height: 1.45; border-radius: 3px; } pre code { display: inline; max-width: initial; padding: 0; margin: 0; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } pre code:before, pre code:after { content: normal; } kbd { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } .task-list-item { list-style-type: none; } .task-list-item + .task-list-item { margin-top: 3px; } .task-list-item input { margin: 0 0.35em 0.25em -0.6em; vertical-align: middle; } :checked + .radio-label { z-index: 1; position: relative; } span.user-del { text-decoration: line-through; } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-thumb { -webkit-border-radius: 10px; } ::-webkit-scrollbar-track:vertical { -webkit-box-shadow: -1px 0 0 #ededed; } ::-webkit-scrollbar-track { background-color: transparent; } ::-webkit-scrollbar { width: 6px; }</style>
+  <style>:root { --default-font-size: 14px; --scale: 1.0; } body { background-color: rgba(30, 31, 34, 255.0); font-size: var(--default-font-size) !important; transform: scale(var(--scale)) !important; transform-origin: 0 0; } body, p, blockquote, ul, ol, dl, table, pre, code, tr { color: rgba(188, 190, 196, 255.0); } a { color: rgba(107, 155, 250, 255.0); } table td, table th { border: 1px solid rgba(57, 59, 64, 255.0); } hr { background-color: rgba(57, 59, 64, 255.0); } kbd, tr { border: 1px solid rgba(57, 59, 64, 255.0); } h6 { color: rgba(111, 115, 122, 255.0); } blockquote { border-left: 2px solid rgba(107, 155, 250, 0.4); } blockquote, code, pre { background-color: rgba(212, 222, 231, 0.09803921568627451); } ::-webkit-scrollbar { width: 10px; height: 10px; background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track:hover { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-thumb { background-color: rgba(166, 166, 166, 0.278431); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.278431); outline-offset: -1px; } ::-webkit-scrollbar-thumb:hover { background-color: rgba(166, 166, 166, 0.349020); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.349020); outline-offset: -1px; } ::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-button { display:none; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .code-fence-highlighter-copy-button { display: flex; position: absolute; float: left; margin-left: -1em; margin-top: -1em; } .code-fence-highlighter-copy-button-icon { visibility: hidden; max-width: 1em; } .code-fence:hover .code-fence-highlighter-copy-button-icon { visibility: visible; /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon.png"); } .code-fence:hover .code-fence-highlighter-copy-button:hover .code-fence-highlighter-copy-button-icon { /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon-hovered.png"); cursor: pointer; } .code-fence-highlighter-copy-button .tooltiptext { visibility: hidden; width: 120px; background-color: rgba(85, 85, 85, 0.4); color: #fff; text-align: center; border-radius: 6px; padding: 2px 0; position: absolute; font-size: 10px; z-index: 1; top: -4px; left: 120%; opacity: 0; transition: opacity 0.3s; } .code-fence-highlighter-copy-button:hover .tooltiptext { visibility: visible; opacity: 1; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .run-icon &gt; img { max-width: 1em; vertical-align: text-top; margin-right: 0.3em; } .code-block { position: absolute; left: 1em; } .hidden { display: none; }</style>
+ </head>
+ <body>
+  <div md-src-pos="0..10729">
+   <h1 id="język-python" md-src-pos="0..14">Język Python</h1>
+   <p md-src-pos="16..135"><span md-src-pos="16..47">Python to język interpretowany,</span> <span md-src-pos="48..66">wysokiego poziomu,</span> <span md-src-pos="67..77">obiektowy,</span> <span md-src-pos="78..135">umożliwia również programowanie strukturalne i funkcyjne.</span></p>
+   <h2 id="interpreter" md-src-pos="137..151">Interpreter</h2>
+   <p md-src-pos="153..471"><span md-src-pos="153..184">Interpreter Pythona to program,</span> <span md-src-pos="185..242">który wykonuje skrypty zapisane w plikach z rozszerzeniem</span> "<span md-src-pos="244..247">.py</span>" <span md-src-pos="249..296">i polecenia wprowadzane w trybie interaktywnym.</span> <span md-src-pos="297..347">W systemach Linux interpreter jest preinstalowany.</span> <span md-src-pos="348..379">W systemie MS Windows należy go</span> <a href="file:/home/lmint/github/work/python/kompendium/" md-src-pos="380..470">pobrać i zainstalować</a><span md-src-pos="470..471">.</span></p>
+   <p md-src-pos="473..595"><img src="http://localhost:63342/markdownPreview/81310218/python/kompendium/interpreter_instalacja.png?_ijt=1v06klm9rns3pks5jv99oc3iq8" alt="Instalacja interpretera Pytohna w MS Windows" title="Instalacja interpretera Pytohna w MS Windows" __idea-generated="true" md-src-pos="473..595" data-original-src="python/kompendium/interpreter_instalacja.png"></p>
+   <h2 id="tryb-interaktywny" md-src-pos="597..617">Tryb interaktywny</h2>
+   <p md-src-pos="619..710"><span md-src-pos="619..635">Uruchom terminal</span> (<span md-src-pos="637..651">wiersz poleceń</span>)<span md-src-pos="652..653">,</span> <span md-src-pos="654..669">wpisz polecenie</span> <code><span md-src-pos="676..683">python3</span></code> <span md-src-pos="691..701">i naciśnij</span> <code md-src-pos="702..709">ENTER</code><span md-src-pos="709..710">.</span></p>
+   <p md-src-pos="712..813"><img src="http://localhost:63342/markdownPreview/81310218/python/kompendium/python_terminal.png?_ijt=1v06klm9rns3pks5jv99oc3iq8" alt="Tryb interaktywny w terminalu Linux" title="Tryb interaktywny w terminalu (Linux)" __idea-generated="true" md-src-pos="712..813" data-original-src="python/kompendium/python_terminal.png"></p>
+   <p md-src-pos="815..864"><span md-src-pos="815..863">Innym sposobem jest uruchomienie środowiska IDLE</span>:</p>
+   <p md-src-pos="866..953"><img src="http://localhost:63342/markdownPreview/81310218/python/kompendium/python_idle.png?_ijt=1v06klm9rns3pks5jv99oc3iq8" alt="Tryb interaktywny w IDLE Linux" title="Tryb interaktywny w IDLE (Linux)" __idea-generated="true" md-src-pos="866..953" data-original-src="python/kompendium/python_idle.png"></p>
+   <p md-src-pos="955..1113"><span md-src-pos="955..971">Po znaku zachęty</span> <code>&gt;&gt;&gt;</code> <span md-src-pos="989..1028">możesz wpisywać wyrażenia i instrukcje,</span> <span md-src-pos="1029..1055">które chcesz przetestować.</span> <span md-src-pos="1056..1061">Wpisz</span> <code><span md-src-pos="1068..1072">exit</span>()</code><span md-src-pos="1081..1082">,</span> <span md-src-pos="1083..1113">aby opuścić tryb interaktywny.</span></p>
+   <h2 id="tworzenie-skryptu" md-src-pos="1115..1135">Tworzenie skryptu</h2>
+   <p md-src-pos="1137..1321"><span md-src-pos="1137..1169">Skrypt Pythona to plik tekstowy,</span> <span md-src-pos="1170..1197">który zawiera kod źródłowy,</span> <span md-src-pos="1198..1252">czyli kolejne instrukcje wykonywane przez interpreter.</span> <span md-src-pos="1253..1321">Skrypt tworzymy w wybranym edytorze lub środowisku programistycznym.</span></p>
+   <p md-src-pos="1323..1613"><span md-src-pos="1323..1326">Np.</span> <span md-src-pos="1327..1343">w IDLE wybieramy</span> <code md-src-pos="1344..1361">File / New file</code> (<span md-src-pos="1363..1368">skrót</span> <code md-src-pos="1369..1377">CTRL+N</code>)<span md-src-pos="1378..1379">,</span> <span md-src-pos="1380..1432">co spowoduje otwarcie okna edytora z pustym plikiem.</span> <span md-src-pos="1433..1462">Plik należy zapisać na dysku.</span> <span md-src-pos="1463..1479">W IDLE wybieramy</span> <code md-src-pos="1480..1493">File / Save</code> (<code md-src-pos="1495..1503">CTRL+S</code>)<span md-src-pos="1504..1505">,</span> <span md-src-pos="1506..1538">wchodzimy do wybranego katalogu,</span> <span md-src-pos="1539..1542">np.</span> <code md-src-pos="1543..1554">Dokumenty</code><span md-src-pos="1554..1555">,</span> <span md-src-pos="1556..1593">wpisujemy nazwę pliku z rozszerzeniem</span> <code md-src-pos="1594..1599">.py</code> <span md-src-pos="1600..1613">i zapisujemy.</span></p>
+   <p md-src-pos="1615..1717"><img src="http://localhost:63342/markdownPreview/81310218/python/kompendium/python_idle_save.png?_ijt=1v06klm9rns3pks5jv99oc3iq8" alt="Zapis skryptu na dysku w IDLE Linux" title="Zapis skryptu na dysku w IDLE (Linux)" __idea-generated="true" md-src-pos="1615..1717" data-original-src="python/kompendium/python_idle_save.png"></p>
+   <h2 id="wykonywanie-skryptu" md-src-pos="1719..1741">Wykonywanie skryptu</h2>
+   <p md-src-pos="1743..1904"><span md-src-pos="1743..1759">Uruchom terminal</span> (<span md-src-pos="1761..1775">wiersz poleceń</span>) <span md-src-pos="1777..1808">w katalogu zawierającym skrypt,</span> <span md-src-pos="1809..1830">który chcesz wykonać.</span> <span md-src-pos="1831..1846">Wpisz polecenie</span> <code><span md-src-pos="1853..1877">python3 nazwa_skryptu.py</span></code> <span md-src-pos="1885..1895">i naciśnij</span> <code md-src-pos="1896..1903">ENTER</code><span md-src-pos="1903..1904">.</span></p>
+   <p md-src-pos="1906..2019"><img src="http://localhost:63342/markdownPreview/81310218/python/kompendium/python_terminal.png?_ijt=1v06klm9rns3pks5jv99oc3iq8" alt="Wykonanie skryptu w wierszu polece Linux" title="Wykonanie skryptu w wierszu poleceń (Linux)" __idea-generated="true" md-src-pos="1906..2019" data-original-src="python/kompendium/python_terminal.png"></p>
+   <p md-src-pos="2021..2239"><span md-src-pos="2021..2086">Skrypty Pythona możesz uruchamiać również z poziomu edytora kodu,</span> <span md-src-pos="2087..2114">o ile oferuje taką funkcję.</span> <span md-src-pos="2115..2201">Na przykład w środowisku IDLE wczytany skrypt uruchomisz naciskając w edytorze klawisz</span> <code><span md-src-pos="2208..2210">F5</span></code> (<code md-src-pos="2219..2237">Run / Run Module</code>)<span md-src-pos="2238..2239">.</span></p>
+   <p md-src-pos="2241..2333"><img src="http://localhost:63342/markdownPreview/81310218/python/kompendium/python_idle_run1.png?_ijt=1v06klm9rns3pks5jv99oc3iq8" alt="Wykonanie skryptu w IDLE Linux" title="Wykonanie skryptu w IDLE (Linux)" __idea-generated="true" md-src-pos="2241..2333" data-original-src="python/kompendium/python_idle_run1.png"></p>
+   <p md-src-pos="2335..2427"><img src="http://localhost:63342/markdownPreview/81310218/python/kompendium/python_idle_run2.png?_ijt=1v06klm9rns3pks5jv99oc3iq8" alt="Wykonanie skryptu w IDLE Linux" title="Wykonanie skryptu w IDLE (Linux)" __idea-generated="true" md-src-pos="2335..2427" data-original-src="python/kompendium/python_idle_run2.png"></p>
+   <h2 id="formatowanie-kodu-źródłowego" md-src-pos="2429..2460">Formatowanie kodu źródłowego</h2>
+   <ul md-src-pos="2462..3161">
+    <li md-src-pos="2462..2584">
+     <p md-src-pos="2464..2584">łańcuchy znaków otaczamy cudzysłowami albo pojedynczymi, albo podwójnymi, np.: <code md-src-pos="2543..2561">'Podaj liczbę: '</code> lub <code md-src-pos="2566..2584">"Podaj liczbę: "</code></p></li>
+    <li md-src-pos="2585..2667">
+     <p md-src-pos="2587..2667">nawiasy i cudzysłowy, o ile nie są częścią ciągu znaków, występują zawsze parami</p></li>
+    <li md-src-pos="2668..2732">
+     <p md-src-pos="2670..2732">operatory arytmetyczne i inne otacza się spacjami, np. <code md-src-pos="2725..2732">a + b</code></p></li>
+    <li md-src-pos="2733..2785">
+     <p md-src-pos="2735..2785">dwukropek (<code md-src-pos="2746..2749">:</code>) zapowiada blok kodu, czyli wcięcia</p></li>
+    <li md-src-pos="2786..2843">
+     <p md-src-pos="2788..2843">bloki kodu wcina się 4 spacjami i ich wielokrotnościami</p></li>
+    <li md-src-pos="2844..2903">
+     <p md-src-pos="2846..2903">w jednym wierszu powinno występować maksymalnie 72 znaków</p></li>
+    <li md-src-pos="2904..3161">
+     <p md-src-pos="2906..2944">znak <code md-src-pos="2911..2914">#</code> oznacza komentarz, przy czym:</p>
+     <ul md-src-pos="2948..3161">
+      <li md-src-pos="2948..3069">pierwszy wiersz skryptu może (nie musi) zawierać wskazanie interpretera (ang. <em md-src-pos="3028..3037">shebang</em>), np.: <code md-src-pos="3045..3069">#!/usr/bin/env python3</code></li>
+      <li md-src-pos="3072..3161">skrypt może (nie musi) zawierać preferowane kodowanie znaków: <code md-src-pos="3136..3161"># -*- coding: utf-8 -*-</code></li>
+     </ul></li>
+   </ul>
+   <h2 id="co-zawiera-kod-źródłowy" md-src-pos="3163..3190">Co zawiera kod źródłowy?</h2>
+   <ul md-src-pos="3192..4031">
+    <li md-src-pos="3192..3302"><strong md-src-pos="3194..3222">Identyfikatory zmiennych</strong>, tj. nazwy, które wskazują na wartość określonego typu, np. <code>a = 5</code>.</li>
+    <li md-src-pos="3303..3423"><strong md-src-pos="3305..3339">Identyfikatory słów kluczowych</strong>, tj. nazwy zarezerwowane przez język, np.: <code>if, elif, else, for, while</code>.</li>
+    <li md-src-pos="3424..3517"><strong md-src-pos="3426..3455">Nazwy wbudowanych funkcji</strong>, np.: <code>input(), print(), int(), float(), range()</code>.</li>
+    <li md-src-pos="3518..3680"><strong md-src-pos="3520..3542">Konkretne wartości</strong> (tzw. literały), np. znakowe <code>"Adam"</code> lub liczbowe <code>10</code>, <code>2.345</code> – które mogą być przypisywane zmiennym.</li>
+    <li md-src-pos="3681..3782"><strong md-src-pos="3683..3696">Operatory</strong>, np. arytmetyczne (<code>+, -, /, *</code>) lub porównań (<code>&lt;, &gt;, ==, !=</code>).</li>
+    <li md-src-pos="3783..3867"><strong md-src-pos="3785..3801">Ograniczniki</strong>, np. przecinek, dwukropek, nawiasy okrągłe, kwadratowe, klamrowe.</li>
+    <li md-src-pos="3868..4031"><strong md-src-pos="3870..3883">Wyrażenia</strong>, tj. kombinacje zmiennych, wartości, operatorów i/lub wywołań funkcji, które są obliczane i dają jakąś wartość, np.: <code>int((a + b) / 2)</code>.</li>
+   </ul>
+   <h2 id="nazywanie-zmiennych" md-src-pos="4033..4055">Nazywanie zmiennych</h2>
+   <ul md-src-pos="4057..4421">
+    <li md-src-pos="4057..4099">Nazwa zaczyna się najczęściej od litery.</li>
+    <li md-src-pos="4100..4194">Nazwa zawiera tylko znaki, cyfry i/lub podkreślenia, nie zawiera spacji i znaków narodowych.</li>
+    <li md-src-pos="4195..4231">Rozróżniane są małe i duże litery.</li>
+    <li md-src-pos="4232..4421">Używamy konwencji <strong md-src-pos="4252..4266">snake_case</strong> do nazywania zmiennych (także funkcji, metod, modułów i pakietów), czyli małych liter i wyrazów oddzielanych podkreśleniem, np. <code>moja_zmienna</code>.</li>
+   </ul>
+   <h2 id="typ-danych-ang-data-type-i-zmienne" md-src-pos="4423..4465">Typ danych (ang. <em md-src-pos="4443..4454">data type</em>) i zmienne</h2>
+   <h3 id="typy-podstawowe" md-src-pos="4467..4486">Typy podstawowe</h3>
+   <ul md-src-pos="4488..4816">
+    <li md-src-pos="4488..4565"><strong md-src-pos="4490..4510">liczba całkowita</strong> (&lt;class 'int'&gt;, ang. <em md-src-pos="4532..4541">integer</em>) – np. <code>10</code>,</li>
+    <li md-src-pos="4566..4665"><strong md-src-pos="4568..4597">liczba zmiennoprzecinkowa</strong> (&lt;class 'float'&gt;, ang. <em md-src-pos="4621..4637">floating point</em>) – np. <code>1.2345</code>,</li>
+    <li md-src-pos="4666..4816"><strong md-src-pos="4668..4684">typ logiczny</strong> (&lt;class 'bool'&gt;, ang. <em md-src-pos="4707..4721">boolean type</em>) – podtyp liczb całkowitych, zawiera dwie wartości: <code md-src-pos="4774..4780">True</code> (1, prawda) lub <code md-src-pos="4797..4804">False</code> (0, fałsz).</li>
+   </ul>
+   <h3 id="typy-złożone" md-src-pos="4818..4834">Typy złożone</h3>
+   <ul md-src-pos="4836..5231">
+    <li md-src-pos="4836..4928"><strong md-src-pos="4838..4856">łańcuch znaków</strong> (&lt;class 'str'&gt;, ang. <em md-src-pos="4879..4887">string</em>) – np. <code>"", '', " ", '12345'</code></li>
+    <li md-src-pos="4929..4997"><strong md-src-pos="4931..4940">lista</strong> (&lt;class 'list'&gt;, ang. <em md-src-pos="4963..4969">list</em>) – np. <code md-src-pos="4977..4997">liczby = [2, 4, 6]</code></li>
+    <li md-src-pos="4998..5069"><strong md-src-pos="5000..5010">krotka</strong> (&lt;class 'tuple'&gt;, ang. <em md-src-pos="5034..5041">tuple</em>) – np. <code md-src-pos="5049..5069">liczby = (2, 4, 6)</code></li>
+    <li md-src-pos="5070..5164"><strong md-src-pos="5072..5083">słownik</strong> (&lt;class 'dict'&gt;, ang. <em md-src-pos="5106..5118">dictionary</em>) – np. <code md-src-pos="5126..5164">liczby = {1: 'I', 2: 'II', 3: 'III'}</code></li>
+    <li md-src-pos="5165..5231"><strong md-src-pos="5167..5176">zbiór</strong> (&lt;class 'set'&gt;, ang. <em md-src-pos="5198..5203">set</em>) – np. <code md-src-pos="5211..5231">liczby = {1, 3, 5}</code></li>
+   </ul>
+   <h2 id="inicjalizowanie-zmiennych" md-src-pos="5233..5261">Inicjalizowanie zmiennych</h2>
+   <p md-src-pos="5263..5493"><span md-src-pos="5263..5282">Python wykorzystuje</span> <strong md-src-pos="5283..5307">typowanie dynamiczne</strong> (<span md-src-pos="5309..5313">ang.</span> <em md-src-pos="5314..5327">duck typing</em>)<span md-src-pos="5328..5329">.</span> <span md-src-pos="5330..5428">Zmienne inicjalizuje się przez przypisanie jakiejś nazwie wartości za pomocą operatora przypisania</span> <code md-src-pos="5429..5432">=</code><span md-src-pos="5432..5433">.</span> <span md-src-pos="5434..5482">Wartość może być wynikiem wyrażenia lub funkcji.</span> <span md-src-pos="5483..5492">Przykłady</span>:</p>
+   <ul md-src-pos="5495..5959">
+    <li md-src-pos="5495..5554"><code>imie = "Adam"</code> – przypisanie łańcucha znaków;</li>
+    <li md-src-pos="5555..5658"><code>liczba = input("Podaj liczbę: ")</code> – przypisanie łańcucha znaków zwróconego przez funkcję;</li>
+    <li md-src-pos="5659..5758"><code>a = 5</code>, <code>pi = 3.14</code> – przypisanie liczb: całkowitej i zmiennoprzecinkowej;</li>
+    <li md-src-pos="5759..5824"><code>parzysta = False</code> – przypisanie wartości logicznej;</li>
+    <li md-src-pos="5825..5895"><code>iloczyn = (2 * a) + 1</code> – przypisanie wartości wyrażenia;</li>
+    <li md-src-pos="5896..5959"><code>liczby = [2, 4, 6]</code> – przypisanie listy wartosci.</li>
+   </ul>
+   <h2 id="operatory-i-ich-priorytet" md-src-pos="5961..5989">Operatory i ich priorytet</h2>
+   <ol md-src-pos="5991..6387">
+    <li md-src-pos="5991..6012"><code md-src-pos="5994..5998">**</code> – potęgowanie</li>
+    <li md-src-pos="6013..6111"><code md-src-pos="6016..6029">*, /, //, %</code> – mnożenie, dzielenie, dzielenie całkowite, dzielenie modulo (reszta z dzielenia)</li>
+    <li md-src-pos="6112..6146"><code md-src-pos="6115..6121">+, -</code> – dodawanie, odejmowanie</li>
+    <li md-src-pos="6147..6265"><code md-src-pos="6150..6172">&lt;, &lt;=, &gt;, &gt;=, !=, ==</code> – operatory porównań, mniejsze, mniejsze lub równe, większe, większe lub równe, różne, równe</li>
+    <li md-src-pos="6266..6305"><code md-src-pos="6269..6276">not x</code> – operator logiczny, negacja</li>
+    <li md-src-pos="6306..6346"><code md-src-pos="6309..6314">and</code> – operator logiczny, koniunkcja</li>
+    <li md-src-pos="6347..6387"><code md-src-pos="6350..6354">or</code> – operator logiczny, alternatywa</li>
+   </ol>
+   <h2 id="typowe-operacje" md-src-pos="6389..6407">Typowe operacje</h2>
+   <ul md-src-pos="6409..8282">
+    <li md-src-pos="6409..6513">
+     <p md-src-pos="6411..6513"><strong md-src-pos="6411..6440">łączenie ciągów znakowych</strong> (tzw. konkatenacja) za pomocą operatora <code md-src-pos="6481..6484">+</code>, np. <code>'10' + '1'</code></p></li>
+    <li md-src-pos="6514..6719">
+     <p md-src-pos="6516..6719"><strong md-src-pos="6516..6541">operacje arytmetyczne</strong> zgodne z kolejnością działań: 1. nawiasy, 2. potęgowanie, 3. mnożenie, 4. dzielenie, 5. dodawanie, 6. odejmowanie – i priorytetem operatorów, np.: <code>(a + 2.5) // 2**b</code></p></li>
+    <li md-src-pos="6720..7110">
+     <p md-src-pos="6722..6763"><strong md-src-pos="6722..6755">testowanie wyrażeń logicznych</strong>, które:</p>
+     <ul md-src-pos="6767..7110">
+      <li md-src-pos="6767..6948">mają wartość <strong md-src-pos="6782..6790">True</strong> (1) lub <strong md-src-pos="6799..6808">False</strong> (0), przy czym za <strong md-src-pos="6827..6836">False</strong> uznaje się: <code md-src-pos="6849..6855">None</code>, <code md-src-pos="6857..6864">False</code>, <code md-src-pos="6866..6869">0</code>, puste sekwencje lub kolekcje, tj. <code md-src-pos="6905..6909">''</code>, <code md-src-pos="6911..6915">()</code>, <code md-src-pos="6917..6921">[]</code>, <code md-src-pos="6923..6927">{}</code>, <code md-src-pos="6929..6936">set()</code>, <code md-src-pos="6938..6948">range(0)</code></li>
+      <li md-src-pos="6951..7045">wykorzystują operatory porównań (<code md-src-pos="6986..7008">&lt;, &lt;=, &gt;, &gt;=, !=, ==</code>) i operatory logiczne <code md-src-pos="7031..7045">not, and, or</code></li>
+      <li md-src-pos="7048..7110">są używane jako warunki, np.: <code md-src-pos="7080..7088">a == b</code> – operacja porównania</li>
+     </ul></li>
+    <li md-src-pos="7112..7228">
+     <p md-src-pos="7114..7228"><strong md-src-pos="7114..7148">pobieranie znaków z klawiatury</strong> – <code md-src-pos="7151..7175">input('Podaj tekst: ')</code>, funkcja zwraca łańcuch znaków, typ <code>str</code></p></li>
+    <li md-src-pos="7229..7361">
+     <p md-src-pos="7231..7361"><strong md-src-pos="7231..7276">pobieranie liczby całkowitej z klawiatury</strong> – <code md-src-pos="7279..7309">int(input('Podaj liczbę: '))</code>, funkcja <code md-src-pos="7319..7326">int()</code> zamienia znaki na liczbę całkowitą</p></li>
+    <li md-src-pos="7362..7509">
+     <p md-src-pos="7364..7509"><strong md-src-pos="7364..7418">pobieranie liczby zmiennoprzecinkowej z klawiatury</strong> – <code md-src-pos="7421..7453">float(input('Podaj liczbę: '))</code>, funkcja <code md-src-pos="7463..7472">float()</code> zamienia znaki na liczbę rzeczywistą</p></li>
+    <li md-src-pos="7510..7932">
+     <p md-src-pos="7512..7618"><strong md-src-pos="7512..7539">wypisywanie komunikatów</strong> – instrukcja <code md-src-pos="7553..7573">print('komunikat')</code> wypisuje znaki lub zmienne w terminalu, np.:</p>
+     <ul md-src-pos="7622..7932">
+      <li md-src-pos="7622..7707"><code md-src-pos="7624..7647">print('komunikat', a)</code> – wypisanie ciągu znaków i wartości zmiennej <code>a</code></li>
+      <li md-src-pos="7710..7872"><code md-src-pos="7712..7747">print(f"{a} jest większe od {b}")</code> – wypisanie ciągu formatowanego (tzw. <em md-src-pos="7786..7796">f-string</em>), w miejsce nawiasów klamrowych wstawiane są wartości zmiennych lub wyrażeń</li>
+      <li md-src-pos="7875..7932"><code md-src-pos="7877..7892">print(*lista)</code> – wypisanie elementów listy (sekwencji)</li>
+     </ul></li>
+    <li md-src-pos="7934..8121">
+     <p md-src-pos="7936..7964"><strong md-src-pos="7936..7963">rzutowanie typów danych</strong>:</p>
+     <ul md-src-pos="7968..8121">
+      <li md-src-pos="7968..8019"><code md-src-pos="7970..7982">int('123')</code> – zamiana znaków na liczbę całkowitą</li>
+      <li md-src-pos="8022..8081"><code md-src-pos="8024..8038">float('2.5')</code> – zamiana znaków liczbę zmiennoprzecinkową</li>
+      <li md-src-pos="8084..8121"><code md-src-pos="8086..8095">str(10)</code> – zamiana liczby na tekst</li>
+     </ul></li>
+    <li md-src-pos="8123..8282">
+     <p md-src-pos="8125..8149"><strong md-src-pos="8125..8148">operacje na znakach</strong>:</p>
+     <ul md-src-pos="8153..8282">
+      <li md-src-pos="8153..8215"><code md-src-pos="8155..8165">ord('a')</code> – zwraca kod Unicode (w tym ASCII) podanego znaku</li>
+      <li md-src-pos="8218..8282"><code md-src-pos="8220..8229">chr(97)</code> – zwraca znak o podanym kodzie Unicode (w tym ASCII)</li>
+     </ul></li>
+   </ul>
+   <h2 id="instrukcja-warunkowa" md-src-pos="8284..8307">Instrukcja warunkowa</h2>
+   <p md-src-pos="8309..8322"><span md-src-pos="8309..8321">Ogólna forma</span>:</p>
+   <pre class="code-fence" md-src-pos="8324..8594"><div class="code-fence-highlighter-copy-button" data-fence-content="aWYgd2FydW5lazE6CiAgICBpbnN0cnVrY2phIGx1YiBibG9rIGluc3RydWtjamkgd3lrb255d2FueWNoIGdkeSB3YXJ1bmVrMSBqZXN0IHByYXdkxIUKZWxpZiB3YXJ1bmVrMjoKICAgIGluc3RydWtjamEgbHViIGJsb2sgaW5zdHJ1a2NqaSB3eWtvbnl3YW55Y2ggZ2R5IHdhcnVuZWsyIGplc3QgcHJhd2TEhQplbHNlOgogICAgaW5zdHJ1a2NqYSBsdWIgYmxvayBpbnN0cnVrY2ppIHd5a29ueXdhbnljaCBnZHkgd2FydW5raSBuaWUgc8SFIHByYXdkeml3ZQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="python/kompendium" src="http://localhost:63342/markdownPreview/81310218/python/kompendium?_ijt=1v06klm9rns3pks5jv99oc3iq8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Python" md-src-pos="8324..8594"><span md-src-pos="8324..8334"></span><span md-src-pos="8334..8336" style="color: rgb(207, 142, 109);">if</span><span md-src-pos="8336..8345"> warunek1</span><span md-src-pos="8345..8346" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8346..8347">
+</span><span md-src-pos="8347..8420">    instrukcja lub blok instrukcji wykonywanych gdy warunek1 jest prawdą
+</span><span md-src-pos="8420..8424" style="color: rgb(207, 142, 109);">elif</span><span md-src-pos="8424..8433"> warunek2</span><span md-src-pos="8433..8434" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8434..8435">
+</span><span md-src-pos="8435..8508">    instrukcja lub blok instrukcji wykonywanych gdy warunek2 jest prawdą
+</span><span md-src-pos="8508..8512" style="color: rgb(207, 142, 109);">else</span><span md-src-pos="8512..8513" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8513..8514">
+</span><span md-src-pos="8514..8591">    instrukcja lub blok instrukcji wykonywanych gdy warunki nie są prawdziwe
+</span><span md-src-pos="8591..8594"></span></code></pre>
+   <p md-src-pos="8596..8624"><span md-src-pos="8596..8623">Sprawdzanie jednego warunku</span>:</p>
+   <pre class="code-fence" md-src-pos="8626..8780"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBzcHJhd2R6YW15LCBjenkgYSBqZXN0IHBhcnp5c3RlCmlmIGEgJSAyID09IDA6CiAgICBwcmludCgiTGljemJhIiwgYSwgImplc3QgcGFyenlzdGEhIikKZWxzZToKICAgIHByaW50KCJMaWN6YmEiLCBhLCAibmllIGplc3QgcGFyenlzdGEhIik=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="python/kompendium" src="http://localhost:63342/markdownPreview/81310218/python/kompendium?_ijt=1v06klm9rns3pks5jv99oc3iq8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Python" md-src-pos="8626..8780"><span md-src-pos="8626..8636"></span><span md-src-pos="8636..8669" style="color: rgb(122, 126, 133);"># sprawdzamy, czy a jest parzyste</span><span md-src-pos="8669..8670">
+</span><span md-src-pos="8670..8672" style="color: rgb(207, 142, 109);">if</span><span md-src-pos="8672..8675"> a </span><span md-src-pos="8675..8676" style="color: rgb(188, 190, 196);">%</span><span md-src-pos="8676..8677"> </span><span md-src-pos="8677..8678" style="color: rgb(42, 172, 184);">2</span><span md-src-pos="8678..8679"> </span><span md-src-pos="8679..8681" style="color: rgb(188, 190, 196);">==</span><span md-src-pos="8681..8682"> </span><span md-src-pos="8682..8683" style="color: rgb(42, 172, 184);">0</span><span md-src-pos="8683..8684" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8684..8685">
+</span><span md-src-pos="8685..8694">    print</span><span md-src-pos="8694..8695" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="8695..8703" style="color: rgb(106, 171, 115);">"Liczba"</span><span md-src-pos="8703..8704" style="color: rgb(188, 190, 196);">,</span><span md-src-pos="8704..8706"> a</span><span md-src-pos="8706..8707" style="color: rgb(188, 190, 196);">,</span><span md-src-pos="8707..8708"> </span><span md-src-pos="8708..8724" style="color: rgb(106, 171, 115);">"jest parzysta!"</span><span md-src-pos="8724..8725" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="8725..8726">
+</span><span md-src-pos="8726..8730" style="color: rgb(207, 142, 109);">else</span><span md-src-pos="8730..8731" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8731..8732">
+</span><span md-src-pos="8732..8741">    print</span><span md-src-pos="8741..8742" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="8742..8750" style="color: rgb(106, 171, 115);">"Liczba"</span><span md-src-pos="8750..8751" style="color: rgb(188, 190, 196);">,</span><span md-src-pos="8751..8753"> a</span><span md-src-pos="8753..8754" style="color: rgb(188, 190, 196);">,</span><span md-src-pos="8754..8755"> </span><span md-src-pos="8755..8775" style="color: rgb(106, 171, 115);">"nie jest parzysta!"</span><span md-src-pos="8775..8776" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="8776..8777">
+</span><span md-src-pos="8777..8780"></span></code></pre>
+   <p md-src-pos="8782..8809"><span md-src-pos="8782..8808">Sprawdzanie wielu warunków</span>:</p>
+   <pre class="code-fence" md-src-pos="8811..9033"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBzcHJhd2R6YW15LCBjenkgYSBqZXN0IHdpxJlrc3plLCBjenkgcsOzd25lIGIKaWYgYSA+IGI6CiAgICBwcmludGYoIkxpY3piYSB7YX0gamVzdCB3acSZa3N6YSBvZCB7Yn0hIikKZWxpZiBhID09IGI6CiAgICBwcmludGYoIkxpY3pieSB7YX0gaSB7Yn0gc8SFIHLDs3duZSEiKQplbHNlOgogICAgcHJpbnRmKCJMaWN6YmEge2F9IGplc3QgbW5pZWpzemEgb2Qge2J9ISIp">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="python/kompendium" src="http://localhost:63342/markdownPreview/81310218/python/kompendium?_ijt=1v06klm9rns3pks5jv99oc3iq8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Python" md-src-pos="8811..9033"><span md-src-pos="8811..8821"></span><span md-src-pos="8821..8866" style="color: rgb(122, 126, 133);"># sprawdzamy, czy a jest większe, czy równe b</span><span md-src-pos="8866..8867">
+</span><span md-src-pos="8867..8869" style="color: rgb(207, 142, 109);">if</span><span md-src-pos="8869..8872"> a </span><span md-src-pos="8872..8873" style="color: rgb(188, 190, 196);">&gt;</span><span md-src-pos="8873..8875"> b</span><span md-src-pos="8875..8876" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8876..8877">
+</span><span md-src-pos="8877..8887">    printf</span><span md-src-pos="8887..8888" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="8888..8921" style="color: rgb(106, 171, 115);">"Liczba {a} jest większa od {b}!"</span><span md-src-pos="8921..8922" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="8922..8923">
+</span><span md-src-pos="8923..8927" style="color: rgb(207, 142, 109);">elif</span><span md-src-pos="8927..8930"> a </span><span md-src-pos="8930..8932" style="color: rgb(188, 190, 196);">==</span><span md-src-pos="8932..8934"> b</span><span md-src-pos="8934..8935" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8935..8936">
+</span><span md-src-pos="8936..8946">    printf</span><span md-src-pos="8946..8947" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="8947..8975" style="color: rgb(106, 171, 115);">"Liczby {a} i {b} są równe!"</span><span md-src-pos="8975..8976" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="8976..8977">
+</span><span md-src-pos="8977..8981" style="color: rgb(207, 142, 109);">else</span><span md-src-pos="8981..8982" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="8982..8983">
+</span><span md-src-pos="8983..8993">    printf</span><span md-src-pos="8993..8994" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="8994..9028" style="color: rgb(106, 171, 115);">"Liczba {a} jest mniejsza od {b}!"</span><span md-src-pos="9028..9029" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9029..9030">
+</span><span md-src-pos="9030..9033"></span></code></pre>
+   <p md-src-pos="9035..9072"><span md-src-pos="9035..9071">Zagnieżdżanie instrukcji warunkowych</span>:</p>
+   <pre class="code-fence" md-src-pos="9074..9288"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBzcHJhd2R6YW15LCBjenkgYSBqZXN0IHdpxJlrc3plIG9kIGIgaSBjCmlmIGEgPiBiOgogICAgIyBld2VudHVhbG5hIGluc3RydWtjamEgbHViIGluc3RydWtjamUKICAgIGlmIGEgPiBjOgogICAgICAgIHByaW50KCJMaWN6YmEge2F9IGplc3QgbmFqd2nEmWtzemEuIikKZWxzZToKICAgIGV3ZW50dWFsbmEgaW5zdHJ1a2NqYSBsdWIgaW5zdHJ1a2NqZQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="python/kompendium" src="http://localhost:63342/markdownPreview/81310218/python/kompendium?_ijt=1v06klm9rns3pks5jv99oc3iq8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Python" md-src-pos="9074..9288"><span md-src-pos="9074..9084"></span><span md-src-pos="9084..9125" style="color: rgb(122, 126, 133);"># sprawdzamy, czy a jest większe od b i c</span><span md-src-pos="9125..9126">
+</span><span md-src-pos="9126..9128" style="color: rgb(207, 142, 109);">if</span><span md-src-pos="9128..9131"> a </span><span md-src-pos="9131..9132" style="color: rgb(188, 190, 196);">&gt;</span><span md-src-pos="9132..9134"> b</span><span md-src-pos="9134..9135" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9135..9136">
+</span><span md-src-pos="9136..9140">    </span><span md-src-pos="9140..9178" style="color: rgb(122, 126, 133);"># ewentualna instrukcja lub instrukcje</span><span md-src-pos="9178..9179">
+</span><span md-src-pos="9179..9183">    </span><span md-src-pos="9183..9185" style="color: rgb(207, 142, 109);">if</span><span md-src-pos="9185..9188"> a </span><span md-src-pos="9188..9189" style="color: rgb(188, 190, 196);">&gt;</span><span md-src-pos="9189..9191"> c</span><span md-src-pos="9191..9192" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9192..9193">
+</span><span md-src-pos="9193..9206">        print</span><span md-src-pos="9206..9207" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="9207..9236" style="color: rgb(106, 171, 115);">"Liczba {a} jest największa."</span><span md-src-pos="9236..9237" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9237..9238">
+</span><span md-src-pos="9238..9242" style="color: rgb(207, 142, 109);">else</span><span md-src-pos="9242..9243" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9243..9244">
+</span><span md-src-pos="9244..9285">    ewentualna instrukcja lub instrukcje
+</span><span md-src-pos="9285..9288"></span></code></pre>
+   <p md-src-pos="9290..9391"><span md-src-pos="9290..9390">Zastąpienie zagnieżdżonych instrukcji warunkowych warunkiem złożonym oraz sprawdzanie wielu warunków</span>:</p>
+   <pre class="code-fence" md-src-pos="9393..9586"><div class="code-fence-highlighter-copy-button" data-fence-content="aWYgYSA+IGIgYW5kIGEgPiBjOgogICAgcHJpbnQoIkxpY3piYSB7YX0gamVzdCBuYWp3acSZa3N6YS4iKQplbGlmIGEgPT0gYiBvciBhID09IGM6CiAgICBwcmludCgiTGljemJhIGEgamVzdCByw7N3bmEgYiBsdWIgYy4iKQplbHNlOgogICAgcHJpbnQoIkxpY3piYSBhIGplc3QgbW5pZWpzemEgb2QgYiBsdWIgYy4iKQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="python/kompendium" src="http://localhost:63342/markdownPreview/81310218/python/kompendium?_ijt=1v06klm9rns3pks5jv99oc3iq8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Python" md-src-pos="9393..9586"><span md-src-pos="9393..9403"></span><span md-src-pos="9403..9405" style="color: rgb(207, 142, 109);">if</span><span md-src-pos="9405..9408"> a </span><span md-src-pos="9408..9409" style="color: rgb(188, 190, 196);">&gt;</span><span md-src-pos="9409..9412"> b </span><span md-src-pos="9412..9415" style="color: rgb(207, 142, 109);">and</span><span md-src-pos="9415..9418"> a </span><span md-src-pos="9418..9419" style="color: rgb(188, 190, 196);">&gt;</span><span md-src-pos="9419..9421"> c</span><span md-src-pos="9421..9422" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9422..9423">
+</span><span md-src-pos="9423..9432">    print</span><span md-src-pos="9432..9433" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="9433..9462" style="color: rgb(106, 171, 115);">"Liczba {a} jest największa."</span><span md-src-pos="9462..9463" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9463..9464">
+</span><span md-src-pos="9464..9468" style="color: rgb(207, 142, 109);">elif</span><span md-src-pos="9468..9471"> a </span><span md-src-pos="9471..9473" style="color: rgb(188, 190, 196);">==</span><span md-src-pos="9473..9476"> b </span><span md-src-pos="9476..9478" style="color: rgb(207, 142, 109);">or</span><span md-src-pos="9478..9481"> a </span><span md-src-pos="9481..9483" style="color: rgb(188, 190, 196);">==</span><span md-src-pos="9483..9485"> c</span><span md-src-pos="9485..9486" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9486..9487">
+</span><span md-src-pos="9487..9496">    print</span><span md-src-pos="9496..9497" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="9497..9527" style="color: rgb(106, 171, 115);">"Liczba a jest równa b lub c."</span><span md-src-pos="9527..9528" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9528..9529">
+</span><span md-src-pos="9529..9533" style="color: rgb(207, 142, 109);">else</span><span md-src-pos="9533..9534" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9534..9535">
+</span><span md-src-pos="9535..9544">    print</span><span md-src-pos="9544..9545" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="9545..9581" style="color: rgb(106, 171, 115);">"Liczba a jest mniejsza od b lub c."</span><span md-src-pos="9581..9582" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9582..9583">
+</span><span md-src-pos="9583..9586"></span></code></pre>
+   <h2 id="instrukcje-iteracji-powtórzenia-pętle" md-src-pos="9588..9631">Instrukcje iteracji (powtórzenia, pętle)</h2>
+   <p md-src-pos="9633..9703"><span md-src-pos="9633..9648">Przykłady pętli</span> <code><span md-src-pos="9655..9658">for</span></code> (<span md-src-pos="9667..9701">wykonuje się określoną liczbę razy</span>):</p>
+   <pre class="code-fence" md-src-pos="9705..9981"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBwxJl0bGEsIGt0w7NyYSB3eWtvbmEgc2nEmSAxMCByYXp5CmZvciBpIGluIHJhbmdlKDEwKToKICAgIHByaW50KGkpICAjIHBvd3RhcnphbmEgaW5zdHJ1a2NqYSB3eXBpc3VqxIVjYSB3YXJ0b8WbxIcgaQoKIyBwxJl0bGEsIGt0w7NyYSBvZGN6eXRhIHdzenlzdGtpZSB6bmFraSB6IG5hcGlzdQpuYXBpcyA9ICJhYmNkZSIKZm9yIHpuYWsgaW4gbmFwaXM6CiAgICBwcmludCh6bmFrKSAgIyBwb3d0YXJ6YW5hIGluc3RydWtjamEgd3lwaXN1asSFY2Ega29sZWpuZSB6bmFraQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="python/kompendium" src="http://localhost:63342/markdownPreview/81310218/python/kompendium?_ijt=1v06klm9rns3pks5jv99oc3iq8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Python" md-src-pos="9705..9981"><span md-src-pos="9705..9715"></span><span md-src-pos="9715..9748" style="color: rgb(122, 126, 133);"># pętla, która wykona się 10 razy</span><span md-src-pos="9748..9749">
+</span><span md-src-pos="9749..9752" style="color: rgb(207, 142, 109);">for</span><span md-src-pos="9752..9755"> i </span><span md-src-pos="9755..9757" style="color: rgb(207, 142, 109);">in</span><span md-src-pos="9757..9763"> range</span><span md-src-pos="9763..9764" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="9764..9766" style="color: rgb(42, 172, 184);">10</span><span md-src-pos="9766..9767" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9767..9768" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9768..9769">
+</span><span md-src-pos="9769..9778">    print</span><span md-src-pos="9778..9779" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="9779..9780">i</span><span md-src-pos="9780..9781" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9781..9783">  </span><span md-src-pos="9783..9827" style="color: rgb(122, 126, 133);"># powtarzana instrukcja wypisująca wartość i</span><span md-src-pos="9827..9828">
+</span><span md-src-pos="9828..9829">
+</span><span md-src-pos="9829..9876" style="color: rgb(122, 126, 133);"># pętla, która odczyta wszystkie znaki z napisu</span><span md-src-pos="9876..9877">
+</span><span md-src-pos="9877..9883">napis </span><span md-src-pos="9883..9884" style="color: rgb(188, 190, 196);">=</span><span md-src-pos="9884..9885"> </span><span md-src-pos="9885..9892" style="color: rgb(106, 171, 115);">"abcde"</span><span md-src-pos="9892..9893">
+</span><span md-src-pos="9893..9896" style="color: rgb(207, 142, 109);">for</span><span md-src-pos="9896..9902"> znak </span><span md-src-pos="9902..9904" style="color: rgb(207, 142, 109);">in</span><span md-src-pos="9904..9910"> napis</span><span md-src-pos="9910..9911" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="9911..9912">
+</span><span md-src-pos="9912..9921">    print</span><span md-src-pos="9921..9922" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="9922..9926">znak</span><span md-src-pos="9926..9927" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="9927..9929">  </span><span md-src-pos="9929..9977" style="color: rgb(122, 126, 133);"># powtarzana instrukcja wypisująca kolejne znaki</span><span md-src-pos="9977..9978">
+</span><span md-src-pos="9978..9981"></span></code></pre>
+   <p md-src-pos="9983..10064"><span md-src-pos="9983..9998">Przykłady pętli</span> <code><span md-src-pos="10005..10010">while</span></code> <span md-src-pos="10018..10019">–</span> <span md-src-pos="10020..10033">wykonuje się,</span> <span md-src-pos="10034..10063">dopóki warunek jest prawdziwy</span>:</p>
+   <pre class="code-fence" md-src-pos="10066..10359"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBwxJl0bGEsIGt0w7NyYSB3eWtvbnVqZSBzacSZIGRvcMOza2kgd2FydW5layBhID4gMCBqZXN0IHByYXdkeml3eQphID0gMTAKd2hpbGUgYSA+IDA6CiAgICBhID0gYSAtIDEKCiMgcMSZdGxhLCBrdMOzcmEgcG9iaWVyYSBsaWN6YsSZIHoga2xhd2lhdHVyeSwgZG9ww7NraSBsaWN6YmEgamVzdCB1amVtbmEgbHViIHLDs3duYSAwCmxpY3piYSA9IGludChpbnB1dCgiUG9kYWogbGljemLEmTogIikpCndoaWxlIGxpY3piYSA8PSAwOgogICAgbGljemJhID0gaW50KGlucHV0KCJQb2RhaiBsaWN6YsSZOiAiKSk=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="python/kompendium" src="http://localhost:63342/markdownPreview/81310218/python/kompendium?_ijt=1v06klm9rns3pks5jv99oc3iq8">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Python" md-src-pos="10066..10359"><span md-src-pos="10066..10076"></span><span md-src-pos="10076..10139" style="color: rgb(122, 126, 133);"># pętla, która wykonuje się dopóki warunek a &gt; 0 jest prawdziwy</span><span md-src-pos="10139..10140">
+</span><span md-src-pos="10140..10142">a </span><span md-src-pos="10142..10143" style="color: rgb(188, 190, 196);">=</span><span md-src-pos="10143..10144"> </span><span md-src-pos="10144..10146" style="color: rgb(42, 172, 184);">10</span><span md-src-pos="10146..10147">
+</span><span md-src-pos="10147..10152" style="color: rgb(207, 142, 109);">while</span><span md-src-pos="10152..10155"> a </span><span md-src-pos="10155..10156" style="color: rgb(188, 190, 196);">&gt;</span><span md-src-pos="10156..10157"> </span><span md-src-pos="10157..10158" style="color: rgb(42, 172, 184);">0</span><span md-src-pos="10158..10159" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="10159..10160">
+</span><span md-src-pos="10160..10166">    a </span><span md-src-pos="10166..10167" style="color: rgb(188, 190, 196);">=</span><span md-src-pos="10167..10170"> a </span><span md-src-pos="10170..10171" style="color: rgb(188, 190, 196);">-</span><span md-src-pos="10171..10172"> </span><span md-src-pos="10172..10173" style="color: rgb(42, 172, 184);">1</span><span md-src-pos="10173..10174">
+</span><span md-src-pos="10174..10175">
+</span><span md-src-pos="10175..10256" style="color: rgb(122, 126, 133);"># pętla, która pobiera liczbę z klawiatury, dopóki liczba jest ujemna lub równa 0</span><span md-src-pos="10256..10257">
+</span><span md-src-pos="10257..10264">liczba </span><span md-src-pos="10264..10265" style="color: rgb(188, 190, 196);">=</span><span md-src-pos="10265..10269"> int</span><span md-src-pos="10269..10270" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="10270..10275">input</span><span md-src-pos="10275..10276" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="10276..10292" style="color: rgb(106, 171, 115);">"Podaj liczbę: "</span><span md-src-pos="10292..10293" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="10293..10294" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="10294..10295">
+</span><span md-src-pos="10295..10300" style="color: rgb(207, 142, 109);">while</span><span md-src-pos="10300..10308"> liczba </span><span md-src-pos="10308..10310" style="color: rgb(188, 190, 196);">&lt;=</span><span md-src-pos="10310..10311"> </span><span md-src-pos="10311..10312" style="color: rgb(42, 172, 184);">0</span><span md-src-pos="10312..10313" style="color: rgb(188, 190, 196);">:</span><span md-src-pos="10313..10314">
+</span><span md-src-pos="10314..10325">    liczba </span><span md-src-pos="10325..10326" style="color: rgb(188, 190, 196);">=</span><span md-src-pos="10326..10330"> int</span><span md-src-pos="10330..10331" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="10331..10336">input</span><span md-src-pos="10336..10337" style="color: rgb(188, 190, 196);">(</span><span md-src-pos="10337..10353" style="color: rgb(106, 171, 115);">"Podaj liczbę: "</span><span md-src-pos="10353..10354" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="10354..10355" style="color: rgb(188, 190, 196);">)</span><span md-src-pos="10355..10356">
+</span><span md-src-pos="10356..10359"></span></code></pre>
+   <h2 id="najczęstsze-typy-błędów" md-src-pos="10361..10387">Najczęstsze typy błędów</h2>
+   <ul md-src-pos="10389..10728">
+    <li md-src-pos="10389..10496"><strong md-src-pos="10391..10411">IndentationError</strong> – błąd wcięcia, najczęściej polega na niezachowywaniu tych samych wcięć w bloku kodu</li>
+    <li md-src-pos="10497..10587"><strong md-src-pos="10499..10512">TypeError</strong> – błąd typu, występuje, kiedy chcemy wykonać operację na złym typie danych</li>
+    <li md-src-pos="10588..10728"><strong md-src-pos="10590..10603">NameError</strong> – błąd nazwy, występuje, kiedy używamy niezdefiniowanej nazwy, np. niezainicjowanej zmiennej, błędnie zapisanej funkcji itp.</li>
+   </ul>
+  </div>
+ </body>
+</html>
