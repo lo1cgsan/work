@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block tytul %} Dodawanie pytań {% endblock %}
+{% block nav %} 
+  <li><a href="{{ url_for('pytania.dodaj') }}">Dodaj pytanie »»»</a></li>
+{% endblock %}
+{% block h1 %} Dodawanie pytań {% endblock %}
+{% block body %}
+<h2>Dodaj pytanie</h2>
+    {% include "pytania/pytanie_form.html" %}
+{% endblock %}

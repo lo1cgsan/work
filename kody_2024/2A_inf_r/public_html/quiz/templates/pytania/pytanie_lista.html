@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block tytul %} Lista pytań {% endblock %}
+{% block nav %} 
+  <li><a href="{{ url_for('pytania.dodaj') }}">Dodaj pytanie »»»</a></li>
+{% endblock %}
+{% block h1 %} Lista pytań {% endblock %}
+{% block body %}
+<h2>Lista pytań</h2>
+
+<ul>
+    {% for p in pytania %}
+        <li>
+            {{ p.pytanie }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

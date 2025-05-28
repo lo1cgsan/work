@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {{ config.SITE_NAME }} {% endblock %}</title>
+    <style>
+        body {
+          background-color: lightgray;
+        }
+
+        h1 {
+          color: black;
+          text-align: center;
+        }
+
+        p {
+          font-family: Verdana;
+          font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<nav>
+  <ul>
+    <li><a href="{{ url_for('pytania.lista') }}">Pytania »»»</a></li>
+    {% block nav %} {% endblock %}
+  </ul>
+</nav>
+
+<h1>{% block h1 %} {{ config.SITE_NAME }} {% endblock %}</h1>
+
+<div>
+    {% for k in get_flashed_messages() %}
+        <p>{{ k }}</p>
+    {% endfor %}
+</div>
+
+{% block body %} {% endblock %}
+
+</body>
+</html>
