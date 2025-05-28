@@ -39,7 +39,7 @@ def pytania():
 @app.route('/')
 def index():
     # return 'Cześć, tu Python i Flask'
-    return render_template('index.html')
+    return render_template('index_.html')
 
 with app.app_context():
     if not os.path.exists(current_app.config['DATABASE']):

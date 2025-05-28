@@ -11,15 +11,23 @@
 
     <h2>Przykłady JavaScript</h2>
 
-    <button type="button"
-    onclick="document.getElementById('data').innerHTML = Date()">
+    <button type="button" onclick="document.getElementById('data').innerHTML = Date()">
     Pokaż datę i czas</button>
 
-    <button type="button"
-    onclick="document.getElementById('data').innerHTML = ''">
+    <button type="button" onclick="document.getElementById('data').innerHTML = ''">
     Czyść</button>
 
-    <p id="data"></p>
+    <div id="data"></div>
+
+    <button type="button"
+    onclick="document.getElementById('imie').innerHTML = 'Robert'">
+    Pokaż immię</button>
+
+    <button type="button"
+    onclick="document.getElementById('imie').innerHTML = ''">
+    Ukryj imię</button>
+
+    <div id="imie"></div>
 
 </body>
 

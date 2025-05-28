@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <title>Przykłady JavaScript</title>
+    <script>
+    function ustawKolor(id, kolor) {
+        document.getElementById(id).style.fill = kolor;
+    }
+    </script>
 </head>
 
 <body>
@@ -12,18 +17,48 @@
 
     <h2>Figury geometryczne</h2>
 
-    <svg width="100" height="100">
-        <circle id="kolo" cx="50" cy="50" r="40"
-        stroke="green" stroke-width="4" fill="yellow">
-    </svg>
+<table>
 
-    <button type="button"
-    onclick="document.getElementById('kolo').style.fill = 'red' "
-    >Czerwony</button>
+<tr>
+    <td>
+        <svg width="100" height="100">
+            <circle id="kolo1" cx="50" cy="50" r="40"
+            stroke="green" stroke-width="4" fill="yellow">
+        </svg>
+    </td>
 
-    <button type="button"
-    onclick="document.getElementById('kolo').style.fill = 'yellow' "
-    >Żółty</button>
+    <td>
+        <svg width="100" height="100">
+            <circle id="kolo2" cx="50" cy="50" r="40"
+            stroke="green" stroke-width="4" fill="yellow">
+        </svg>
+    </td>
+</tr>
+
+<tr>
+    <td>
+
+    <button type="button" onclick="ustawKolor('kolo1', 'red')">Red</button>
+    <br>
+    <button type="button" onclick="ustawKolor('kolo1', 'green')">Green</button>
+    <br>
+    <button type="button" onclick="ustawKolor('kolo1', 'blue')">Blue</button>
+
+    </td>
+    <td>
+
+    <button type="button" onclick="ustawKolor('kolo2', 'red')">Red</button>
+    <br>
+    <button type="button" onclick="ustawKolor('kolo2', 'green')">Green</button>
+    <br>
+    <button type="button" onclick="ustawKolor('kolo2', 'blue')">Blue</button>
+
+    </td>
+</tr>
+
+</table>
+
 </body>
+
 
 </html>

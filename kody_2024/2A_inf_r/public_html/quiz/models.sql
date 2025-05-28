@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS pytanie;
+CREATE TABLE pytanie (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pytanie TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS odpowiedz;
+CREATE TABLE odpowiedz (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    odpowiedz TEXT NOT NULL,
+    poprawna BOOLEAN DEFAULT FALSE,
+    pytanie_id INTEGER,
+    FOREIGN KEY (pytanie_id) REFERENCES pytanie(id) ON DELETE CASCADE
+);

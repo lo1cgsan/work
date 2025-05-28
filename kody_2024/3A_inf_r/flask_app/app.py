@@ -3,18 +3,19 @@ import os
 from flask import Flask, request, flash, redirect, url_for, current_app
 from flask import render_template
 from db import init_app, init_db
-import users
+import users, todo
 
 app = Flask(__name__)
 
 app.config.update(dict(
     SECRET_KEY='bardzosekretnymkluczem',
-    SITE_NAME='Quiz Python',
+    SITE_NAME='Aplikacja Flask',
     DATABASE=os.path.join(app.root_path, 'db.sqlite')
 ))
 
 init_app(app)
 app.register_blueprint(users.bp)
+app.register_blueprint(todo.bp)
 
 dane = [
     {'pytanie': 'Stolica Hiszpanii to:',
@@ -39,7 +40,7 @@ def pytania():
 @app.route('/')
 def index():
     # return 'Cześć, tu Python i Flask'
-    return render_template('index.html')
+    return render_template('index_.html')
 
 with app.app_context():
     if not os.path.exists(current_app.config['DATABASE']):

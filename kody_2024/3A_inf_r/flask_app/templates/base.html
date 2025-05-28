@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz</title>
+    <title>{% block tytul %} {{ config.SITE_NAME }} {% endblock%}</title>
 </head>
 <body>
 
@@ -12,6 +12,9 @@
              <a href="{{ url_for('index') }}">Strona główna</a>
          </li>
          {% if g.user %}
+            <li>
+                <a href="{{ url_for('pytania') }}">Pytania</a>
+            </li>
              <li>
                  <a href="{{ url_for('users.wyloguj') }}">Wyloguj</a>
              </li>
@@ -26,11 +29,17 @@
      </ul>
 </nav>
 
-    <h1>Aplikacja Quiz</h1>
-    <ul>
-        <li>
-            <a href="{{ url_for('pytania') }}">Pytania</a>
-        </li>
-    </ul>
+{% with komunikaty = get_flashed_messages() %}
+  {% if komunikaty %}
+    {% for k in komunikaty %}
+      <p>{{ k }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+    <h1>{% block h1 %} {{ config.SITE_NAME }} {% endblock%}</h1>
+
+    {% block body %} {% endblock%}
+
 </body>
 </html>

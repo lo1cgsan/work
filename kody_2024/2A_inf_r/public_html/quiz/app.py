@@ -2,6 +2,11 @@ from flask import Flask, render_template, request, redirect, flash, url_for
 
 app = Flask(__name__)
 
+app.config.update(dict(
+    SECRET_KEY='bardzosekretnawartosc',
+    SITE_NAME='Quiz Flask'
+))
+
 dane = [
     {
         'pytanie': 'Stolica Hiszpanii to:',
@@ -30,7 +35,7 @@ def pytania():
                 punkty += 1
 
         flash(f'Liczba poprawnych odpowiedzi: {punkty}')
-        return redirect(url_for('index'))
+        return redirect(url_for('pytania'))
 
     return render_template('pytania.html', pytania=dane)
 

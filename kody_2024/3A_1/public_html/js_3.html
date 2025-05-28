@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Przykłady JavaScript – Funkcje</title>
+    <script>
+
+    function zmienTekst(id, tekst) {
+        document.getElementById(id).innerHTML = tekst;
+    }
+
+    </script>
+</head>
+
+<body>
+
+    <h2>Przykłady JavaScript</h2>
+
+    <button type="button" onclick="zmienTekst('data', Date())">
+    Pokaż datę i czas</button>
+
+    <button type="button" onclick="zmienTekst('data', '')">
+    Czyść</button>
+
+    <div id="data"></div>
+
+    <button type="button" onclick="zmienTekst('imie', 'Robert')">
+    Pokaż immię</button>
+
+    <button type="button" onclick="zmienTekst('imie', '')">
+    Ukryj imię</button>
+
+    <div id="imie"></div>
+
+</body>
+
+</html>
