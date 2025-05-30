@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Przykłady JavaScript</title>
+    <script>
+
+    var red_time = 5000;
+    var green_time = 6000;
+    var yellow_time = 2000;
+    var uruchomiona;
+
+    function uruchomSygnalizacje() {
+        alert('Uruchamiam!');
+        zmieniajKolory();
+        uruchomiona = setInterval(zmieniajKolory, red_time+2*yellow_time+green_time);
+    }
+
+    function zatrzymajSygnalizacje() {
+        alert('Zatrzymuję!');
+        clearInterval(uruchomiona);
+    }
+
+    function zmieniajKolory() {
+        setTimeout(() => zmienKolor('red_light', 'red', 'Stój!'), 0);
+        setTimeout(() => zmienKolor('yellow_light', 'yellow', 'Uwaga!'), red_time);
+        setTimeout(() => zmienKolor('red_light', 'grey', ''), red_time+yellow_time);
+        setTimeout(() => zmienKolor('yellow_light', 'grey', ''), red_time+yellow_time);
+        setTimeout(() => zmienKolor('green_light', 'green', 'Jedź'), red_time+yellow_time);
+        setTimeout(() => zmienKolor('yellow_light', 'yellow', 'Uwaga!'), red_time+yellow_time+green_time);
+        setTimeout(() => zmienKolor('yellow_light', 'grey', ''), red_time+2*yellow_time+green_time);
+        setTimeout(() => zmienKolor('green_light', 'grey', ''), red_time+2*yellow_time+green_time);
+    }
+
+    function zmienKolor(id, kolor, tekst='') {
+        document.getElementById(id).style.fill = kolor;
+        zmienTekst(id+'_komunikat', tekst);
+    }
+
+    function zmienTekst(id, text) {
+        document.getElementById(id).innerHTML = text;
+    }
+
+    function odliczaj(czas) {
+        el = document.getElementById('licznik');
+        for (let i = czas; i > 0; i--) {
+            el.innerHTML = i;
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    <h1>Przykłady JavaScript</h1>
+    <h2>Sygnalizacja świetlna</h2>
+
+    <button onclick="uruchomSygnalizacje()">Uruchom</button>
+    <button onclick="zatrzymajSygnalizacje()">Zatrzymaj</button>
+
+<table>
+    <tr>
+        <td>
+            <svg width="100" height="100">
+            <circle id="red_light" cx="50" cy="50" r="40"
+            stroke="grey" stroke-width="4" fill="grey">
+            </svg>
+        </td>
+        <td>
+            <p id="red_light_komunikat"></p>
+            <button type="button" onclick="zmienKolor('red_light', 'red')">Czerwony</button>
+            <button type="button" onclick="zmienKolor('red_light', 'grey')">Szary</button>            
+        </td>
+        <td rowspan="3">
+            <p id="licznik"></p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <svg width="100" height="100">
+                <circle id="yellow_light" cx="50" cy="50" r="40"
+                stroke="grey" stroke-width="4" fill="grey">
+            </svg>
+        </td>
+        <td>
+            <p id="yellow_light_komunikat"></p>
+            <button type="button" onclick="zmienKolor('yellow_light', 'yellow')">Żółty</button>
+            <button type="button" onclick="zmienKolor('yellow_light', 'grey')">Szary</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <svg width="100" height="100">
+                <circle id="green_light" cx="50" cy="50" r="40"
+                stroke="grey" stroke-width="4" fill="grey">
+            </svg>
+        </td>
+        <td>
+            <p id="green_light_komunikat"></p>
+            <button type="button" onclick="zmienKolor('green_light', 'green')">Zielony</button>
+            <button type="button" onclick="zmienKolor('green_light', 'grey')">Szary</button>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
