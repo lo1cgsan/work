@@ -16,26 +16,34 @@ def lista():
 
 @bp.route('/dodaj', methods=['GET', 'POST'])
 def dodaj():
+    pytanie_form = {'pytanie':'', 'odpowiedzi':3*[''], 'odpowiedzi':3*['']}
+    errors = []
+
     if request.method == 'POST':
-        error = None
         print(request.form)
+
         pytanie = request.form['pytanie'].strip()
         if not pytanie:
-            error = 'Nie wprowadzono pytania!'
-        odpowiedzi = []
-        l_poprawnych = 0
-        for i in range(1, 4):
-            poprawna = False
-            if 'pop'+str(i+1) in request.form:
-                poprawna = True
-                l_poprawnych += 1
-            odpowiedz = request.form['odp'+str(i+1)].strip()
-            if not odpowiedz:
-                error += f' Nie wprowadzono odpowiedzi {i+1}!'
-                break
-            odpowiedzi.append((odpowiedz, poprawna))
-        if not l_poprawnych:
-            error += ' Nie zaznaczono przynajmniej jednej poprawnej odpowiedzi!'
+            errors.append = 'Nie wpisano pytania!'
+        else:
+            pytanie_form['pytanie'] = pytanie
 
-    return render_template('pytania/pytanie_dodaj.html')
+        odpowiedzi = request.form.getlist('odpowiedzi')
+        for i, o in enumerate(odpowiedzi):
+            if not o.strip():
+                errors.append(f' Nie wpisano odpowiedzi {i+1}!')
+            else:
+                odpowiedzi[i] = o.strip()
+
+        poprawne = request.form.getlist('poprawne')
+        if not len(poprawne):
+            errors.append(' Nie zaznaczono przynajmniej jednej poprawnej odpowiedzi!')
+
+        if not errors:
+            pass
+
+        print(odpowiedzi)
+        print(poprawne)
+
+    return render_template('pytania/pytanie_dodaj.html', errors=errors, pytanie_form=pytanie_form)
 # sql = 'SELECT p.*, o.* FROM pytanie p INNER JOIN odpowiedz o WHERE p.id=o.pytanie_id'

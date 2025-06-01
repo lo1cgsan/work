@@ -5,6 +5,10 @@
 {% endblock %}
 {% block h1 %} Dodawanie pytań {% endblock %}
 {% block body %}
-<h2>Dodaj pytanie</h2>
+  {% if errors %}
+    {% for e in errors %}
+      <p>{{ e }}</p>
+    {% endfor %}
+  {% endif %}
     {% include "pytania/pytanie_form.html" %}
 {% endblock %}
