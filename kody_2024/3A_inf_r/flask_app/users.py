@@ -1,3 +1,5 @@
+import functools
+
 from flask import Blueprint, render_template, request, session, flash, redirect, url_for, g
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import query_db, get_db
@@ -63,3 +65,11 @@ def dodaj():
 @bp.route('/usun', methods=['GET', 'POST'])
 def usun():
     pass
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('users.loguj'))
+        return view(**kwargs)
+    return wrapped_view()

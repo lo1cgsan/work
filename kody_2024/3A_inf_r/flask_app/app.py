@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask, request, flash, redirect, url_for, current_app
 from flask import render_template
 from db import init_app, init_db

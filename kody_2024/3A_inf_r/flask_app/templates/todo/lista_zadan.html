@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block tytul %} Lista zadań {% endblock%}
+{% block h1 %} Lista zadań {% endblock%}
+{% block body %}
+
+  <ul>
+  {% for z in zadania %}
+    <li>
+      {{ z.zadanie }} - {{ z.data_dodania }}
+
+      {% if not zadanie.zrobione %}
+      <form method="POST">
+        <input type="hidden" name="id" value="{{ z.id }}">
+        <input type="submit" value="Wykonane">
+      </form>
+      {% else %}
+
+      {% endif %}
+
+    </li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}

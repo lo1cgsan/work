@@ -4,27 +4,51 @@
 <head>
 <meta charset="utf-8" />
 <title>JavaScript 1</title>
-<meta name="generator" content="Geany 2.0" />
 </head>
 
 <body>
 
-    <h2>Przykłady JavaScript - grafika SVG</h2>
+    <h2>Sygnalizacja świetlna</h2>
 
+<table>
+    <tr>
+        <td>
+            <svg width="100" height="100">
+                <circle id="red_light" cx="50" cy="50" r="40"
+                stroke="grey" stroke-width="4" fill="grey">
+            </svg>            
+        </td>
+        <td>
+            <button type="button" onclick="document.getElementById('red_light').style.fill = 'red'">Czerwony</button>
+            <button type="button" onclick="document.getElementById('red_light').style.fill = 'grey'">Off</button>            
+        </td>
+    </tr>
+    <tr>
+        <td>
     <svg width="100" height="100">
-        <circle id="kolo" cx="50" cy="50" r="40"
-        stroke="green" stroke-width="4" fill="yellow">
+        <circle id="yellow_light" cx="50" cy="50" r="40"
+        stroke="grey" stroke-width="4" fill="grey">
     </svg>
+        </td>
+        <td>
+    <button type="button" onclick="document.getElementById('yellow_light').style.fill = 'yellow'">Żółty</button>
+    <button type="button" onclick="document.getElementById('yellow_light').style.fill = 'grey'">Off</button>
+        </td>
+    </tr>
+<tr>
+    <td>
+    <svg width="100" height="100">
+        <circle id="green_light" cx="50" cy="50" r="40"
+        stroke="grey" stroke-width="4" fill="grey">
+    </svg>
+    </td>
+    <td>
+    <button type="button" onclick="document.getElementById('green_light').style.fill = 'green'">Zielony</button>
+    <button type="button" onclick="document.getElementById('green_light').style.fill = 'grey'">Off</button>
+    </td>
+</tr>
+</table>
 
-    <button type="button"
-     onclick="document.getElementById('kolo').style.fill = 'red'">
-    Czerwony
-    </button>
-
-    <button type="button"
-     onclick="document.getElementById('kolo').style.fill = 'blue'">
-    Niebieski
-    </button>
 
 </body>
 </html>
