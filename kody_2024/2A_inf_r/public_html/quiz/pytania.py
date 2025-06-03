@@ -16,7 +16,7 @@ def lista():
 
 @bp.route('/dodaj', methods=['GET', 'POST'])
 def dodaj():
-    pytanie_form = {'pytanie':'', 'odpowiedzi':3*[''], 'odpowiedzi':3*['']}
+    pytanie_form = {'pytanie':'','odpowiedzi':[], 'poprawne':[]}
     errors = []
 
     if request.method == 'POST':
@@ -41,9 +41,7 @@ def dodaj():
 
         if not errors:
             pass
-
-        print(odpowiedzi)
-        print(poprawne)
+        pytanie_form['odpowiedzi'] = odpowiedzi
 
     return render_template('pytania/pytanie_dodaj.html', errors=errors, pytanie_form=pytanie_form)
 # sql = 'SELECT p.*, o.* FROM pytanie p INNER JOIN odpowiedz o WHERE p.id=o.pytanie_id'
