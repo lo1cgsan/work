@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, session, flash, redirect, url_for, g
-from werkzeug.security import check_password_hash, generate_password_hash
 from db import query_db, get_db
 from users import login_required
 
@@ -29,3 +28,25 @@ def dodaj():
             return redirect(url_for('todo.index'))
 
     return render_template('todo/zadanie_dodaj.html', akcja='Zapisz')
+
+@bp.route('/usun', methods=['POST'])
+# @login_required
+def usun():
+    id_z = request.form['id']
+    db = get_db()
+    db.execute('DELETE FROM zadanie WHERE id=? AND user_id=?',
+               [id_z,g.user['id']])
+    db.commit()
+    flash('Usunięto zadanie.')
+    return redirect(url_for('todo.index'))
+
+@bp.route('/zrobione', methods=['POST'])
+# @login_required
+def zrobione():
+    id_z = request.form['id']
+    db = get_db()
+    db.execute('UPDATE zadanie SET zrobione=1 WHERE id=? AND user_id=?',
+               [id_z,g.user['id']])
+    db.commit()
+    flash('Zmieniono status zadania.')
+    return redirect(url_for('todo.index'))

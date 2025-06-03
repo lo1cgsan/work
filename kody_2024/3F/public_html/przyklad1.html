@@ -3,62 +3,78 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Przykłady JavaScript</title>
+    <title>Przykłady JavaScript klasa 3F</title>
+
     <script>
-    function ustawKolor(id, kolor) {
+    function zmienKolor(id, kolor) {
         document.getElementById(id).style.fill = kolor;
     }
+
+    function uruchomSygnalizacje() {
+        alert('Uruchamiam!');
+        setTimeout(() => zmienKolor('kolo', 'red'), 0);
+
+    }
+
     </script>
+
 </head>
 
 <body>
 
-    <h1>Przykłady JavaScript w klasie 3F</h1>
+    <h1>Przykłady JavaScript klasa 3F</h1>
 
-    <h2>Figury geometryczne</h2>
+    <h2>Grafika SVG</h2>
+
+    <button onclick="uruchomSygnalizacje()">Uruchom</button>
+    <button onclick="zatrzymajSygnalizacje()">Zatrzymaj</button>
 
 <table>
-
 <tr>
     <td>
         <svg width="100" height="100">
-            <circle id="kolo1" cx="50" cy="50" r="40"
-            stroke="green" stroke-width="4" fill="yellow">
+            <circle id="kolo" cx="50" cy="50" r="40"
+            stroke="black" stroke-width="4" fill="grey">
         </svg>
     </td>
-
     <td>
-        <svg width="100" height="100">
-            <circle id="kolo2" cx="50" cy="50" r="40"
-            stroke="green" stroke-width="4" fill="yellow">
-        </svg>
+        <button type="button" onclick="setTimeout(() => zmienKolor('kolo', 'red'), 0)">Włącz</button>
+        <br>
+        <button type="button" onclick="setTimeout(() => zmienKolor('kolo', 'grey'), 5000)">Wyłącz</button>
     </td>
 </tr>
 
 <tr>
     <td>
-
-    <button type="button" onclick="ustawKolor('kolo1', 'red')">Red</button>
-    <br>
-    <button type="button" onclick="ustawKolor('kolo1', 'green')">Green</button>
-    <br>
-    <button type="button" onclick="ustawKolor('kolo1', 'blue')">Blue</button>
-
+        <svg width="100" height="100">
+            <circle id="kolo2" cx="50" cy="50" r="40"
+            stroke="black" stroke-width="4" fill="grey">
+        </svg>
     </td>
     <td>
+        <button type="button" onclick="zmienKolor('kolo2', 'yellow')">Włącz</button>
+        <br>
+        <button type="button" onclick="zmienKolor('kolo2', 'grey')">Wyłącz</button>
+    </td>
+</tr>
 
-    <button type="button" onclick="ustawKolor('kolo2', 'red')">Red</button>
-    <br>
-    <button type="button" onclick="ustawKolor('kolo2', 'green')">Green</button>
-    <br>
-    <button type="button" onclick="ustawKolor('kolo2', 'blue')">Blue</button>
-
+<tr>
+    <td>
+        <svg width="100" height="100">
+            <circle id="kolo3" cx="50" cy="50" r="40"
+            stroke="black" stroke-width="4" fill="grey">
+        </svg>
+    </td>
+    <td>
+        <button type="button" onclick="zmienKolor('kolo3', 'green')">Włącz</button>
+        <br>
+        <button type="button" onclick="zmienKolor('kolo3', 'grey')">Wyłącz</button>
     </td>
 </tr>
 
 </table>
 
-</body>
 
+</body>
 
 </html>

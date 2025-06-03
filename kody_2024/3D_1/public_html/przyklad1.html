@@ -3,60 +3,67 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Przykłady JavaScript klasa 3D</title>
-
+    <title>Przykłady JavaScript</title>
     <script>
-    function zmienKolor(id, kolor) {
+    function ustawKolor(id, kolor) {
         document.getElementById(id).style.fill = kolor;
     }
     </script>
-
 </head>
 
 <body>
 
-    <h1>Przykłady JavaScript klasa 3D</h1>
+    <h1>Przykłady JavaScript w klasie 3D</h1>
 
-    <h2>Grafika SVG</h2>
+    <h2>Figury geometryczne</h2>
 
 <table>
+
 <tr>
-    <td>
+  <td>
     <svg width="100" height="100">
-        <circle id="kolo" cx="50" cy="50" r="40"
-         stroke="green" stroke-width="4" fill="yellow">
+        <circle id="kolo1" cx="50" cy="50" r="40" stroke="black"
+         stroke-width="4" fill="grey">
     </svg>
-    </td>
-
-    <td>
-    <button type="button" onclick="zmienKolor('kolo', 'red')">Red</button>
+  </td>
+  <td>
+    <button type="button" onclick="ustawKolor('kolo1', 'red')">Włącz</button>
     <br>
-    <button type="button" onclick="zmienKolor('kolo', 'green')">Green</button>
-    <br>
-    <button type="button" onclick="zmienKolor('kolo', 'blue')">Blue</button>
-
-    </td>
+    <button type="button" onclick="ustawKolor('kolo1', 'grey')">Wyłącz</button>
+  </td>
 </tr>
+
 <tr>
-    <td>
+  <td>
     <svg width="100" height="100">
-        <circle id="kolo2" cx="50" cy="50" r="40"
-         stroke="green" stroke-width="4" fill="yellow">
+        <circle id="kolo2" cx="50" cy="50" r="40" stroke="black"
+         stroke-width="4" fill="grey">
     </svg>
-    </td>
-
-    <td>
-    <button type="button" onclick="zmienKolor('kolo2', 'red')">Red</button>
+  </td>
+  <td>
+    <button type="button" onclick="ustawKolor('kolo2', 'yellow')">Włącz</button>
     <br>
-    <button type="button" onclick="zmienKolor('kolo2', 'green')">Green</button>
-    <br>
-    <button type="button" onclick="zmienKolor('kolo2', 'blue')">Blue</button>
-
-    </td>
+    <button type="button" onclick="ustawKolor('kolo2', 'grey')">Wyłącz</button>
+  </td>
 </tr>
+
+<tr>
+  <td>
+    <svg width="100" height="100">
+        <circle id="kolo3" cx="50" cy="50" r="40" stroke="black"
+         stroke-width="4" fill="grey">
+    </svg>
+  </td>
+  <td>
+    <button type="button" onclick="ustawKolor('kolo3', 'green')">Włącz</button>
+    <br>
+    <button type="button" onclick="ustawKolor('kolo3', 'grey')">Wyłącz</button>
+  </td>
+</tr>
+
 </table>
 
-
 </body>
+
 
 </html>

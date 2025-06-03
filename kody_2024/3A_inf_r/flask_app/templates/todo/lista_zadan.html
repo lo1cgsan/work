@@ -8,13 +8,16 @@
     <li>
       {{ z.zadanie }} - {{ z.data_dodania }}
 
-      {% if not zadanie.zrobione %}
-      <form method="POST">
+      {% if not z.zrobione %}
+      <form method="POST" action="{{ url_for('todo.zrobione') }}">
         <input type="hidden" name="id" value="{{ z.id }}">
         <input type="submit" value="Wykonane">
       </form>
       {% else %}
-
+      <form method="POST" action="{{ url_for('todo.usun') }}">
+        <input type="hidden" name="id" value="{{ z.id }}">
+        <input type="submit" value="Usuń">
+      </form>
       {% endif %}
 
     </li>
