@@ -10,12 +10,34 @@
         document.getElementById(id).style.fill = kolor;
     }
 
+    var red_time = 5000;
+    var green_time = 5000;
+    var yellow_time = 3000;
+
+
+    function uruchom() {
+        setTimeout(() => {zmienKolor('kolo', 'red')}, 0);
+        setTimeout(() => {zmienKolor('kolo2', 'yellow')}, red_time);
+        setTimeout(() => {zmienKolor('kolo', 'grey')}, red_time+yellow_time);
+        setTimeout(() => {zmienKolor('kolo2', 'grey')}, red_time+yellow_time);
+        setTimeout(() => {zmienKolor('kolo3', 'green')}, red_time+yellow_time);
+        setTimeout(() => {zmienKolor('kolo2', 'yellow')}, red_time+yellow_time+green_time);
+        setTimeout(() => {zmienKolor('kolo3', 'grey')}, red_time+2*yellow_time+green_time);
+        setTimeout(() => {zmienKolor('kolo2', 'grey')}, red_time+2*yellow_time+green_time);
+    }
+
+    function powtarzaj() {
+        uruchom();
+        setInterval(uruchom, red_time+2*yellow_time+green_time);
+    }
     </script>
 </head>
 
 <body>
 
-    <h2>Przykłady JavaScript – grafika SVG</h2>
+    <h2>Przykłady JavaScript – sygnalizacja</h2>
+
+    <button type="button" onclick="powtarzaj()">Uruchom</button>
 
 <table>
     <tr>

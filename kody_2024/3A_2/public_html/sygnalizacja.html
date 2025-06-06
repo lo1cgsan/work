@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
 <meta charset="utf-8" />
 <title>JavaScript 1</title>
-</head>
+<script>
+    function zmienKolor(id, kolor) {
+        document.getElementById(id).style.fill = kolor;
+    }
 
+    var red_time = 5000;
+    var green_time = 5000;
+    var yellow_time = 3000;
+
+    function uruchom() {
+        setTimeout(() => { zmienKolor('red_light', 'red') }, 0);
+        setTimeout(() => { zmienKolor('yellow_light', 'yellow') }, red_time);
+        setTimeout(() => { zmienKolor('red_light', 'grey') }, red_time+yellow_time);
+        setTimeout(() => { zmienKolor('yellow_light', 'grey') }, red_time+yellow_time);
+        setTimeout(() => { zmienKolor('green_light', 'green') }, red_time+yellow_time);
+        setTimeout(() => { zmienKolor('yellow_light', 'yellow') }, red_time+yellow_time+green_time);
+        setTimeout(() => { zmienKolor('green_light', 'grey') }, red_time+2*yellow_time+green_time);
+        setTimeout(() => { zmienKolor('yellow_light', 'grey') }, red_time+2*yellow_time+green_time);
+    }
+
+    function powtarzaj() {
+        uruchom();
+        setInterval(uruchom, red_time+2*yellow_time+green_time);
+    }
+</script>
+</head>
 <body>
 
     <h2>Sygnalizacja świetlna</h2>
+
+    <button type="button" onclick="powtarzaj()">Uruchom</button>
 
 <table>
     <tr>
