@@ -9,12 +9,11 @@
 <br>
     <label for="odp1">Odpowiedź 2:</label><br>
     <input type="checkbox" name="poprawne" value="2"> Poprawna<br>
-    <input type="text" name="odpowiedzi" required>
+    <input type="text" name="odpowiedzi" required value="{{ pytanie_form.odpowiedzi[1] }}">
 <br>
     <label for="odp1">Odpowiedź 3:</label><br>
     <input type="checkbox" name="poprawne" value="3"> Poprawna<br>
-    <input type="text" name="odpowiedzi" required>
+    <input type="text" name="odpowiedzi" required value="{{ pytanie_form.odpowiedzi[2] }}">
 <br>
-    <input type="submit" value="Dodaj">
-
+    <input type="submit" value="{{ akcja }}">
 </form>
