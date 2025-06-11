@@ -89,3 +89,7 @@ pve
 env
 .pve
 .env
+
+# cpp
+*.o
+*.exe
