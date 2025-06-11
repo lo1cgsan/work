@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Aplikacja Quiz</title>
-    <style>
-        body {
-          background-color: lightgray;
-        }
-
-        h1 {
-          color: white;
-          text-align: center;
-        }
-
-        p {
-          font-family: verdana;
-          font-size: 20px;
-        }
-    </style>
-</head>
-<body>
-
-<h1>Quiz</h1>
-<p>Rozwiązuj quizy i testy...</p>
-<p>
-    <a href="{{ url_for('pytania') }}">
-        Pytania »»»
-    </a>
-</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
+    <h2>Rozwiązuj quizy i testy...</h2>
+{% endblock %}
