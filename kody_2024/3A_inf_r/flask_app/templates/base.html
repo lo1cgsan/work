@@ -3,43 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block tytul %} {{ config.SITE_NAME }} {% endblock%}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
 </head>
 <body>
 
-<nav>
-     <ul>
-         <li>
-             <a href="{{ url_for('index') }}">Strona główna</a>
-         </li>
-         {% if g.user %}
-            <li>
-                <a href="{{ url_for('pytania') }}">Pytania</a>
-            </li>
-             <li>
-                 <a href="{{ url_for('users.wyloguj') }}">Wyloguj</a>
-             </li>
-         {% else %}
-             <li>
-                 <a href="{{ url_for('users.loguj') }}">Zaloguj</a>
-             </li>
-             <li>
-                 <a href="{{ url_for('users.dodaj') }}">Dodaj konto</a>
-             </li>
-         {% endif %}
-     </ul>
-</nav>
+ <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <img src="https://bulma.io/assets/images/bulma-type-white.png" alt="Logo" />
+          </a>
+          <span class="navbar-burger" data-target="navbarMenuHeroA">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-start">
 
-{% with komunikaty = get_flashed_messages() %}
-  {% if komunikaty %}
-    {% for k in komunikaty %}
-      <p>{{ k }}</p>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+            <a class="navbar-item" href="{{ url_for('index') }}">Strona główna</a>
+            <a class="navbar-item" href="{{ url_for('users.loguj') }}">Zaloguj</a>
+            <a class="navbar-item" href="{{ url_for('users.dodaj') }}">Dodaj konto</a>
+            {% if g.user %}
+              <a class="navbar-item" href="{{ url_for('todo.index') }}">Zadania</a>
+              <a class="navbar-item" href="{{ url_for('czat.index') }}">Wiadomości</a>
+              <a class="navbar-item" href="{{ url_for('users.wyloguj') }}">Wyloguj</a>
+            {% endif %}
 
-    <h1>{% block h1 %} {{ config.SITE_NAME }} {% endblock%}</h1>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
 
-    {% block body %} {% endblock%}
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+
+      {% with komunikaty = get_flashed_messages() %}
+      {% if komunikaty %}
+        {% for k in komunikaty %}
+          <p>{{ k }}</p>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <div class="container my-5">
+          <div class="columns">
+              <div class="column is-four-fifths">
+                  <h1>{% block h1 %} {{ config.SITE_NAME }} {% endblock%}</h1>
+                  {% block body %} {% endblock%}
+              </div>
+              <div class="column">
+                  Sidebar
+              </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot">
+
+    Stopka
+  </div>
 
 </body>
 </html>

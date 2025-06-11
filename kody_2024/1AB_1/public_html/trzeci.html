@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Przykłady JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function wyswietlTekst(id, tekst) {
+            document.getElementById(id).innerHTML = tekst;
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Przykłady Javascript</h1>
+    <p>Więcej przykładów wkrótce</p>
+</div>
+
+<nav class="topnav">
+    <ul>
+        <li>
+            <a href="pierwsza.html">Strona główna</a>
+        </li>
+        <li>
+            <a href="druga.html">Tabela</a>
+        </li>
+    </ul>
+</nav>
+
+<button type="button" onclick="wyswietlTekst('akapit1', 'Hello JavaScript!')">
+    Kliknij mnie</button>
+<button type="button" onclick="wyswietlTekst('akapit1', '')">
+    Czyść</button>
+
+<button type="button" onclick="sprawdzWiek('wiek')">
+    Sprawdź wiek</button>
+
+<br>
+<label for="wiek">Podaj wiek:</label>
+<input type="text" name="wiek" id="wiek">
+
+<p id="akapit1">Treść akapitu</p>
+
+</body>
+</html>

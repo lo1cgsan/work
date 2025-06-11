@@ -71,3 +71,7 @@ table, th, td {
     border-collapse: collapse;
 }
 th { padding: 6px; }
+
+button, label, input {
+    margin: 8px;
+}

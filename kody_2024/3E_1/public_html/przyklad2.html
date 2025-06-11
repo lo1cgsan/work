@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Przykłady JavaScript klasa 3E</title>
+
+    <script>
+    function czyPelnoletni() {
+        var nazwisko = document.getElementById('nazwisko').value;
+        var wiek = document.getElementById('wiek').value;
+
+        if (nazwisko.length > 2) {
+            var wynik = nazwisko;
+        } else {
+            wynik = 'Nie podałeś nazwiska!';
+        }
+
+        if (parseInt(wiek) >= 18) {
+            wynik += ' – pełnoletni';
+        } else {
+            wynik += ' – niepełnoletni';
+        }
+        
+        document.getElementById('wynik').innerHTML = wynik;
+        return false;
+    }
+    </script>
+
+</head>
+
+<body>
+    <h1>Przykłady JavaScript klasa 3E</h1>
+    <h2>Formularz</h2>
+
+    <form action="" onsubmit="return czyPelnoletni()">
+        <label for="nazwisko">Nazwisko</label>
+        <input type="text" name="nazwisko" id="nazwisko"><br>
+        <label for="wiek">Wiek</label>
+        <input type="text" name="wiek" id="wiek"><br>
+        <br>
+        <input type="submit" value="Wyślij">
+    </form>
+
+    <p id="wynik">Wynik</p>
+
+</body>
+</html>

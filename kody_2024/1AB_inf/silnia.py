@@ -4,11 +4,11 @@ n = int(input('Podaj liczbę: '))
 # 0! = 1
 # 4! = 1 * 2 * 3 * 4 = 24
 
-iloczyn = 1
+silnia = 1
 
-for i in range(1, n+1):
+for i in range(1, n):
     print('Powtórzenie:', i)
-    iloczyn = iloczyn * i
-    print('Iloczyn:', iloczyn)
+    silnia = silnia * i
+    print('Iloczyn:', silnia)
 
-print(iloczyn)
+print(silnia)
