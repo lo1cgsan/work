@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request, redirect, url_for, flash
+    Blueprint, render_template, request, redirect, url_for, flash, abort
 )
 from db import query_db, get_db
 
@@ -28,10 +28,19 @@ def dodaj():
 
     return render_template('pytania/pytanie_dodaj.html')
 
+def get_pytanie(id):
+    sql = 'SELECT * FROM pytanie WHERE id = ?'
+    pytanie = query_db(sql, [id], one=True)
+    if pytanie:
+        return pytanie
+    else:
+        abort(404)
+
 @bp.route('/odpowiedzi/<int:pid>', methods=['GET', 'POST'])
 def dodaj_odpowiedzi(pid):
-
+    pytanie = get_pytanie(int(pid))
+    print(pytanie)
     if request.method == 'POST':
-        pass
+        print(request.form)
 
-    return render_template('pytania/odpowiedzi_dodaj.html')
+    return render_template('pytania/odpowiedzi_dodaj.html', pytanie=pytanie)

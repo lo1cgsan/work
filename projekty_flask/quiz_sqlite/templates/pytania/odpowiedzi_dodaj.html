@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block tytul %} Dodawanie odpowiedzi {% endblock %}
+
+{% block h1 %} Dodaj odpowiedzi {% endblock %}
+
+{% block body %}
+<p>Pytanie: {{ pytanie.pytanie }}</p>
+    {% include "pytania/odpowiedzi_form.html" %}
+{% endblock %}

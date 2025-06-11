@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block tytul %} Strona nie istnieje {% endblock %}
+
+{% block h1 %} Strona nie istnieje {% endblock %}
+
+{% block body %}
+<p>Przykro nam, ale strona o podanym adresie nie istnieje.</p>
+
+<p>Przejdź do: <a href="{{ url_for('index') }}">Strona główna »»»</a></p>
+{% endblock %}
