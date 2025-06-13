@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Druga strona WWW</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function wstawTekst(id, tekst) {
+            document.getElementById(id).innerHTML = tekst;
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Przykłady JavaScript</h1>
+</div>
+<nav class="topnav">
+    <a href="strona1.html">Strona 1</a>
+    <a href="strona2.html">Strona 2</a>
+</nav>
+
+<p id="akapit1">Tu ma być data</p>
+<p id="akapit2">Tu ma być imię</p>
+
+<input type="text" name="" id="imie">
+
+<button type="button" onclick="wstawTekst('akapit1', Date())">Wstaw datę</button>
+<button type="button" onclick="wstawTekst('akapit2', 'Adam')">Wstaw imię</button>
+
+</body>
+</html>

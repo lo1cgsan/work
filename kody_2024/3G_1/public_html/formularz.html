@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularz</title>
+    <style>
+        label {
+            font-weight: bold;
+            margin: 8px;
+        }
+        input, select {
+            margin: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Przykład formularza</h1>
+
+    <form action="" method="get">
+        <label for="imie">Imię:</label>
+        <input type="text" name="imie" id="imie" required>
+        <br>
+
+        <label for="nazwisko">Nazwisko:</label>
+        <input type="text" name="nazwisko" id="nazwisko" required>
+        <br>
+
+        <label for="przedmiot">Wybierz przedmiot:</label>
+        <select name="przedmiot" id="przedmiot">
+            <option value="polski">Polski</option>
+            <option value="angielski">Angielski</option>
+            <option value="historia">Historia</option>
+        </select>
+        <br>
+        <br>
+
+        <input type="submit" value="Wyślij">
+
+    </form>
+
+</body>
+</html>
