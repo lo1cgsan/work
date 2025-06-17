@@ -1,9 +1,19 @@
 <form method="post">
-    <label for="nick">Nick:</label>
-    <input type="text" id="nick" name="nick" required>
-    <br>
-    <label for="haslo">Hasło:</label>
-    <input type="password" id="haslo" name="haslo" required>
-    <br>
-    <button type="submit">{{ akcja }}</button>
+    <div class="field">
+    <label class="label" for="nick">Nick</label>
+      <div class="control">
+        <input class="input" type="text" id="nick" name="nick" required>
+      </div>
+    </div>
+    <div class="field">
+        <label class="label" for="haslo">Hasło</label>
+        <div class="control">
+        <input class="input" type="password" id="haslo" name="haslo" required>
+        </div>
+    </div>
+    <div class="field">
+        <div class="contr">
+        <button class="button is-info" type="submit">{{ akcja }}</button>
+        </div>
+    </div>
 </form>

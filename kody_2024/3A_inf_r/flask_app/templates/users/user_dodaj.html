@@ -2,9 +2,11 @@
 {% block tytul %}
     Dodawanie użytkownika
 {% endblock%}
+{% block body %}
 {% block h1 %}
     Dodawanie użytkownika
 {% endblock%}
-{% block body %}
+<div class="column is-4 is-offset-4">
     {% include "users/user_form.html" %}
+</div>
 {% endblock%}

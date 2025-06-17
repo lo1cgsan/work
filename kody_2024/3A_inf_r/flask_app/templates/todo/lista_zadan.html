@@ -2,28 +2,28 @@
 {% block tytul %} Lista zadań {% endblock%}
 {% block h1 %} Lista zadań {% endblock%}
 {% block body %}
-
-  <ul>
+<div class="">
+  <ol>
   {% for z in zadania %}
     <li>
       {{ z.zadanie }} - {{ z.data_dodania }}
-
       {% if not z.zrobione %}
       <form method="POST" action="{{ url_for('todo.zrobione') }}">
         <input type="hidden" name="id" value="{{ z.id }}">
-        <input type="submit" value="Wykonane">
+        <input class="button is-dark is-small" type="submit" value="Wykonane">
       </form>
       {% else %}
       <form method="POST" action="{{ url_for('todo.usun') }}">
         <input type="hidden" name="id" value="{{ z.id }}">
-        <input type="submit" value="Usuń">
+        <input class="button is-dark is-small" type="submit" value="Usuń">
       </form>
       {% endif %}
 
+
     </li>
   {% endfor %}
-  </ul>
+  </ol>
 
-<p><a href="{{ url_for('todo.dodaj') }}">Dodaj zadanie »»»</a></p>
-
+<p class="my-2"><a class="button is-dark is-small" href="{{ url_for('todo.dodaj') }}">Dodaj zadanie »»»</a></p>
+</div>
 {% endblock %}

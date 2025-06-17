@@ -6,7 +6,7 @@ n = int(input('Podaj liczbę: '))
 
 silnia = 1
 
-for i in range(1, n):
+for i in range(1, n+1):
     print('Powtórzenie:', i)
     silnia = silnia * i
     print('Iloczyn:', silnia)
