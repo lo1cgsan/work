@@ -7,8 +7,8 @@ CREATE TABLE pytanie (
 DROP TABLE IF EXISTS odpowiedz;
 CREATE TABLE odpowiedz (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pytanie_id INTEGER,
     odpowiedz TEXT NOT NULL,
     poprawna BOOLEAN DEFAULT FALSE,
-    pytanie_id INTEGER,
     FOREIGN KEY (pytanie_id) REFERENCES pytanie(id) ON DELETE CASCADE
 );

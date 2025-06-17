@@ -1,4 +1,6 @@
-<form method="post" action="{{ url_for('pytania.dodaj_odpowiedzi', pid=pytanie.id) }}">
+<form method="post" action="">
+    <input type="hidden" name="pid" value="pytanie.id">
+
     <label for="odp1">Odpowiedź 1:</label><br>
     <input type="text" name="odpowiedzi" id="odp1" required value=""><br>
     <label for="pop1">Poprawna: </label>
