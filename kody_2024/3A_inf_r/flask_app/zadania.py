@@ -2,13 +2,13 @@ from flask import Blueprint, render_template, request, session, flash, redirect,
 from db import query_db, get_db
 from users import login_required
 
-bp = Blueprint('todo', __name__, template_folder='templates', url_prefix='/todo')
+bp = Blueprint('zadania', __name__, template_folder='templates', url_prefix='/zadania')
 
 @bp.route('/')
 def index():
     sql = 'SELECT * FROM zadanie WHERE user_id=? ORDER BY data_dodania DESC'
     zadania = query_db(sql, [g.user['id']])
-    return render_template('todo/lista_zadan.html', zadania=zadania)
+    return render_template('zadania/lista_zadan.html', zadania=zadania)
 
 
 @bp.route('/dodaj', methods=['GET', 'POST'])
@@ -25,9 +25,9 @@ def dodaj():
             flash(f'Błędne dane!')
         else:
             flash(f'Dodano zadanie {zadanie}')
-            return redirect(url_for('todo.index'))
+            return redirect(url_for('zadania.index'))
 
-    return render_template('todo/zadanie_dodaj.html', akcja='Zapisz')
+    return render_template('zadania/zadanie_dodaj.html', akcja='Zapisz')
 
 @bp.route('/usun', methods=['POST'])
 # @login_required
@@ -38,7 +38,7 @@ def usun():
                [id_z,g.user['id']])
     db.commit()
     flash('Usunięto zadanie.')
-    return redirect(url_for('todo.index'))
+    return redirect(url_for('zadania.index'))
 
 @bp.route('/zrobione', methods=['POST'])
 # @login_required
@@ -49,4 +49,4 @@ def zrobione():
                [id_z,g.user['id']])
     db.commit()
     flash('Zmieniono status zadania.')
-    return redirect(url_for('todo.index'))
+    return redirect(url_for('zadania.index'))

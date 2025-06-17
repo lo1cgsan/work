@@ -27,17 +27,18 @@
 
             <a class="navbar-item" href="{{ url_for('index') }}">Strona główna</a>
             {% if g.user %}
-              <a class="navbar-item" href="{{ url_for('todo.index') }}">Zadania</a>
+              <a class="navbar-item" href="{{ url_for('zadania.index') }}">Zadania</a>
               <a class="navbar-item" href="{{ url_for('czat.index') }}">Wiadomości</a>
             {% else %}
               <a class="navbar-item" href="{{ url_for('users.loguj') }}">Zaloguj</a>
               <a class="navbar-item" href="{{ url_for('users.dodaj') }}">Dodaj konto</a>
             {% endif %}
-            
+          </div>
+          <div class="navbar-end">
             {% if g.user %}
+              <span class="navbar-item">Użytkownik: {{ g.user.nick }}</span>
               <a class="navbar-item" href="{{ url_for('users.wyloguj') }}">Wyloguj</a>
             {% endif %}
-
           </div>
         </div>
       </div>
