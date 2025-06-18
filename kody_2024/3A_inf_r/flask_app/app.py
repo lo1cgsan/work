@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, flash, redirect, url_for, current_app
 from flask import render_template
 from db import init_app, init_db
-import users, zadania, czat
+import users, zadania, czat, pytania
 
 app = Flask(__name__)
 
@@ -16,6 +16,7 @@ init_app(app)
 app.register_blueprint(users.bp)
 app.register_blueprint(zadania.bp)
 app.register_blueprint(czat.bp)
+app.register_blueprint(pytania.bp)
 
 # widok domyślny
 @app.route('/')

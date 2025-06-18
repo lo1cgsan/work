@@ -8,7 +8,7 @@ bp = Blueprint('zadania', __name__, template_folder='templates', url_prefix='/za
 def index():
     sql = 'SELECT * FROM zadanie WHERE user_id=? ORDER BY data_dodania DESC'
     zadania = query_db(sql, [g.user['id']])
-    return render_template('zadania/lista_zadan.html', zadania=zadania)
+    return render_template('zadania/zadanie_lista.html', zadania=zadania)
 
 
 @bp.route('/dodaj', methods=['GET', 'POST'])
